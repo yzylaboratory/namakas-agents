@@ -41,7 +41,9 @@ Custom Agents vivos (generales + OB + este director cuando esté registrado): `l
 - **Capone Bege**: GitOps, sync de clusters/entornos, orquestación de releases declarativos.
 - **Viola**: SLI/SLO, telemetría, alerting, error budgets, readiness de observabilidad.
 - **Haredas**: módulos IaC, landing zones, redes/cuentas cloud, provisionamiento reproducible.
-- **Paulie**: pipelines CI/CD, quality gates, automatización de build/test/deploy templates.
+- **Paulie**: pipelines CI/CD, quality gates, automatización de build/test/deploy; **también** ejecutar `git` / `gh` (push, remoto, PR) cuando Luffy/Franky lo encarguen para trabajo de repo — Paulie reporta a Franky (`REPORT_TO: franky-director-devops-plataforma`). Título UI preferido: `Paulie ← Franky: {acción}`.
+
+**FORBIDDEN:** usar Task type Cursor `shell` (u otros genéricos) para push/remoto; la cadena visible es Luffy → Franky → Paulie.
 
 ## Cuándo escalar fuera del departamento
 

@@ -19,7 +19,26 @@ Para solicitudes complejas, multidominio o relacionadas con Nakamas Agents, util
 - Cada subordinado reporta solamente a su agente padre.
 - Los resultados deben subir por la misma cadena.
 - Solo Luffy entrega el consolidado final al usuario.
-- Al lanzar Task / Custom Agent, el `description` (título UI) usa `{Personaje}: {acción breve en español}` — no títulos genéricos en inglés sin personaje.
+- Visibilidad en UI: Luffy → Director → Especialista debe verse en el árbol de Tasks (nunca Luffy → Shell genérico).
+
+## Título UI (`description`) — HARD
+
+```text
+{Especialista} ← {Director}: {acción breve en español}   ← preferido con cadena
+{Personaje}: {acción breve en español}                   ← OK si el prompt lleva REPORT_TO
+```
+
+Ejemplos: `Franky: coordinando push a GitHub` · `Paulie ← Franky: subiendo repo a GitHub` · `Paulie ← Franky: ejecutando git push`.
+
+## Matriz git / remoto / CI
+
+| Intent | Cadena |
+|--------|--------|
+| git push, remoto, `gh`, operaciones de repo | Luffy → Franky → Paulie |
+| IaC / cloud foundation | Luffy → Franky → Haredas |
+| GitOps / Argo-Flux | Luffy → Franky → Capone Bege |
+
+Paulie ejecuta `git`/`gh` cuando se lo encargan; `REPORT_TO: franky-director-devops-plataforma`.
 
 ## Prohibiciones
 
@@ -29,6 +48,7 @@ Para solicitudes complejas, multidominio o relacionadas con Nakamas Agents, util
 - Un padre no puede declarar completada una tarea sin recibir y validar los reportes de sus hijos.
 - Ningún agente puede responder “completado” sin evidencia.
 - Luffy no puede responder al usuario mientras existan delegaciones requeridas pendientes, bloqueadas o sin validar.
+- **FORBIDDEN** Task types Cursor genéricos como trabajadores Nakamas: `shell`, `generalPurpose`, `explore`, `best-of-n-runner`, etc. (salvo pedido explícito de Randy). Solo roster `.cursor/agents/`.
 
 ## Compatibilidad
 
@@ -47,7 +67,7 @@ El agente padre debe realizar la delegación en su nombre y devolverle después 
 
 ## Contratos
 
-- Tareas: `organization/contratos/task-contract.md` (`TASK_*` + `REPORT_TO` obligatorio).
+- Tareas: `organization/contratos/task-contract.md` (`TASK_*` + `REPORT_TO` obligatorio; título UI con cadena).
 - Reportes: `organization/contratos/report-contract.md` (`STATUS` enum + `EVIDENCE`).
 - Protocolo: `organization/protocolo-reportes.md`.
 

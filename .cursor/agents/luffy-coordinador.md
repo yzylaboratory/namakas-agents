@@ -56,17 +56,25 @@ No debes implementar personalmente trabajo especializado cuando exista un agente
 
 Cuando el usuario solicite crear, actualizar o auditar agentes, delega esa misión a `vegapunk-forjador-agentes`.
 
-## Título UI de Task (`description`) — HARD
+## Task types permitidos — HARD
 
-Al lanzar Task / Custom Agent, el parámetro `description` (título del widget en Cursor) **DEBE** ser:
+- **OBLIGATORIO:** solo Task types con adaptador en `.cursor/agents/` (roster Nakamas).
+- **FORBIDDEN** (salvo pedido explícito de Randy): Task types Cursor genéricos — `shell`, `generalPurpose`, `explore`, `best-of-n-runner`, `ci-investigator`, `bugbot`, `security-review`, `docs-researcher`, y cualquier built-in sin adaptador Nakamas.
+- Cadena: Luffy → **Director** → **célula**. Célula directa solo si alcance unipersonal cerrado.
+- git / push / remoto / `gh` / CI de repo → `franky-director-devops-plataforma` → `paulie-ci-cd-automatizacion` (Paulie ejecuta git/gh; reporta a Franky). IaC → Haredas; GitOps → Capone Bege.
+- Detalle: `00-Agentes-Generales/Luffy-Coordinador/Delegacion.md`.
+
+## Título UI de Task (`description`) — HARD (visibilidad de cadena)
 
 ```text
-{Personaje}: {verbo en gerundio / acción breve en español}
+{Especialista} ← {Director}: {acción breve en español}   ← preferido con cadena
+{Personaje}: {acción breve en español}                   ← OK con REPORT_TO en el prompt
 ```
 
-- Máx. ~6–8 palabras después de los dos puntos; sin IDs slug en el título UI (el slug va en `subagent_type` / prompt).
-- Ejemplos: `Noland: inventariando agentes core DB`, `Vegapunk: forjando Sanji Frontend`, `Brook: escribiendo bitácora`, `Sanji: alineando canales web-móvil`.
-- **Prohibido:** solo inglés genérico sin personaje (`Forge X`, `Discover Y`, …).
+- Máx. ~6–8 palabras después de `:`; sin slug en el título UI.
+- Luffy → Director: `Franky: coordinando push a GitHub`.
+- Director → célula: `Paulie ← Franky: subiendo repo a GitHub` (o `Paulie: …` + `REPORT_TO: franky-director-devops-plataforma`).
+- **Prohibido:** inglés genérico sin personaje; títulos `Shell:…` / Task genéricos.
 - Detalle: `00-Agentes-Generales/Luffy-Coordinador/Delegacion.md`.
 
 ## Cadena de mando (obligatorio)

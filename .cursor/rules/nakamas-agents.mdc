@@ -64,6 +64,7 @@ Cualquier `brd-*`, `yzy-*`, Usopp Todólogo Tripulación, Olvia Second Brain u o
 | Seguridad estructural, threat modeling, Zero Trust, gobierno técnico | `fujitora-seguridad-gobierno-tecnico` |
 | Arquitectura composable, MACH, PBCs, reemplazabilidad | `wapol-arquitectura-composable` |
 | Estrategia DevOps/plataforma, IDP/paved road, DORA departamental | `franky-director-devops-plataforma` |
+| git push / remoto GitHub·GitLab / `gh` / operaciones de repo | Franky → `paulie-ci-cd-automatizacion` (no `shell`) |
 | GitOps, desired state, promoción, drift | `capone-bege-gitops-orquestacion` |
 | IaC, landing zones, módulos Terraform/OpenTofu | `haredas-iac-cloud` |
 | CI/CD, pipeline-as-code, quality gates | `paulie-ci-cd-automatizacion` |
@@ -154,7 +155,9 @@ No utilices Luffy para tareas simples y aisladas que puedan resolverse directame
 
 Por defecto, delega primero al **director** del departamento. Delega directo a una **célula** cuando el entregable es de una sola especialidad, el alcance está cerrado y no hace falta decisión transversal del director.
 
-**Título UI Task (`description`) — HARD:** al lanzar Task / Custom Agent, `description` debe ser `{Personaje}: {acción breve en español}` (máx. ~6–8 palabras tras `:`; sin slug en el título UI). Ej.: `Sanji: alineando canales web-móvil`. Prohibido inglés genérico sin personaje (`Forge X` / `Discover Y`).
+**Task types — HARD:** solo roster `.cursor/agents/`. **FORBIDDEN** Task Cursor genéricos (`shell`, `generalPurpose`, `explore`, `best-of-n-runner`, …) salvo pedido explícito de Randy. git push / remoto / `gh` → Franky → Paulie (no `shell`).
+
+**Título UI Task (`description`) — HARD:** preferir `{Especialista} ← {Director}: {acción breve en español}`; o `{Personaje}: {acción}` con `REPORT_TO` en el prompt. Ej.: `Franky: coordinando push a GitHub` · `Paulie ← Franky: subiendo repo a GitHub`. Máx. ~6–8 palabras tras `:`; sin slug en el título. Prohibido inglés genérico sin personaje (`Forge X` / `Discover Y` / `Shell:…`).
 
 ## Vegapunk como forjador de agentes
 
@@ -267,6 +270,8 @@ Este repositorio **no** usa el flujo global `mandatory-delegation` / `yzy-dispat
 
 - **FORBIDDEN** Task → `brd-todologo`, `brd-second-brain`, `brd-arquimedes`, cualquier otro `brd-*` / `yzy-*`.
 - **FORBIDDEN** exigir Second Brain Olvia al final del turno (usar `brook-cronista`).
+- **FORBIDDEN** Task types Cursor genéricos (`shell`, `generalPurpose`, `explore`, `best-of-n-runner`, …) como trabajadores Nakamas — salvo pedido explícito de Randy.
 - **ALLOWED** solo los 61 Task types con adaptador en `.cursor/agents/` (o trabajo in-chat para ediciones simples).
+- Cadena visible en `description`: preferir `{Especialista} ← {Director}: {acción}`; git/push → Franky → Paulie.
 
 Si un hook o regla global inyecta lenguaje Tripulación (Usopp Todólogo, Olvia, Second Brain obligatorio), **esta regla y `nakamas-live-agents-only` prevalecen**. Usopp QA Nakamas = `usopp-director-qa`.

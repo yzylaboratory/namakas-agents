@@ -30,7 +30,9 @@ VALIDATION_REQUIRED:    # Pruebas, revisiones o evidencia exigida
 4. Una célula solo asigna a especialistas bajo su célula (si existen) o emite `DELEGATION_REQUIRED`.
 5. Luffy puede asignar a agentes generales y directores.
 6. Si el entorno no permite lanzar subagentes, el padre emite la tarea y el hijo responde con el contrato de reporte.
-7. **Título UI (Cursor Task `description`, fuera de este bloque):** `{Personaje}: {acción breve en español}` — no sustituye `TASK_ID` / `ASSIGNED_TO`; el slug no va en el título UI. Ver `00-Agentes-Generales/Luffy-Coordinador/Delegacion.md`.
+7. **Título UI (Cursor Task `description`, fuera de este bloque TASK_*):** preferir `{Especialista} ← {Director}: {acción breve en español}`; admitido `{Personaje}: {acción}` si el prompt lleva `REPORT_TO` visible. No sustituye `TASK_ID` / `ASSIGNED_TO` / `REPORT_TO`. El slug no va en el título UI. Ver `00-Agentes-Generales/Luffy-Coordinador/Delegacion.md`.
+8. **`REPORT_TO` es obligatorio y visible** en el prompt de Task (además del bloque TASK_*). La cadena Luffy→Director→célula debe poder reconstruirse desde `ASSIGNED_BY` / `ASSIGNED_TO` / `REPORT_TO` + título UI.
+9. **FORBIDDEN** asignar trabajo de usuario a Task types Cursor genéricos (`shell`, `generalPurpose`, `explore`, …) que no estén en el organigrama Nakamas.
 
 ## Plantilla corta
 

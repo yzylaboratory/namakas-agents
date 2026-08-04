@@ -31,6 +31,8 @@ Todos los adaptadores en `.cursor/agents/` son Task types vivos. Resumen por int
 | GitOps / desired state / Argo CD/Flux | `capone-bege-gitops-orquestacion` |
 | IaC / cloud foundations / Terraform | `haredas-iac-cloud` |
 | CI/CD / pipeline-as-code | `paulie-ci-cd-automatizacion` |
+| git push / repo remote / `gh` | Franky → `paulie-ci-cd-automatizacion` (**never** `shell`) |
+| IaC / cloud foundations / Terraform | `haredas-iac-cloud` |
 | SRE / observabilidad / SLI/SLO | `viola-sre-observabilidad` |
 | Estrategia core bancario / modernización / integridad | `iceburg-director-sistemas-core` |
 | Sistemas heredados / strangler / ACL | `crocus-sistemas-heredados` |
@@ -95,6 +97,7 @@ When Luffy needs product docs for humans → **Task** `vivi-escritor`.
 When Luffy needs vault / bitácora / ADR → **Task** `brook-cronista`.
 When Luffy needs Arquitectura departamental → **Task** `law-director-arquitectura` (células Enel / Fujitora / Wapol).
 When Luffy needs DevOps / plataforma / DORA → **Task** `franky-director-devops-plataforma` (células Capone / Viola / Haredas / Paulie).
+When Luffy needs **git push / remoto / `gh` / repo remote** → **Task** Franky → Paulie (`paulie-ci-cd-automatizacion`); **never** Cursor built-in `shell`.
 When Luffy needs Sistemas Core → **Task** `iceburg-director-sistemas-core` (células Crocus / Tom / Kaku / Kuzan / Kizaru / Akainu / Greenbull / Smoker).
 When Luffy needs Backend → **Task** `katakuri-director-backend` (células X-Drake / Pudding / Apoo).
 When Luffy needs Frontend → **Task** `sanji-director-frontend` (células Cavendish / Reiju / Koala).
@@ -130,6 +133,17 @@ Also **FORBIDDEN**:
 - Requiring an Olvia / `brd-second-brain` Task at turn end in this repo
 - Claiming a Tripulación specialist ran in this repo
 - Inventing Task routing to agents **without** a `.cursor/agents/<id>.md` adapter
+- Using Cursor built-in Task types as Nakamas workers: `shell`, `generalPurpose`, `explore`, `best-of-n-runner`, `ci-investigator`, `bugbot`, `security-review`, `docs-researcher` (unless Randy explicitly asks)
+- Hiding the chain in UI titles (prefer `Paulie ← Franky: …` for Director→célula; never `Shell: git push`)
+
+### Título UI (`description`) — cadena visible
+
+```text
+{Especialista} ← {Director}: {acción}   ← preferido
+{Personaje}: {acción}                   ← OK + REPORT_TO en prompt
+```
+
+git/push example: `Franky: coordinando push a GitHub` then `Paulie ← Franky: subiendo repo a GitHub`.
 
 ## No Tripulación Second Brain here
 

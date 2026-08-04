@@ -15,6 +15,8 @@
 - Open Banking → **Jinbe** primero; luego Lucci / FIBO / Sabo → Robin según necesidad.
 - Departamentos 02–12 → **director** primero; célula directa si el alcance es unipersonal y cerrado.
 - **FORBIDDEN** Tasks a Tripulación (`brd-*`, `yzy-*`, Usopp Todólogo, Olvia Second Brain).
+- **FORBIDDEN** Task types Cursor genéricos como trabajadores Nakamas (salvo pedido explícito de Randy): `shell`, `generalPurpose`, `explore`, `best-of-n-runner`, `ci-investigator`, `bugbot`, `security-review`, `docs-researcher`, y cualquier otro built-in que **no** tenga adaptador en `.cursor/agents/`.
+- **OBLIGATORIO:** solo Task types del roster vivo en `.cursor/agents/` (Nakamas).
 - **No** hay requisito de Second Brain Olvia en este repo (usar `brook-cronista`).
 - **No** inventar routing Task a ids sin adaptador en `.cursor/agents/`.
 
@@ -24,9 +26,30 @@ Usopp QA Nakamas = `usopp-director-qa` (**≠** `brd-todologo`).
 
 Luffy coordina y mantiene la responsabilidad final. Los especialistas deciden cómo ejecutar el trabajo dentro de su disciplina.
 
-Por defecto, delega primero al director del departamento. Delega directamente a una célula cuando la tarea es concreta, bien delimitada y no requiere coordinación departamental adicional.
+Por defecto, delega primero al **director** del departamento. El director lanza a la **célula**. Delega directamente a una célula solo cuando la tarea es concreta, unipersonal, bien delimitada y no requiere coordinación departamental adicional.
+
+Cadena visible esperada (ejemplo git/push):
+
+```text
+Luffy
+--Franky
+----Paulie
+```
+
+**Nunca** `Luffy → shell` (ni otro genérico Cursor) para trabajo de usuario.
 
 **Excepción:** solo asientos **sin** adaptador en `.cursor/agents/` quedan fuera de Task; no inventes ids ni uses roster `brd-*` legacy. Todos los directores y células 02–12 listados arriba son vivos y se invocan vía Task.
+
+### Matriz git / remoto / CI (HARD)
+
+| Intent | Cadena |
+|--------|--------|
+| git push, remoto GitHub/GitLab, `gh` PR/release, operaciones de repo remoto | Luffy → `franky-director-devops-plataforma` → `paulie-ci-cd-automatizacion` |
+| IaC / foundations cloud (no push de app) | Luffy → Franky → `haredas-iac-cloud` |
+| GitOps / desired state / Argo-Flux | Luffy → Franky → `capone-bege-gitops-orquestacion` |
+| SRE / observabilidad runtime | Luffy → Franky → `viola-sre-observabilidad` |
+
+Paulie ejecuta `git` / `gh` en el prompt cuando Franky (o Luffy en alcance unipersonal cerrado) lo encargue. Paulie reporta a Franky; Franky a Luffy.
 
 ## Agentes generales
 
@@ -66,34 +89,46 @@ Puedes delegar directamente cuando:
 
 Ejemplo: una validación puntual de un contrato OpenAPI puede ir directamente a `kalifa-pruebas-apis-contratos`. El diseño de la estrategia completa de QA debe ir primero a `usopp-director-qa` (**nunca** `brd-todologo`).
 
-## Título UI de Task (`description`) — HARD
+## Título UI de Task (`description`) — HARD (visibilidad de cadena)
 
-Al lanzar **Task / Custom Agent**, el parámetro `description` (título que muestra el widget de subagente en la UI de Cursor) **DEBE** ser:
+Al lanzar **Task / Custom Agent**, el parámetro `description` (título del widget en Cursor) **DEBE** mostrar quién trabaja. Si hay cadena Director→célula, el título debe hacer visible esa cadena.
+
+### Formatos admitidos
 
 ```text
-{Personaje}: {verbo en gerundio / acción breve en español}
+{Especialista} ← {Director}: {acción breve en español}   ← preferido cuando hay cadena
+{Personaje}: {acción breve en español}                   ← OK si el prompt lleva REPORT_TO al padre
 ```
 
 Reglas:
 
-- Formato: nombre del personaje (humano, no slug) + `: ` + acción breve en español.
+- Nombre humano del personaje (no slug) + acción breve en español.
 - Máximo ~6–8 palabras **después** de los dos puntos.
-- El slug (`subagent_type` / id Task) va en el prompt y en `subagent_type`, **nunca** en el título UI.
-- **Prohibido:** títulos solo en inglés genérico sin personaje (p. ej. `Forge X`, `Discover Y`, `Discover Banreservas core DB agents`).
+- El slug (`subagent_type`) va en el prompt / `subagent_type`, **nunca** en el título UI.
+- Cuando Luffy lanza solo al Director: `{Director}: {acción de coordinación}`.
+- Cuando el Director (o Luffy en alcance unipersonal) lanza la célula: preferir `{Célula} ← {Director}: {acción}`.
+- Si usas solo `{Célula}: {acción}`, el prompt **DEBE** incluir `REPORT_TO: <padre>` y el padre reporta hacia arriba.
+- **Prohibido:** títulos solo en inglés genérico sin personaje (`Forge X`, `Discover Y`, `Push to GitHub`).
+- **Prohibido:** títulos que oculten la cadena (p. ej. `Shell: pushing repo`) o usen Task types genéricos.
 
 Ejemplos válidos:
 
+- `Franky: coordinando push a GitHub` — Luffy → Director
+- `Paulie ← Franky: subiendo repo a GitHub` — Director → célula (preferido)
+- `Paulie ← Franky: ejecutando git push`
+- `Paulie: subiendo repo a GitHub` — solo si el prompt tiene `REPORT_TO: franky-director-devops-plataforma`
 - `Noland: inventariando agentes core DB`
 - `Vegapunk: forjando Sanji Frontend`
 - `Brook: escribiendo bitácora`
 - `Sanji: alineando canales web-móvil`
-- `Robin: especificando OpenAPI partner`
 
 Ejemplos inválidos:
 
 - `Discover Banreservas core DB agents`
 - `Forge Sanji Frontend`
 - `noland-explorador inventory`
+- `Shell: git push`
+- `Push repo to GitHub`
 
 ## Contrato de delegación
 
@@ -144,7 +179,8 @@ Pruebas, revisiones o evidencia que debe entregar.
 ```md
 ## Tarea
 
-[Personaje]: [acción breve en español]   ← mismo formato que Task `description` (UI)
+[Especialista] ← [Director]: [acción breve en español]   ← preferido (mismo formato que Task `description`)
+# o: [Personaje]: [acción] + REPORT_TO en el bloque TASK_*
 
 ## Objetivo
 
