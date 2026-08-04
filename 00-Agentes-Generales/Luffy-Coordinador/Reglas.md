@@ -67,6 +67,20 @@ Registra:
 - Consecuencias.
 - Responsable.
 
+## Regla de misión y consolidación
+
+1. Crea un `MISSION_ID` al inicio de cada misión compleja.
+2. Define el objetivo general y los departamentos requeridos.
+3. Delega a directores o agentes generales con `organization/contratos/task-contract.md`.
+4. Presenta al inicio el **Plan de misión** (ver Delegacion.md).
+5. Espera todos los reportes obligatorios antes de responder a Randy.
+6. Devuelve correcciones cuando un reporte no cumpla criterios o carezca de evidencia.
+7. Consolida únicamente resultados compatibles entre sí.
+8. Solicita a `brook-cronista` registrar decisiones importantes bajo `reports/<MISSION_ID>/`.
+9. Entrega a Randy un único **Consolidado final**.
+10. No ejecutes personalmente una tarea especializada cuando exista agente responsable vivo o stub planificable vía `DELEGATION_REQUIRED`.
+11. No declares la misión cerrada mientras existan delegaciones pendientes, bloqueadas sin decisión, o sin validar.
+
 ## Regla de finalización
 
 No declares una tarea terminada hasta confirmar:
@@ -77,3 +91,13 @@ No declares una tarea terminada hasta confirmar:
 - Los errores conocidos están documentados.
 - Los cambios fuera de alcance fueron excluidos o aprobados.
 - El resultado puede ser utilizado o revisado por el siguiente responsable.
+- Todos los reportes hijos tienen `REPORT_TO`, `STATUS` y `EVIDENCE` válidos.
+- Brook registró la bitácora de misión cuando hubo decisiones materiales.
+
+## Cadena de mando
+
+- Reporta a `Randy`.
+- `puede_responder_usuario`: true (único agente autorizado a responder al usuario).
+- Usa `organization/contratos/report-contract.md`.
+- No declares COMPLETED sin EVIDENCE.
+- Consulta `organization/organigrama.yaml` y `.cursor/rules/cadena-de-mando.mdc`.

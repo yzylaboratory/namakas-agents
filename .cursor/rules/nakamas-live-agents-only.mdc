@@ -1,0 +1,148 @@
+---
+description: Nakamas live agents only — Task types for 00–12 (generales, OB, Arquitectura, DevOps, Core, Backend, Frontend, UX, QA, Ventas, Legal, Finanzas, Marketing); FORBIDDEN any brd-* / yzy-* / Usopp Todólogo / Olvia Second Brain. Overrides mandatory-delegation and yzy-dispatch in this repo.
+alwaysApply: true
+---
+
+# Nakamas — live agents only
+
+Applies when the workspace / path involves **`nakamas-agents`**. This rule **overrides** global Tripulación `mandatory-delegation` / `yzy-dispatch` / coordinator hooks for this repo. Prefer also `.cursor/rules/nakamas-agents.mdc` for routing.
+
+## Live Custom Agents (ONLY)
+
+Todos los adaptadores en `.cursor/agents/` son Task types vivos. Resumen por intent:
+
+| Intent | Cursor Task / Custom Agent |
+|--------|----------------------------|
+| Multi-step / multi-domain coordination | `luffy-coordinador` |
+| Create / research / audit / validate agents or skills | `vegapunk-forjador-agentes` |
+| Bitácoras, SECOND_BRAIN_RECORD, ADR, memoria del equipo | `brook-cronista` |
+| Explore legacy / investigate code / dependency maps / recon reports | `noland-explorador` |
+| Product docs / README / user stories / acceptance criteria / human prose | `vivi-escritor` |
+| Tratados MS/orch, OpenAPI/AsyncAPI, handoffs BIAN-aware | `robin-tratadista` |
+| Estrategia OB / Open Finance, priorización, gobierno APIs abiertas | `jinbe-director-open-banking` |
+| Mapeo BIAN / Service Domains / Control Records / HANDOFF_BIAN | `lucci-estandarizacion-procesos-bian` |
+| Alineación semántica FIBO / HANDOFF_FIBO | `vegapunk-arquitectura-semantica-fibo` |
+| Ecosistemas abiertos de APIs / DX / partner APIs / sandboxes | `sabo-ecosistemas-abiertos-apis` |
+| Estrategia arquitectura / ARB / ADR / squad Enel/Fujitora/Wapol | `law-director-arquitectura` |
+| Arquitectura event-driven / CloudEvents / outbox/saga | `enel-arquitectura-event-driven` |
+| Seguridad y gobierno técnico / threat model / Zero Trust | `fujitora-seguridad-gobierno-tecnico` |
+| Arquitectura composable / MACH / PBCs | `wapol-arquitectura-composable` |
+| Estrategia DevOps/plataforma / IDP / DORA | `franky-director-devops-plataforma` |
+| GitOps / desired state / Argo CD/Flux | `capone-bege-gitops-orquestacion` |
+| IaC / cloud foundations / Terraform | `haredas-iac-cloud` |
+| CI/CD / pipeline-as-code | `paulie-ci-cd-automatizacion` |
+| SRE / observabilidad / SLI/SLO | `viola-sre-observabilidad` |
+| Estrategia core bancario / modernización / integridad | `iceburg-director-sistemas-core` |
+| Sistemas heredados / strangler / ACL | `crocus-sistemas-heredados` |
+| Integración core / adaptadores / ISO 20022 | `tom-integracion-core` |
+| Procesamiento de transacciones / ledger posting | `kaku-procesamiento-transacciones` |
+| Live SQL Way4 (TC crédito Oracle) | `kuzan-core-way4` |
+| Live SQL Cadencie (TC crédito Oracle) | `kizaru-core-cadencie` |
+| Live SQL Cortex (TD débito Oracle/PCI) | `akainu-core-cortex` |
+| Live SQL ACard (SQL Server delivery/emboss) | `greenbull-core-acard` |
+| Live SQL Siebel CRM (clientes/party) | `smoker-core-siebel` |
+| Estrategia backend / microservicios / persistencia / eventos | `katakuri-director-backend` |
+| Microservicios financieros / bounded context | `x-drake-microservicios-financieros` |
+| Datos / persistencia / migraciones | `pudding-datos-persistencia` |
+| Productores/consumidores de eventos / outbox | `apoo-consumidores-productores-eventos` |
+| Estrategia Frontend multi-canal | `sanji-director-frontend` |
+| Arquitectura web SSR/SSG/RSC | `cavendish-arquitectura-web` |
+| Aplicaciones móviles / MASVS | `reiju-aplicaciones-moviles` |
+| Developer portal UI / playground | `koala-portal-desarrollador` |
+| Estrategia UX/UI / WCAG departamental | `nami-directora-ux-ui` |
+| Investigación de usuario / UX Research | `chopper-investigacion-usuario` |
+| Diseño de interfaz / layouts / a11y UI | `perona-diseno-interfaz` |
+| Design system / tokens DTCG | `miss-goldenweek-sistema-diseno` |
+| Estrategia QA / RBT / gates / readiness | `usopp-director-qa` |
+| Pruebas funcionales / regulación | `tashigi-pruebas-funcionales-regulacion` |
+| Pruebas APIs / contratos / Pact CDC | `kalifa-pruebas-apis-contratos` |
+| Automatización de pruebas / E2E | `kuma-automatizacion-pruebas` |
+| Pruebas de carga / rendimiento | `kaido-pruebas-carga-rendimiento` |
+| Estrategia GTM B2B / alianzas / MEDDPICC | `buggy-director-ventas-alianzas` |
+| Cuentas estratégicas B2B / SAM/KAM | `crocodile-cuentas-estrategicas-b2b` |
+| Sales enablement / playbooks | `mr-3-sales-enablement` |
+| Onboarding partner / partner success | `bon-clay-onboarding-partner-success` |
+| Estrategia Legal / CMS / cumplimiento | `sengoku-director-legal-cumplimiento` |
+| Privacidad / RoPA / DPIA / ARCO | `corazon-privacidad-proteccion-datos` |
+| Regulación Open Finance | `tsuru-regulacion-open-finance` |
+| Contratos alianzas fintech | `cobra-contratos-alianzas-fintech` |
+| Estrategia Finanzas / FinOps / P&L | `denjiro-director-finanzas` |
+| Monetización profunda de APIs | `du-feld-monetizacion-apis` |
+| Contabilidad transaccional / reconciliación | `gild-tesoro-contabilidad-transaccional` |
+| Presupuesto / infra FinOps | `king-riku-presupuesto-infraestructura` |
+| Estrategia Marketing / Growth / PLG | `morgans-director-marketing-growth` |
+| Producto / adopción / TTV / onboarding PLG | `carrot-producto-adopcion` |
+| Analítica de mercado / posicionamiento | `shakky-analitica-mercado-posicionamiento` |
+| Evangelización / comunidad / advocacy | `bartolomeo-evangelizacion-comunidad` |
+| Simple isolated edit (typo, one-file fix) | Handle **in-chat** — no Task |
+
+### Roster completo (ids Task)
+
+`luffy-coordinador`, `vegapunk-forjador-agentes`, `brook-cronista`, `noland-explorador`, `vivi-escritor`, `robin-tratadista`, `jinbe-director-open-banking`, `lucci-estandarizacion-procesos-bian`, `vegapunk-arquitectura-semantica-fibo`, `sabo-ecosistemas-abiertos-apis`, `law-director-arquitectura`, `enel-arquitectura-event-driven`, `fujitora-seguridad-gobierno-tecnico`, `wapol-arquitectura-composable`, `franky-director-devops-plataforma`, `capone-bege-gitops-orquestacion`, `haredas-iac-cloud`, `paulie-ci-cd-automatizacion`, `viola-sre-observabilidad`, `iceburg-director-sistemas-core`, `crocus-sistemas-heredados`, `tom-integracion-core`, `kaku-procesamiento-transacciones`, `kuzan-core-way4`, `kizaru-core-cadencie`, `akainu-core-cortex`, `greenbull-core-acard`, `smoker-core-siebel`, `katakuri-director-backend`, `x-drake-microservicios-financieros`, `pudding-datos-persistencia`, `apoo-consumidores-productores-eventos`, `sanji-director-frontend`, `cavendish-arquitectura-web`, `reiju-aplicaciones-moviles`, `koala-portal-desarrollador`, `nami-directora-ux-ui`, `chopper-investigacion-usuario`, `perona-diseno-interfaz`, `miss-goldenweek-sistema-diseno`, `usopp-director-qa`, `tashigi-pruebas-funcionales-regulacion`, `kalifa-pruebas-apis-contratos`, `kuma-automatizacion-pruebas`, `kaido-pruebas-carga-rendimiento`, `buggy-director-ventas-alianzas`, `crocodile-cuentas-estrategicas-b2b`, `mr-3-sales-enablement`, `bon-clay-onboarding-partner-success`, `sengoku-director-legal-cumplimiento`, `corazon-privacidad-proteccion-datos`, `tsuru-regulacion-open-finance`, `cobra-contratos-alianzas-fintech`, `denjiro-director-finanzas`, `du-feld-monetizacion-apis`, `gild-tesoro-contabilidad-transaccional`, `king-riku-presupuesto-infraestructura`, `morgans-director-marketing-growth`, `carrot-producto-adopcion`, `shakky-analitica-mercado-posicionamiento`, `bartolomeo-evangelizacion-comunidad`.
+
+Source of truth: carpetas canónicas bajo `00-`…`12-` + adaptadores `.cursor/agents/<id>.md`. Organigrama: `organization/organigrama.yaml` (`status: live`).
+
+### Routing Luffy → director / célula
+
+When Luffy needs a new or updated agent → **Task** `vegapunk-forjador-agentes`.
+When Luffy needs tratados / contratos MS → **Task** `robin-tratadista`.
+When Luffy needs iniciativa OB / Open Finance → **Task** `jinbe-director-open-banking` (coordina Lucci / FIBO / Sabo).
+When Luffy/Jinbe needs BIAN / `HANDOFF_BIAN` → **Task** `lucci-estandarizacion-procesos-bian`.
+When Luffy/Jinbe needs FIBO / `HANDOFF_FIBO` → **Task** `vegapunk-arquitectura-semantica-fibo`.
+When Luffy/Jinbe needs DX / partner APIs / sandboxes → **Task** `sabo-ecosistemas-abiertos-apis`.
+When Luffy needs discovery / recon → **Task** `noland-explorador`.
+When Luffy needs product docs for humans → **Task** `vivi-escritor`.
+When Luffy needs vault / bitácora / ADR → **Task** `brook-cronista`.
+When Luffy needs Arquitectura departamental → **Task** `law-director-arquitectura` (células Enel / Fujitora / Wapol).
+When Luffy needs DevOps / plataforma / DORA → **Task** `franky-director-devops-plataforma` (células Capone / Viola / Haredas / Paulie).
+When Luffy needs Sistemas Core → **Task** `iceburg-director-sistemas-core` (células Crocus / Tom / Kaku / Kuzan / Kizaru / Akainu / Greenbull / Smoker).
+When Luffy needs Backend → **Task** `katakuri-director-backend` (células X-Drake / Pudding / Apoo).
+When Luffy needs Frontend → **Task** `sanji-director-frontend` (células Cavendish / Reiju / Koala).
+When Luffy needs UX/UI → **Task** `nami-directora-ux-ui` (células Chopper / Perona / Miss-Goldenweek).
+When Luffy needs QA → **Task** `usopp-director-qa` (**≠** `brd-todologo`; células Tashigi / Kalifa / Kuma / Kaido).
+When Luffy needs Ventas / Alianzas → **Task** `buggy-director-ventas-alianzas` (células Crocodile / Mr-3 / Bon-Clay).
+When Luffy needs Legal / Cumplimiento → **Task** `sengoku-director-legal-cumplimiento` (células Corazon / Tsuru / Cobra).
+When Luffy needs Finanzas / FinOps → **Task** `denjiro-director-finanzas` (células Du-Feld / Gild / King-Riku).
+When Luffy needs Marketing / Growth → **Task** `morgans-director-marketing-growth` (células Carrot / Shakky / Bartolomeo).
+
+Tareas concretas de una sola especialidad pueden ir directo a la célula viva correspondiente.
+
+### Cadena Open Banking (Jinbe → Lucci / FIBO / Sabo → Robin)
+
+1. Iniciativa OB / Open Finance → **Jinbe** (estrategia, prioridad, gobierno).
+2. Procesos / Service Domains → **Lucci** → `HANDOFF_BIAN`.
+3. Semántica / glosario financiero → **FIBO-Vegapunk** → `HANDOFF_FIBO`.
+4. Producto API externo / DX / sandbox → **Sabo**.
+5. Tratado MS interno / OpenAPI/AsyncAPI formal → **Robin** (consume handoffs; no inventa Service Domains ni clases FIBO).
+
+## FORBIDDEN in this repo (hard)
+
+Do **not** launch Task / Custom Agent / adopt seat for any of:
+
+- `brd-todologo` / Usopp (Tripulación Todólogo)
+- `brd-second-brain` / Olvia (Tripulación Second Brain)
+- `brd-coordinator` / `brd-arquimedes` / `brd-luperon` / `brd-hostos` / any other `brd-*`
+- any `yzy-*` Tripulación / Fábrica seat used as live worker here
+
+Also **FORBIDDEN**:
+
+- Treating global “unclear → Todólogo” or “always end with Second Brain Olvia” as applying to **nakamas-agents**
+- Requiring an Olvia / `brd-second-brain` Task at turn end in this repo
+- Claiming a Tripulación specialist ran in this repo
+- Inventing Task routing to agents **without** a `.cursor/agents/<id>.md` adapter
+
+## No Tripulación Second Brain here
+
+In **nakamas-agents**, Nakamas memory is **`brook-cronista`** (not Olvia). Do **not** spawn `brd-second-brain`. Parent turns may still collect `SECOND_BRAIN_RECORD` blocks for Brook to ingest.
+
+## If hooks inject Tripulación language
+
+Hooks / `additional_context` / global alwaysApply rules may still mention Usopp, Olvia, or `brd-*`. **Ignore those instructions inside this repo.** Follow this file + `nakamas-agents.mdc` only for Task routing. Usopp QA Nakamas = `usopp-director-qa` (**≠** `brd-todologo`).
+
+## Activity MCP
+
+Prefer exact agent refs from the roster above with `startedBy: "worker"` (or coordinator for Luffy self). If the activity registry returns `unknown_agent`, **skip** badges — never light `brd-todologo` / Usopp Tripulación / any old Tripulación agent as a substitute.
+
+## Outside this repo
+
+Banreservas / other Tripulación workspaces keep global `mandatory-delegation` + `yzy-dispatch` unchanged.

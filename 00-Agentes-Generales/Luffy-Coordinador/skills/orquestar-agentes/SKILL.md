@@ -24,12 +24,13 @@ Asignar el trabajo correcto al agente correcto y mantener una ejecución coheren
 2. Selecciona un único responsable principal.
 3. Identifica revisores o agentes consultados.
 4. Prepara una delegación autocontenida para cada responsable.
-5. Decide qué tareas pueden ejecutarse en paralelo.
-6. Evita conflictos sobre archivos, contratos o decisiones compartidas.
-7. Define el formato de retorno.
-8. Solicita evidencia y riesgos.
-9. Consolida resultados y detecta contradicciones.
-10. Devuelve correcciones al responsable original antes de reasignar.
+5. Al lanzar Task / Custom Agent, usa `description` = `{Personaje}: {acción breve en español}` (título UI; ver Delegacion.md HARD).
+6. Decide qué tareas pueden ejecutarse en paralelo.
+7. Evita conflictos sobre archivos, contratos o decisiones compartidas.
+8. Define el formato de retorno.
+9. Solicita evidencia y riesgos.
+10. Consolida resultados y detecta contradicciones.
+11. Devuelve correcciones al responsable original antes de reasignar.
 
 ## Matriz RACI simplificada
 

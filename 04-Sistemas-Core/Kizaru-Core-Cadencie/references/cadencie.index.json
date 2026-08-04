@@ -1,0 +1,109 @@
+{
+  "core": "cadencie",
+  "engine": "oracle",
+  "environment": "qa",
+  "purpose": "Tarjetas de crédito Banreservas (Cadencie legacy core)",
+  "explored": "2026-07-27",
+  "connection": {
+    "host": "<HOST_PRIVATE_CADENCIE>",
+    "port": 1521,
+    "service": "pdbuc36",
+    "user": "appsdbuc",
+    "dbName": "PCAD36",
+    "credentialSource": "iac/.../overlays/qa/secret/ms-credit-cards-inquiries.env (quarkus.datasource.username/password)"
+  },
+  "owners": [
+    {"name": "CADENCIE", "role": "physical tables", "tableCount": 412, "viewCount": 7},
+    {"name": "APPSDBUC", "role": "login user + synonyms + LI_/GET_/EAI_ procedures"}
+  ],
+  "tableCount": 412,
+  "documentedTableCount": 11,
+  "joinSpine": [
+    "CUSTR.BANK+CUSTR_NBR <- CARD.BANK+CUSTR_NBR",
+    "CARD.PROFIL = PRMCN.PRODUCT",
+    "CARD.CANCL_CODE = CLOCD.CLOSE_CD",
+    "CARD.BANK+ACCOUNT -> ACCT.BANK+ACCOUNT (CURR_NUM 214/840); list SP also ACCT.CARD_NBR",
+    "ACCT.MONTH_NBR-1 -> STMT.MONTH_NBR (due date)",
+    "ACCT -> MSTM/MPUR for Credimás",
+    "EVENT.CARD_NBR (ISPEC TRAN/MPTR) for transactions"
+  ],
+  "statusProductFields": {
+    "productCode": "CARD.PROFIL -> PRMCN.PRODUCT",
+    "productDesc": "PRMCN.PROD_DESC",
+    "cardStatus": "CARD.CANCL_CODE -> CLOCD.CLOSE_CD",
+    "pendingActivation": "CANCL_CODE=T / PendienteActivacion",
+    "activeStatus": "CANCL_CODE=' ' (space)",
+    "issueReason": "CARD.ISSUE_REAS -> CODES CODE_TYPE=RCISS",
+    "emboss": "CARD.EMBOSS_CRD",
+    "quotaType": "TRIM(ACCT.ACC_TYPE)",
+    "currencies": {"DOP": 214, "USD": 840}
+  },
+  "tables": [
+    {
+      "name": "CADENCIE.CARD",
+      "purpose": "Plastic / device rows (PAN, status, product profil, account link)",
+      "keys": ["CARD_NBR", "CUSTR_NBR", "ACCOUNT", "BANK", "PROFIL", "CANCL_CODE", "ISSUE_STS", "ISSUE_REAS", "EMBOSS_CRD"]
+    },
+    {
+      "name": "CADENCIE.ACCT",
+      "purpose": "Account balances and limits per currency (DOP/USD)",
+      "keys": ["BANK", "ACCOUNT", "CARD_NBR", "CURR_NUM", "CRED_LIMIT", "ACC_TYPE", "MONTH_NBR", "PRODUCT"]
+    },
+    {
+      "name": "CADENCIE.PRMCN",
+      "purpose": "Product catalog (code + description)",
+      "keys": ["BANK", "PRODUCT", "PROD_DESC", "PROFIL", "CURR_NUM", "PRODUCT_TY"]
+    },
+    {
+      "name": "CADENCIE.CUSTR",
+      "purpose": "Customer / document master (id in CUSTR_NBR)",
+      "keys": ["BANK", "CUSTR_NBR", "DOCUM_TYPE"]
+    },
+    {
+      "name": "CADENCIE.STMT",
+      "purpose": "Statement cycles; payment due date",
+      "keys": ["BANK", "ACCOUNT", "MONTH_NBR", "MIN_DUE_DT", "MIN_DUE"]
+    },
+    {
+      "name": "CADENCIE.EVENT",
+      "purpose": "Posted transactions / movements",
+      "keys": ["CARD_NBR", "ACCTNBR", "ISPEC", "TRANS_TYPE", "BILL_AMT", "INP_DATE", "INP_TIME", "TRANNO"]
+    },
+    {
+      "name": "CADENCIE.CLOCD",
+      "purpose": "Close/status code catalog for CANCL_CODE",
+      "keys": ["BANK", "CLOSE_CD", "CLOSE_DESC"]
+    },
+    {
+      "name": "CADENCIE.MPUR",
+      "purpose": "Credimás / multipurchase plans",
+      "keys": ["BANK", "ACCOUNT", "STATUS", "PURCH_DAY", "MP_NUMBER"]
+    },
+    {
+      "name": "CADENCIE.MSTM",
+      "purpose": "Credimás monthly remaining capital",
+      "keys": ["BANK", "ACCOUNT", "MONTH_NBR", "REM_PPL"]
+    },
+    {
+      "name": "CADENCIE.CODES",
+      "purpose": "Generic code lists (e.g. RCISS issue reasons)",
+      "keys": ["BANK", "CODE_TYPE", "CODE_VALUE", "SHORT_DEF"]
+    },
+    {
+      "name": "CADENCIE.AUTH",
+      "purpose": "Authorization trail (supporting; MS often uses ACCT.AUTHS_AMT)",
+      "keys": ["CARD_NBR", "AUTH_CODE", "BANK", "ACCOUNT"]
+    }
+  ],
+  "procedures": [
+    "GET_CUSTOMER_CARDS_PROC",
+    "LI_GET_CREDIT_CARD_DETAIL",
+    "LI_GET_CARD_TRANSACTIONS",
+    "LI_GET_CUSTOMER_CARDS",
+    "LI_GET_ADDITIONAL_CARDS",
+    "LI_GET_CARDS_EXPIRING",
+    "TipoDocumento",
+    "PendienteActivacion"
+  ],
+  "schemaDoc": "schemas/cadencie.md"
+}

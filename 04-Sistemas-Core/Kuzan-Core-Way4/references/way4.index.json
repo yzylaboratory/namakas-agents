@@ -1,0 +1,120 @@
+{
+  "core": "way4",
+  "engine": "oracle",
+  "environment": "testing",
+  "purpose": "Tarjetas de crédito Banreservas (OpenWay Way4 issuing core)",
+  "explored": "2026-07-27",
+  "connection": {
+    "host": "<HOST_PRIVATE_WAY4>",
+    "port": 1521,
+    "service": "way4testing-prim.sndb.vcndev.oraclevcn.com",
+    "user": "OWS_A",
+    "dbName": "PQAOWPRIM",
+    "credentialSource": "iac/.../secret/card-nexus.env (WAY4_USER / WAY4_PASSWORD)"
+  },
+  "owners": [
+    {"name": "OWS", "role": "application schema", "tableCount": 950, "viewCount": 627},
+    {"name": "OWS_A", "role": "login user"}
+  ],
+  "tableCount": 950,
+  "joinSpine": [
+    "CLIENT.ID <- ACNT_CONTRACT.CLIENT__ID (CON_CAT=C card)",
+    "ACNT_CONTRACT(C).ACNT_CONTRACT__OID -> ACNT_CONTRACT(A).ID (account / cardAccountId)",
+    "CARD_INFO.ACNT_CONTRACT__OID -> ACNT_CONTRACT(C).ID",
+    "ACNT_CONTRACT.PRODUCT = APPL_PRODUCT.INTERNAL_CODE (soft product) -> APPL_PRODUCT.CODE",
+    "ACNT_CONTRACT.CONTR_STATUS -> CONTR_STATUS.ID",
+    "CS_STATUS_LOG.CLIENT__OID -> CLIENT.ID (GARANTIA client-scoped)"
+  ],
+  "statusProductFields": {
+    "productCode": "APPL_PRODUCT.CODE",
+    "softProduct": "ACNT_CONTRACT.PRODUCT (= APPL_PRODUCT.INTERNAL_CODE)",
+    "productGroup": "APPL_PRODUCT.PRODUCT_GROUP",
+    "contractStatus": "ACNT_CONTRACT.CONTR_STATUS -> CONTR_STATUS",
+    "productionStatus": "ACNT_CONTRACT.PRODUCTION_STATUS",
+    "plasticStatus": "CARD_INFO.STATUS",
+    "guarantee": "CS_STATUS_TYPE.CODE=GARANTIA via CS_STATUS_LOG / DECR.GET_CS_VALUE"
+  },
+  "tables": [
+    {
+      "name": "OWS.ACNT_CONTRACT",
+      "purpose": "Account and card contracts (CON_CAT A/C/M)",
+      "keys": ["ID", "CLIENT__ID", "ACNT_CONTRACT__OID", "PRODUCT", "CONTR_STATUS", "CON_CAT", "AMND_STATE"]
+    },
+    {
+      "name": "OWS.CARD_INFO",
+      "purpose": "Plastic / device rows (PAN, sequence, production status)",
+      "keys": ["ID", "ACNT_CONTRACT__OID", "CARD_NUMBER", "STATUS", "SEQV_NUMBER", "PREV_CARD"]
+    },
+    {
+      "name": "OWS.CLIENT",
+      "purpose": "Party / identification for facility resolve",
+      "keys": ["ID", "CLIENT_NUMBER", "REG_NUMBER", "REG_NUMBER_TYPE", "AMND_STATE"]
+    },
+    {
+      "name": "OWS.APPL_PRODUCT",
+      "purpose": "Product catalog; INTERNAL_CODE is soft product on contracts",
+      "keys": ["ID", "CODE", "INTERNAL_CODE", "CON_CAT", "PARENT_CODE", "PRODUCT_GROUP", "AMND_STATE"]
+    },
+    {
+      "name": "OWS.CONTR_STATUS",
+      "purpose": "Contract status catalog (join by ID not CODE alone)",
+      "keys": ["ID", "CODE", "EXTERNAL_CODE", "CON_CAT", "IS_VALID", "AMND_STATE"]
+    },
+    {
+      "name": "OWS.CS_STATUS_TYPE",
+      "purpose": "Custom status types (GARANTIA, SOFT_BLOCK)",
+      "keys": ["ID", "CODE", "AMND_STATE"]
+    },
+    {
+      "name": "OWS.CS_STATUS_VALUE",
+      "purpose": "Custom status values (PERS/CERT/EXT/SIN for GARANTIA)",
+      "keys": ["ID", "CS_STATUS_TYPE__OID", "CODE", "AMND_STATE"]
+    },
+    {
+      "name": "OWS.CS_STATUS_LOG",
+      "purpose": "Active custom status assignments (client-scoped guarantee)",
+      "keys": ["ID", "CLIENT__OID", "ACNT_CONTRACT__OID", "STATUS_TYPE", "STATUS_VALUE", "IS_ACTIVE"]
+    },
+    {
+      "name": "OWS.ACNT_BALANCE",
+      "purpose": "Balances, credit line, dues by balance type",
+      "keys": ["ID", "ACNT_CONTRACT__OID", "BALANCE_TYPE_CODE", "CURR", "AVAILABLE", "BALANCE", "CREDIT_LIMIT"]
+    },
+    {
+      "name": "OWS.DOC",
+      "purpose": "Financial documents / postings",
+      "keys": ["ID", "TRANS_TYPE", "TARGET_CONTRACT", "SOURCE_CONTRACT", "POSTING_STATUS", "RETURN_CODE"]
+    },
+    {
+      "name": "OWS.TRANS_TYPE",
+      "purpose": "Transaction type catalog (TRANS_TYPE_IDT e.g. 0616 Credit; REST refund = transaction_group REFUND)",
+      "keys": ["ID", "TRANS_TYPE_IDT", "NAME", "DR_CR", "AMND_STATE"]
+    },
+    {
+      "name": "OWS.F_I",
+      "purpose": "Financial institution (Banreservas)",
+      "keys": ["ID", "NAME", "BANK_CODE", "COUNTRY", "LOCAL_CURRENCY"]
+    },
+    {
+      "name": "OWS.DECR",
+      "purpose": "Package: GET_CS_VALUE and status helpers (read GET_/EFF_)",
+      "keys": ["GET_CS_VALUE", "EFF_STATUS_VALUE", "GET_STATUS_CODE"]
+    }
+  ],
+  "queryPatterns": [
+    "card+account+product+contr_status",
+    "product_catalog_card",
+    "contr_status_catalog",
+    "embossed_plastics_RL",
+    "garantia_clients",
+    "resolve_doc_mask_product",
+    "principal_plus_additional",
+    "account_balances_due",
+    "refund_docs_0616",
+    "in_production_or_renewal"
+  ],
+  "docPath": "schemas/way4.md",
+  "relatedBaselines": [
+    "microservices/way4/ms-credit-card-facility-query/db/patches/baselines/2026-07-21_way4_test_data_queries.md"
+  ]
+}

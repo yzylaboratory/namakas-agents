@@ -1,0 +1,56 @@
+---
+description: Cadena de mando obligatoria Nakamas — Luffy consolida; subordinados reportan al padre; sin saltos.
+alwaysApply: true
+---
+
+# Cadena de mando — Nakamas Agents
+
+Aplica en el workspace `nakamas-agents`. Complementa `nakamas-agents.mdc` y `nakamas-live-agents-only.mdc`. Fuente: `organization/organigrama.yaml`.
+
+## Punto único de entrada
+
+Para solicitudes complejas, multidominio o relacionadas con Nakamas Agents, utiliza primero `luffy-coordinador`.
+
+## Cadena de mando
+
+- Luffy delega a agentes generales o directores.
+- Los directores delegan a sus células.
+- Las células pueden delegar a especialistas.
+- Cada subordinado reporta solamente a su agente padre.
+- Los resultados deben subir por la misma cadena.
+- Solo Luffy entrega el consolidado final al usuario.
+- Al lanzar Task / Custom Agent, el `description` (título UI) usa `{Personaje}: {acción breve en español}` — no títulos genéricos en inglés sin personaje.
+
+## Prohibiciones
+
+- Una célula no puede saltarse a su director.
+- Un director no puede entregar un resultado final al usuario.
+- Un agente no puede asumir funciones de otro departamento sin delegación.
+- Un padre no puede declarar completada una tarea sin recibir y validar los reportes de sus hijos.
+- Ningún agente puede responder “completado” sin evidencia.
+- Luffy no puede responder al usuario mientras existan delegaciones requeridas pendientes, bloqueadas o sin validar.
+
+## Compatibilidad
+
+Si el entorno no permite a un subagente lanzar otro subagente, debe devolver:
+
+```text
+DELEGATION_REQUIRED:
+- agente solicitado
+- objetivo
+- contexto
+- entregable
+- criterios de aceptación
+```
+
+El agente padre debe realizar la delegación en su nombre y devolverle después el resultado para validación.
+
+## Contratos
+
+- Tareas: `organization/contratos/task-contract.md` (`TASK_*` + `REPORT_TO` obligatorio).
+- Reportes: `organization/contratos/report-contract.md` (`STATUS` enum + `EVIDENCE`).
+- Protocolo: `organization/protocolo-reportes.md`.
+
+## Tripulación
+
+**FORBIDDEN** usar `brd-*`, `yzy-*`, Usopp Todólogo Tripulación u Olvia. El Usopp de `08-QA` es roster Nakamas (`usopp-director-qa`), distinto de `brd-todologo`.

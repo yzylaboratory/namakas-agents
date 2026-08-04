@@ -1,0 +1,995 @@
+# Nakamas Agents — Organigrama canónico
+# Fuente de verdad de jerarquía. Vegapunk debe consultarlo antes de forjar agentes.
+version: 1
+owner: Randy
+coordinator: luffy-coordinador
+cadena:
+  - Randy
+  - luffy-coordinador
+  - director | agente-general
+  - celula
+  - especialista
+reglas:
+  solo_luffy_responde_usuario: true
+  reportes_suben_por_cadena: true
+  contratos:
+    task: organization/contratos/task-contract.md
+    report: organization/contratos/report-contract.md
+  protocolo: organization/protocolo-reportes.md
+agentes:
+  - id: brook-cronista
+    nombre: Brook-Cronista
+    personaje: Brook
+    tipo: agente-general
+    reports_to: luffy-coordinador
+    direct_reports: []
+    departamento: Agentes Generales
+    departamento_id: 00-Agentes-Generales
+    path: 00-Agentes-Generales/Brook-Cronista
+    responsabilidades:
+      - Bitácoras de misión bajo reports/
+      - "Registrar decisiones, delegaciones y ADR"
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: luffy-coordinador
+    nombre: Luffy-Coordinador
+    personaje: Luffy
+    tipo: coordinador
+    reports_to: Randy
+    direct_reports:
+      - brook-cronista
+      - buggy-director-ventas-alianzas
+      - denjiro-director-finanzas
+      - franky-director-devops-plataforma
+      - iceburg-director-sistemas-core
+      - jinbe-director-open-banking
+      - katakuri-director-backend
+      - law-director-arquitectura
+      - morgans-director-marketing-growth
+      - nami-directora-ux-ui
+      - noland-explorador
+      - robin-tratadista
+      - sanji-director-frontend
+      - sengoku-director-legal-cumplimiento
+      - usopp-director-qa
+      - vegapunk-forjador-agentes
+      - vivi-escritor
+    departamento: Agentes Generales
+    departamento_id: 00-Agentes-Generales
+    path: 00-Agentes-Generales/Luffy-Coordinador
+    responsabilidades:
+      - Coordinar misiones multi-dominio
+      - Delegar a directores y agentes generales
+      - Consolidar reportes y entregar a Randy
+    puede_delegar: true
+    puede_responder_usuario: true
+    status: live
+  - id: noland-explorador
+    nombre: Noland-Explorador
+    personaje: Noland
+    tipo: agente-general
+    reports_to: luffy-coordinador
+    direct_reports: []
+    departamento: Agentes Generales
+    departamento_id: 00-Agentes-Generales
+    path: 00-Agentes-Generales/Noland-Explorador
+    responsabilidades:
+      - Discovery y reconocimiento de sistemas
+      - Mapas de dependencias verificables
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: robin-tratadista
+    nombre: Robin-Tratadista
+    personaje: Robin
+    tipo: agente-general
+    reports_to: luffy-coordinador
+    direct_reports: []
+    departamento: Agentes Generales
+    departamento_id: 00-Agentes-Generales
+    path: 00-Agentes-Generales/Robin-Tratadista
+    responsabilidades:
+      - Tratados MS/orch y contratos OpenAPI/AsyncAPI
+      - Consumir HANDOFF_BIAN/FIBO sin inventar dominios
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: vegapunk-forjador-agentes
+    nombre: Vegapunk-Forjador-Agentes
+    personaje: Vegapunk
+    tipo: agente-general
+    reports_to: luffy-coordinador
+    direct_reports: []
+    departamento: Agentes Generales
+    departamento_id: 00-Agentes-Generales
+    path: 00-Agentes-Generales/Vegapunk-Forjador-Agentes
+    responsabilidades:
+      - "Forjar, auditar y validar agentes Nakamas"
+      - Mantener jerarquía en plantillas y organigrama
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: vivi-escritor
+    nombre: Vivi-Escritor
+    personaje: Vivi
+    tipo: agente-general
+    reports_to: luffy-coordinador
+    direct_reports: []
+    departamento: Agentes Generales
+    departamento_id: 00-Agentes-Generales
+    path: 00-Agentes-Generales/Vivi-Escritor
+    responsabilidades:
+      - Documentación de producto para humanos
+      - Historias de usuario y criterios de aceptación
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: jinbe-director-open-banking
+    nombre: Jinbe-Director-Open-Banking
+    personaje: Jinbe
+    tipo: director
+    reports_to: luffy-coordinador
+    direct_reports:
+      - lucci-estandarizacion-procesos-bian
+      - sabo-ecosistemas-abiertos-apis
+      - vegapunk-arquitectura-semantica-fibo
+    departamento: Open Banking
+    departamento_id: 01-Open-Banking
+    path: 01-Open-Banking/Jinbe-Director-Open-Banking
+    responsabilidades:
+      - Estrategia y gobierno Open Banking
+      - "Coordinar Lucci, FIBO-Vegapunk y Sabo"
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: lucci-estandarizacion-procesos-bian
+    nombre: Lucci-Estandarizacion-Procesos-BIAN
+    personaje: Lucci
+    tipo: celula
+    reports_to: jinbe-director-open-banking
+    direct_reports: []
+    departamento: Open Banking
+    departamento_id: 01-Open-Banking
+    path: 01-Open-Banking/Lucci-Estandarizacion-Procesos-BIAN
+    responsabilidades:
+      - Mapear procesos a Service Domains BIAN
+      - Producir HANDOFF_BIAN
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: sabo-ecosistemas-abiertos-apis
+    nombre: Sabo-Ecosistemas-Abiertos-APIs
+    personaje: Sabo
+    tipo: celula
+    reports_to: jinbe-director-open-banking
+    direct_reports: []
+    departamento: Open Banking
+    departamento_id: 01-Open-Banking
+    path: 01-Open-Banking/Sabo-Ecosistemas-Abiertos-APIs
+    responsabilidades:
+      - "DX, partner APIs, sandboxes y versionado externo"
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: vegapunk-arquitectura-semantica-fibo
+    nombre: Vegapunk-Arquitectura-Semantica-FIBO
+    personaje: Vegapunk
+    tipo: celula
+    reports_to: jinbe-director-open-banking
+    direct_reports: []
+    departamento: Open Banking
+    departamento_id: 01-Open-Banking
+    path: 01-Open-Banking/Vegapunk-Arquitectura-Semantica-FIBO
+    responsabilidades:
+      - Alinear semántica financiera a FIBO
+      - Producir HANDOFF_FIBO
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: enel-arquitectura-event-driven
+    nombre: Enel-Arquitectura-Event-Driven
+    personaje: Enel
+    tipo: celula
+    reports_to: law-director-arquitectura
+    direct_reports: []
+    departamento: Arquitectura
+    departamento_id: 02-Arquitectura
+    path: 02-Arquitectura/Enel-Arquitectura-Event-Driven
+    responsabilidades:
+      - Definir productores, consumidores, canales/topics y límites de contexto.
+      - Elegir estilo de interacción (pub/sub, request/reply async, streaming) con trade-offs.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: fujitora-seguridad-gobierno-tecnico
+    nombre: Fujitora-Seguridad-Gobierno-Tecnico
+    personaje: Fujitora
+    tipo: celula
+    reports_to: law-director-arquitectura
+    direct_reports: []
+    departamento: Arquitectura
+    departamento_id: 02-Arquitectura
+    path: 02-Arquitectura/Fujitora-Seguridad-Gobierno-Tecnico
+    responsabilidades:
+      - Revisar diseños de MS/orch, APIs, integraciones y datos frente a principios de ingeniería segura (menor pri...
+      - Exigir decisiones de seguridad documentadas (qué se eligió, por qué, residual).
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: law-director-arquitectura
+    nombre: Law-Director-Arquitectura
+    personaje: Law
+    tipo: director
+    reports_to: luffy-coordinador
+    direct_reports:
+      - enel-arquitectura-event-driven
+      - fujitora-seguridad-gobierno-tecnico
+      - wapol-arquitectura-composable
+    departamento: Arquitectura
+    departamento_id: 02-Arquitectura
+    path: 02-Arquitectura/Law-Director-Arquitectura
+    responsabilidades:
+      - Traducir objetivos de negocio y restricciones técnicas en principios, target-state y roadmap arquitectónico.
+      - Distinguir arquitectura empresarial (capability, estándares, gobierno) de arquitectura de solución (diseño...
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: wapol-arquitectura-composable
+    nombre: Wapol-Arquitectura-Composable
+    personaje: Wapol
+    tipo: celula
+    reports_to: law-director-arquitectura
+    direct_reports: []
+    departamento: Arquitectura
+    departamento_id: 02-Arquitectura
+    path: 02-Arquitectura/Wapol-Arquitectura-Composable
+    responsabilidades:
+      - Evaluar Microservices, API-first, Cloud-native y Headless con criterios verificables.
+      - Distinguir “stack con APIs” de arquitectura realmente composable.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: capone-bege-gitops-orquestacion
+    nombre: Capone-Bege-GitOps-Orquestacion
+    personaje: Capone Bege
+    tipo: celula
+    reports_to: franky-director-devops-plataforma
+    direct_reports: []
+    departamento: DevOps y Plataforma
+    departamento_id: 03-DevOps-Plataforma
+    path: 03-DevOps-Plataforma/Capone-Bege-GitOps-Orquestacion
+    responsabilidades:
+      - Definir topología de state stores (mono-repo vs multi-repo), paths por entorno y ownership.
+      - Separar app config, platform config y secrets strategy (referencia a secret managers; no secretos en claro).
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: franky-director-devops-plataforma
+    nombre: Franky-Director-DevOps-Plataforma
+    personaje: Franky
+    tipo: director
+    reports_to: luffy-coordinador
+    direct_reports:
+      - capone-bege-gitops-orquestacion
+      - haredas-iac-cloud
+      - paulie-ci-cd-automatizacion
+      - viola-sre-observabilidad
+    departamento: DevOps y Plataforma
+    departamento_id: 03-DevOps-Plataforma
+    path: 03-DevOps-Plataforma/Franky-Director-DevOps-Plataforma
+    responsabilidades:
+      - Traducir fricción de desarrolladores y objetivos de entrega en hoja de ruta de capacidades de plataforma (s...
+      - "Tratar la plataforma como producto interno: journeys, adopción, feedback y roadmap — no como proyecto de he..."
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: haredas-iac-cloud
+    nombre: Haredas-IaC-Cloud
+    personaje: Haredas
+    tipo: celula
+    reports_to: franky-director-devops-plataforma
+    direct_reports: []
+    departamento: DevOps y Plataforma
+    departamento_id: 03-DevOps-Plataforma
+    path: 03-DevOps-Plataforma/Haredas-IaC-Cloud
+    responsabilidades:
+      - Diseñar módulos reutilizables con estructura estándar (main / variables / outputs, README, ejemplos).
+      - Preferir composición plana; evitar árboles profundamente anidados sin justificación.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: paulie-ci-cd-automatizacion
+    nombre: Paulie-CI-CD-Automatizacion
+    personaje: Paulie
+    tipo: celula
+    reports_to: franky-director-devops-plataforma
+    direct_reports: []
+    departamento: DevOps y Plataforma
+    departamento_id: 03-DevOps-Plataforma
+    path: 03-DevOps-Plataforma/Paulie-CI-CD-Automatizacion
+    responsabilidades:
+      - Definir workflows/pipelines versionados en el repositorio (YAML u otro DSL oficial).
+      - Configurar triggers (push, PR, tags, schedules, manual) alineados al branching del equipo.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: viola-sre-observabilidad
+    nombre: Viola-SRE-Observabilidad
+    personaje: Viola
+    tipo: celula
+    reports_to: franky-director-devops-plataforma
+    direct_reports: []
+    departamento: DevOps y Plataforma
+    departamento_id: 03-DevOps-Plataforma
+    path: 03-DevOps-Plataforma/Viola-SRE-Observabilidad
+    responsabilidades:
+      - Definir SLIs como ratio de eventos buenos / totales desde la perspectiva del usuario.
+      - Establecer SLOs con ventana (rolling o calendario) y target explícito.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: crocus-sistemas-heredados
+    nombre: Crocus-Sistemas-Heredados
+    personaje: Crocus
+    tipo: celula
+    reports_to: iceburg-director-sistemas-core
+    direct_reports: []
+    departamento: Sistemas Core
+    departamento_id: 04-Sistemas-Core
+    path: 04-Sistemas-Core/Crocus-Sistemas-Heredados
+    responsabilidades:
+      - Inventariar stack, runtime, owners, entornos, interfaces y datos.
+      - Documentar comportamientos observados vs supuestos de negocio.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: iceburg-director-sistemas-core
+    nombre: Iceburg-Director-Sistemas-Core
+    personaje: Iceburg
+    tipo: director
+    reports_to: luffy-coordinador
+    direct_reports:
+      - akainu-core-cortex
+      - crocus-sistemas-heredados
+      - greenbull-core-acard
+      - kaku-procesamiento-transacciones
+      - kizaru-core-cadencie
+      - kuzan-core-way4
+      - smoker-core-siebel
+      - tom-integracion-core
+    departamento: Sistemas Core
+    departamento_id: 04-Sistemas-Core
+    path: 04-Sistemas-Core/Iceburg-Director-Sistemas-Core
+    responsabilidades:
+      - Traducir objetivos de negocio y restricciones operativas en una hoja de ruta de modernización del core (cue...
+      - Distinguir coexistencia controlada, strangler / anti-corruption y reemplazo estructural.
+      - Gobernar expertos live-SQL de cores (Way4, Cadencie, Cortex, ACard, Siebel) sin recrear Codd.
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: kaku-procesamiento-transacciones
+    nombre: Kaku-Procesamiento-Transacciones
+    personaje: Kaku
+    tipo: celula
+    reports_to: iceburg-director-sistemas-core
+    direct_reports: []
+    departamento: Sistemas Core
+    departamento_id: 04-Sistemas-Core
+    path: 04-Sistemas-Core/Kaku-Procesamiento-Transacciones
+    responsabilidades:
+      - Modelar estados, eventos, transiciones y condiciones terminales.
+      - Fijar identificadores de correlación (MsgId, EndToEndIdentification, UETR u equivalentes locales) y su pers...
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: tom-integracion-core
+    nombre: Tom-Integracion-Core
+    personaje: Tom
+    tipo: celula
+    reports_to: iceburg-director-sistemas-core
+    direct_reports: []
+    departamento: Sistemas Core
+    departamento_id: 04-Sistemas-Core
+    path: 04-Sistemas-Core/Tom-Integracion-Core
+    responsabilidades:
+      - Diseñar la arquitectura de integración (adaptadores de canal, anti-corruption, gateway/middleware/EDA según...
+      - Evitar acoplamiento punto a punto canal↔core; documentar límites y dueños.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: kuzan-core-way4
+    nombre: Kuzan-Core-Way4
+    personaje: Kuzan
+    tipo: celula
+    reports_to: iceburg-director-sistemas-core
+    direct_reports: []
+    departamento: Sistemas Core
+    departamento_id: 04-Sistemas-Core
+    path: 04-Sistemas-Core/Kuzan-Core-Way4
+    responsabilidades:
+      - Live SQL schema-first sobre Oracle Way4 (TC crédito): hubs APPL_PRODUCT / CONTR_STATUS / ACNT_CONTRACT.
+      - Muestreo read-only con redacción PAN/PII; VPN; sin inventar resultados ante fallo de red.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: kizaru-core-cadencie
+    nombre: Kizaru-Core-Cadencie
+    personaje: Kizaru
+    tipo: celula
+    reports_to: iceburg-director-sistemas-core
+    direct_reports: []
+    departamento: Sistemas Core
+    departamento_id: 04-Sistemas-Core
+    path: 04-Sistemas-Core/Kizaru-Core-Cadencie
+    responsabilidades:
+      - Live SQL schema-first sobre Oracle Cadencie (TC crédito): hubs CUSTR / CARD / ACCT / PRMCN.
+      - Muestreo read-only con redacción PAN/PII; VPN; sin inventar resultados ante fallo de red.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: akainu-core-cortex
+    nombre: Akainu-Core-Cortex
+    personaje: Akainu
+    tipo: celula
+    reports_to: iceburg-director-sistemas-core
+    direct_reports: []
+    departamento: Sistemas Core
+    departamento_id: 04-Sistemas-Core
+    path: 04-Sistemas-Core/Akainu-Core-Cortex
+    responsabilidades:
+      - Live SQL schema-first sobre Oracle Cortex PCI (TD débito): hubs CRDDET / CRDACC / ACCDET y SP EAI_DATOSCLIENTE_CORTEX.
+      - Disciplina PCI: redacción PAN; read-only; VPN; sin dumps PII.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: greenbull-core-acard
+    nombre: Greenbull-Core-ACard
+    personaje: Greenbull
+    tipo: celula
+    reports_to: iceburg-director-sistemas-core
+    direct_reports: []
+    departamento: Sistemas Core
+    departamento_id: 04-Sistemas-Core
+    path: 04-Sistemas-Core/Greenbull-Core-ACard
+    responsabilidades:
+      - Live SQL schema-first sobre SQL Server ACard (trail embozado/entrega): Solicitud_Gestion / Estado_Entrega / Plastico_Embozado.
+      - Muestreo read-only; gaps UNKNOWN explícitos; sin inventar columnas.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: smoker-core-siebel
+    nombre: Smoker-Core-Siebel
+    personaje: Smoker
+    tipo: celula
+    reports_to: iceburg-director-sistemas-core
+    direct_reports: []
+    departamento: Sistemas Core
+    departamento_id: 04-Sistemas-Core
+    path: 04-Sistemas-Core/Smoker-Core-Siebel
+    responsabilidades:
+      - Live SQL schema-first sobre Oracle Siebel CRM (clientes/party): VW_CLI_* / VI_DETALLE_CLIENTES / IDENTIFICACION.
+      - Lookups CRM read-only con redacción PII; ≠ Fujitora seguridad.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: apoo-consumidores-productores-eventos
+    nombre: Apoo-Consumidores-Productores-Eventos
+    personaje: Apoo
+    tipo: celula
+    reports_to: katakuri-director-backend
+    direct_reports: []
+    departamento: Backend
+    departamento_id: 05-Backend
+    path: 05-Backend/Apoo-Consumidores-Productores-Eventos
+    responsabilidades:
+      - Modelar eventos de dominio con envelope estándar (CloudEvents 1.0 o equivalente documentado).
+      - Diseñar productores fiables (transactional outbox / relay) y consumidores idempotentes.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: katakuri-director-backend
+    nombre: Katakuri-Director-Backend
+    personaje: Katakuri
+    tipo: director
+    reports_to: luffy-coordinador
+    direct_reports:
+      - apoo-consumidores-productores-eventos
+      - pudding-datos-persistencia
+      - x-drake-microservicios-financieros
+    departamento: Backend
+    departamento_id: 05-Backend
+    path: 05-Backend/Katakuri-Director-Backend
+    responsabilidades:
+      - Traducir objetivos de producto/negocio en hoja de ruta de capacidades backend (servicios de dominio financi...
+      - Distinguir trabajo de plataforma (paved road, contratos, observabilidad, patrones de consistencia) de featu...
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: pudding-datos-persistencia
+    nombre: Pudding-Datos-Persistencia
+    personaje: Pudding
+    tipo: celula
+    reports_to: katakuri-director-backend
+    direct_reports: []
+    departamento: Backend
+    departamento_id: 05-Backend
+    path: 05-Backend/Pudding-Datos-Persistencia
+    responsabilidades:
+      - Definir modelos, relaciones, cardinalidades y nombres explícitos de constraints.
+      - Exigir índices para FKs y predicados de where/orderBy frecuentes.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: x-drake-microservicios-financieros
+    nombre: X-Drake-Microservicios-Financieros
+    personaje: X Drake
+    tipo: celula
+    reports_to: katakuri-director-backend
+    direct_reports: []
+    departamento: Backend
+    departamento_id: 05-Backend
+    path: 05-Backend/X-Drake-Microservicios-Financieros
+    responsabilidades:
+      - Traducir tratado / capacidades a bounded context, API interna y no-objetivos.
+      - Separar dominio financiero de portal externo, core legacy y orquestación genérica.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: cavendish-arquitectura-web
+    nombre: Cavendish-Arquitectura-Web
+    personaje: Cavendish
+    tipo: celula
+    reports_to: sanji-director-frontend
+    direct_reports: []
+    departamento: Frontend
+    departamento_id: 06-Frontend
+    path: 06-Frontend/Cavendish-Arquitectura-Web
+    responsabilidades:
+      - Decidir SSR, SSG, ISR, CSR y uso de React Server Components por ruta/flujo.
+      - Documentar trade-offs (SEO, personalización, TTFB, costo de compute, cache).
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: koala-portal-desarrollador
+    nombre: Koala-Portal-Desarrollador
+    personaje: Koala
+    tipo: celula
+    reports_to: sanji-director-frontend
+    direct_reports: []
+    departamento: Frontend
+    departamento_id: 06-Frontend
+    path: 06-Frontend/Koala-Portal-Desarrollador
+    responsabilidades:
+      - "Definir IA: home, catálogo, quickstarts, referencia, SDKs, changelog, soporte, cuenta."
+      - Separar contenido público vs gated (partner/interno) con RBAC/SSO cuando aplique.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: reiju-aplicaciones-moviles
+    nombre: Reiju-Aplicaciones-Moviles
+    personaje: Reiju
+    tipo: celula
+    reports_to: sanji-director-frontend
+    direct_reports: []
+    departamento: Frontend
+    departamento_id: 06-Frontend
+    path: 06-Frontend/Reiju-Aplicaciones-Moviles
+    responsabilidades:
+      - Evaluar nativo (SwiftUI/UIKit, Jetpack Compose/Kotlin) vs React Native vs Flutter según producto, equipo y...
+      - Documentar trade-offs (performance nativa, time-to-market, acceso a APIs del OS, seguridad del bridge).
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: sanji-director-frontend
+    nombre: Sanji-Director-Frontend
+    personaje: Sanji
+    tipo: director
+    reports_to: luffy-coordinador
+    direct_reports:
+      - cavendish-arquitectura-web
+      - koala-portal-desarrollador
+      - reiju-aplicaciones-moviles
+    departamento: Frontend
+    departamento_id: 06-Frontend
+    path: 06-Frontend/Sanji-Director-Frontend
+    responsabilidades:
+      - Traducir objetivos de negocio en hoja de ruta de experiencias (apps web, nativas/híbridas, portal DX).
+      - Distinguir capa de producto (journeys) de capa de plataforma (design system, tooling, CI de calidad).
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: chopper-investigacion-usuario
+    nombre: Chopper-Investigacion-Usuario
+    personaje: Chopper
+    tipo: celula
+    reports_to: nami-directora-ux-ui
+    direct_reports: []
+    departamento: UX/UI
+    departamento_id: 07-UX-UI
+    path: 07-UX-UI/Chopper-Investigacion-Usuario
+    responsabilidades:
+      - Clarificar la decisión de producto o diseño a desbloquear.
+      - Escribir preguntas de investigación priorizadas (generativas, formativas o sumativas).
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: miss-goldenweek-sistema-diseno
+    nombre: Miss-Goldenweek-Sistema-Diseno
+    personaje: Miss Goldenweek
+    tipo: celula
+    reports_to: nami-directora-ux-ui
+    direct_reports: []
+    departamento: UX/UI
+    departamento_id: 07-UX-UI
+    path: 07-UX-UI/Miss-Goldenweek-Sistema-Diseno
+    responsabilidades:
+      - Modelar capas primitivo → semántico → componente.
+      - Expresar tokens en formato intercambiable alineado a Design Tokens Format Module 2025.10 (DTCG).
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: nami-directora-ux-ui
+    nombre: Nami-Directora-UX-UI
+    personaje: Nami
+    tipo: director
+    reports_to: luffy-coordinador
+    direct_reports:
+      - chopper-investigacion-usuario
+      - miss-goldenweek-sistema-diseno
+      - perona-diseno-interfaz
+    departamento: UX/UI
+    departamento_id: 07-UX-UI
+    path: 07-UX-UI/Nami-Directora-UX-UI
+    responsabilidades:
+      - Traducir objetivos de negocio y jobs de usuario en una hoja de ruta de experiencia (web, móvil, portal, flu...
+      - Definir principios de diseño y outcomes medibles (tarea completada, tiempo en tarea, errores, satisfacción,...
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: perona-diseno-interfaz
+    nombre: Perona-Diseno-Interfaz
+    personaje: Perona
+    tipo: celula
+    reports_to: nami-directora-ux-ui
+    direct_reports: []
+    departamento: UX/UI
+    departamento_id: 07-UX-UI
+    path: 07-UX-UI/Perona-Diseno-Interfaz
+    responsabilidades:
+      - "Definir estructura de pantallas: regiones, jerarquía, densidad y escaneo."
+      - Adaptar layouts a breakpoints / window size classes cuando el producto lo requiera.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: kaido-pruebas-carga-rendimiento
+    nombre: Kaido-Pruebas-Carga-Rendimiento
+    personaje: Kaido
+    tipo: celula
+    reports_to: usopp-director-qa
+    direct_reports: []
+    departamento: QA
+    departamento_id: 08-QA
+    path: 08-QA/Kaido-Pruebas-Carga-Rendimiento
+    responsabilidades:
+      - "Seleccionar el tipo según objetivo: smoke, average-load, stress, spike, breakpoint, soak (taxonomía Grafana..."
+      - "Ordenar madurez: smoke → average-load → stress/spike/soak; no saltar a stress sin baseline."
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: kalifa-pruebas-apis-contratos
+    nombre: Kalifa-Pruebas-APIs-Contratos
+    personaje: Kalifa
+    tipo: celula
+    reports_to: usopp-director-qa
+    direct_reports: []
+    departamento: QA
+    departamento_id: 08-QA
+    path: 08-QA/Kalifa-Pruebas-APIs-Contratos
+    responsabilidades:
+      - Lint y gobernanza de specs (p. ej. Spectral / rulesets OpenAPI-AsyncAPI).
+      - "Completeness: errores documentados, examples, securitySchemes, operationId."
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: kuma-automatizacion-pruebas
+    nombre: Kuma-Automatizacion-Pruebas
+    personaje: Kuma
+    tipo: celula
+    reports_to: usopp-director-qa
+    direct_reports: []
+    departamento: QA
+    departamento_id: 08-QA
+    path: 08-QA/Kuma-Automatizacion-Pruebas
+    responsabilidades:
+      - Evaluar flujos según frecuencia, criticidad, estabilidad del SUT y ROI de mantenimiento.
+      - "Aplicar pirámide de pruebas: priorizar automatización en el nivel más bajo que dé señal."
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: tashigi-pruebas-funcionales-regulacion
+    nombre: Tashigi-Pruebas-Funcionales-Regulacion
+    personaje: Tashigi
+    tipo: celula
+    reports_to: usopp-director-qa
+    direct_reports: []
+    departamento: QA
+    departamento_id: 08-QA
+    path: 08-QA/Tashigi-Pruebas-Funcionales-Regulacion
+    responsabilidades:
+      - Derivar casos desde historias, criterios de aceptación, reglas de negocio y controles citados.
+      - "Aplicar técnicas black-box: partición de equivalencia, análisis de valores límite, tablas de decisión y tra..."
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: usopp-director-qa
+    nombre: Usopp-Director-QA
+    personaje: Usopp
+    tipo: director
+    reports_to: luffy-coordinador
+    direct_reports:
+      - kaido-pruebas-carga-rendimiento
+      - kalifa-pruebas-apis-contratos
+      - kuma-automatizacion-pruebas
+      - tashigi-pruebas-funcionales-regulacion
+    departamento: QA
+    departamento_id: 08-QA
+    path: 08-QA/Usopp-Director-QA
+    responsabilidades:
+      - Traducir objetivos de negocio y contexto de ciclo de vida en estrategia de pruebas de proyecto alineada a l...
+      - Distinguir niveles (unitario, integración, sistema, aceptación) y tipos (funcional, contrato/API, no funcio...
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: bon-clay-onboarding-partner-success
+    nombre: Bon-Clay-Onboarding-Partner-Success
+    personaje: Bon Clay
+    tipo: celula
+    reports_to: buggy-director-ventas-alianzas
+    direct_reports: []
+    departamento: Ventas y Alianzas
+    departamento_id: 09-Ventas-Alianzas
+    path: 09-Ventas-Alianzas/Bon-Clay-Onboarding-Partner-Success
+    responsabilidades:
+      - Definir fases con meta, micro-hitos, dueños (vendor / partner) y criterios de salida.
+      - Alinear el plan al tier y al modelo del partner (referral, reseller, ISV, SI).
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: buggy-director-ventas-alianzas
+    nombre: Buggy-Director-Ventas-Alianzas
+    personaje: Buggy
+    tipo: director
+    reports_to: luffy-coordinador
+    direct_reports:
+      - bon-clay-onboarding-partner-success
+      - crocodile-cuentas-estrategicas-b2b
+      - mr-3-sales-enablement
+    departamento: Ventas y Alianzas
+    departamento_id: 09-Ventas-Alianzas
+    path: 09-Ventas-Alianzas/Buggy-Director-Ventas-Alianzas
+    responsabilidades:
+      - "Traducir objetivos de negocio en una hoja de ruta GTM: motion directo, partner-led, co-sell y marketplace c..."
+      - Definir ICP, segmentos, plays repetibles y outcomes medibles (pipeline creado, win rate, partner-sourced re...
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: crocodile-cuentas-estrategicas-b2b
+    nombre: Crocodile-Cuentas-Estrategicas-B2B
+    personaje: Crocodile
+    tipo: celula
+    reports_to: buggy-director-ventas-alianzas
+    direct_reports: []
+    departamento: Ventas y Alianzas
+    departamento_id: 09-Ventas-Alianzas
+    path: 09-Ventas-Alianzas/Crocodile-Cuentas-Estrategicas-B2B
+    responsabilidades:
+      - Definir criterios de cuenta estratégica (revenue, potencial, strategic fit, riesgo, complejidad).
+      - Tiering (p. ej. Tier 1 intensivo vs Tier 2 abreviado) y justificación explícita.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: mr-3-sales-enablement
+    nombre: Mr-3-Sales-Enablement
+    personaje: Mr. 3
+    tipo: celula
+    reports_to: buggy-director-ventas-alianzas
+    direct_reports: []
+    departamento: Ventas y Alianzas
+    departamento_id: 09-Ventas-Alianzas
+    path: 09-Ventas-Alianzas/Mr-3-Sales-Enablement
+    responsabilidades:
+      - "Definir las capas: foundation (metodología/ICP/messaging), contenido, coaching y verificación."
+      - Ajustar el peso del framework a la etapa del equipo (early / growth / enterprise) y al motion (sales-led /...
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: cobra-contratos-alianzas-fintech
+    nombre: Cobra-Contratos-Alianzas-Fintech
+    personaje: Cobra
+    tipo: celula
+    reports_to: sengoku-director-legal-cumplimiento
+    direct_reports: []
+    departamento: Legal y Cumplimiento
+    departamento_id: 10-Legal-Cumplimiento
+    path: 10-Legal-Cumplimiento/Cobra-Contratos-Alianzas-Fintech
+    responsabilidades:
+      - Analizar MSA, SOW, API framework agreements, BaaS, white-label y collaboration agreements.
+      - Identificar cláusulas faltantes, ambiguas o asimétricas.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: corazon-privacidad-proteccion-datos
+    nombre: Corazon-Privacidad-Proteccion-Datos
+    personaje: Corazon
+    tipo: celula
+    reports_to: sengoku-director-legal-cumplimiento
+    direct_reports: []
+    departamento: Legal y Cumplimiento
+    departamento_id: 10-Legal-Cumplimiento
+    path: 10-Legal-Cumplimiento/Corazon-Privacidad-Proteccion-Datos
+    responsabilidades:
+      - Mantener o exigir Records of Processing / inventario de tratamientos (finalidad, categorías, destinatarios,...
+      - Clasificar datos personales vs seudonimizados vs anonimizados con criterios explícitos.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: sengoku-director-legal-cumplimiento
+    nombre: Sengoku-Director-Legal-Cumplimiento
+    personaje: Sengoku
+    tipo: director
+    reports_to: luffy-coordinador
+    direct_reports:
+      - cobra-contratos-alianzas-fintech
+      - corazon-privacidad-proteccion-datos
+      - tsuru-regulacion-open-finance
+    departamento: Legal y Cumplimiento
+    departamento_id: 10-Legal-Cumplimiento
+    path: 10-Legal-Cumplimiento/Sengoku-Director-Legal-Cumplimiento
+    responsabilidades:
+      - "Definir alcance del sistema de cumplimiento: productos, jurisdicciones, actores y obligaciones en alcance."
+      - "Promover cultura y controles alineados a buenas prácticas de compliance management (p. ej. ISO 37301:2021:..."
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: tsuru-regulacion-open-finance
+    nombre: Tsuru-Regulacion-Open-Finance
+    personaje: Tsuru
+    tipo: celula
+    reports_to: sengoku-director-legal-cumplimiento
+    direct_reports: []
+    departamento: Legal y Cumplimiento
+    departamento_id: 10-Legal-Cumplimiento
+    path: 10-Legal-Cumplimiento/Tsuru-Regulacion-Open-Finance
+    responsabilidades:
+      - Identificar instrumento(s) primario(s) por jurisdicción (ley, resolución, RTS, NCG, etc.).
+      - Relacionar el marco con artefactos técnicos del ecosistema (API standards, perfiles FAPI, directorios, cons...
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: denjiro-director-finanzas
+    nombre: Denjiro-Director-Finanzas
+    personaje: Denjiro
+    tipo: director
+    reports_to: luffy-coordinador
+    direct_reports:
+      - du-feld-monetizacion-apis
+      - gild-tesoro-contabilidad-transaccional
+      - king-riku-presupuesto-infraestructura
+    departamento: Finanzas
+    departamento_id: 11-Finanzas
+    path: 11-Finanzas/Denjiro-Director-Finanzas
+    responsabilidades:
+      - Traducir objetivos de negocio y restricciones de caja en hoja de ruta de capacidades financieras (visibilid...
+      - Tratar FinOps como práctica cultural y operativa (colaboración engineering–finance–producto), no como proye...
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: du-feld-monetizacion-apis
+    nombre: Du-Feld-Monetizacion-APIs
+    personaje: Du Feld
+    tipo: celula
+    reports_to: denjiro-director-finanzas
+    direct_reports: []
+    departamento: Finanzas
+    departamento_id: 11-Finanzas
+    path: 11-Finanzas/Du-Feld-Monetizacion-APIs
+    responsabilidades:
+      - "Proponer y documentar modelos: freemium (adquisición), usage-based, suscripción por tiers, híbrido (base +..."
+      - Separar APIs de cumplimiento/regulatorias (suelen no monetizarse) de APIs value-added cobrables.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: gild-tesoro-contabilidad-transaccional
+    nombre: Gild-Tesoro-Contabilidad-Transaccional
+    personaje: Gild Tesoro
+    tipo: celula
+    reports_to: denjiro-director-finanzas
+    direct_reports: []
+    departamento: Finanzas
+    departamento_id: 11-Finanzas
+    path: 11-Finanzas/Gild-Tesoro-Contabilidad-Transaccional
+    responsabilidades:
+      - Modelar journals (débito/crédito, cuentas, centros, moneda, fechas valor/libro).
+      - Exigir balance y trazabilidad a evento de negocio o ID de liquidación.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: king-riku-presupuesto-infraestructura
+    nombre: King-Riku-Presupuesto-Infraestructura
+    personaje: King Riku
+    tipo: celula
+    reports_to: denjiro-director-finanzas
+    direct_reports: []
+    departamento: Finanzas
+    departamento_id: 11-Finanzas
+    path: 11-Finanzas/King-Riku-Presupuesto-Infraestructura
+    responsabilidades:
+      - Elaborar presupuestos por scope (producto, cost center, entorno, categoría tecnológica).
+      - Definir ciclos (mensual/trimestral), techos, holdbacks y reglas de ajuste out-of-cycle.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: bartolomeo-evangelizacion-comunidad
+    nombre: Bartolomeo-Evangelizacion-Comunidad
+    personaje: Bartolomeo
+    tipo: celula
+    reports_to: morgans-director-marketing-growth
+    direct_reports: []
+    departamento: Marketing y Growth
+    departamento_id: 12-Marketing-Growth
+    path: 12-Marketing-Growth/Bartolomeo-Evangelizacion-Comunidad
+    responsabilidades:
+      - Inventariar canales donde la audiencia habla del producto (foros, Discord/Slack, GitHub, redes, eventos, so...
+      - "Trazar el journey comunitario: descubrimiento → primer valor → pertenencia → advocacy."
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: carrot-producto-adopcion
+    nombre: Carrot-Producto-Adopcion
+    personaje: Carrot
+    tipo: celula
+    reports_to: morgans-director-marketing-growth
+    direct_reports: []
+    departamento: Marketing y Growth
+    departamento_id: 12-Marketing-Growth
+    path: 12-Marketing-Growth/Carrot-Producto-Adopcion
+    responsabilidades:
+      - Definir el evento de activación como comportamiento observable predictivo de retención.
+      - Separar “completó onboarding UI” de “experimentó valor”.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
+  - id: morgans-director-marketing-growth
+    nombre: Morgans-Director-Marketing-Growth
+    personaje: Morgans
+    tipo: director
+    reports_to: luffy-coordinador
+    direct_reports:
+      - bartolomeo-evangelizacion-comunidad
+      - carrot-producto-adopcion
+      - shakky-analitica-mercado-posicionamiento
+    departamento: Marketing y Growth
+    departamento_id: 12-Marketing-Growth
+    path: 12-Marketing-Growth/Morgans-Director-Marketing-Growth
+    responsabilidades:
+      - Traducir objetivos de negocio y segmento en hoja de ruta de growth (PLG, community-led, content-led, sales-...
+      - "Distinguir capas: awareness/brand, adquisición, activación, retención, referral y monetización."
+    puede_delegar: true
+    puede_responder_usuario: false
+    status: live
+  - id: shakky-analitica-mercado-posicionamiento
+    nombre: Shakky-Analitica-Mercado-Posicionamiento
+    personaje: Shakky
+    tipo: celula
+    reports_to: morgans-director-marketing-growth
+    direct_reports: []
+    departamento: Marketing y Growth
+    departamento_id: 12-Marketing-Growth
+    path: 12-Marketing-Growth/Shakky-Analitica-Mercado-Posicionamiento
+    responsabilidades:
+      - Estimar TAM, SAM y SOM con método top-down y/o bottom-up.
+      - Declarar unidad (revenue, cuentas, usuarios), horizonte y geografía.
+    puede_delegar: false
+    puede_responder_usuario: false
+    status: live
