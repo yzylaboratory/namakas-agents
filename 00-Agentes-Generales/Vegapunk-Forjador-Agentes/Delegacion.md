@@ -2,7 +2,7 @@
 
 ## Disponibilidad actual (Cursor)
 
-En `nakamas-agents` los Custom Agents vivos son los **56** adaptadores en `.cursor/agents/` (00–12). Lista canónica: `.cursor/rules/nakamas-live-agents-only.mdc`. Organigrama: todos `status: live`.
+En `nakamas-agents` los Custom Agents vivos son los **62** adaptadores en `.cursor/agents/` (00–12). Lista canónica: `.cursor/rules/nakamas-live-agents-only.mdc`. Organigrama: todos `status: live`.
 
 - **No** lances Tasks a Tripulación (`brd-*`, `yzy-*`, Usopp Todólogo, Olvia).
 - “Usopp — QA” = `usopp-director-qa` (**vivo**); **≠** `brd-todologo`.

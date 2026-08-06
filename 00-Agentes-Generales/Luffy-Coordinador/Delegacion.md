@@ -2,7 +2,7 @@
 
 ## Disponibilidad actual (Cursor)
 
-**Custom Agents vivos en `nakamas-agents`:** los **61** adaptadores en `.cursor/agents/` (generales 00 + OB 01 + departamentos 02–12). Lista canónica y matriz: `.cursor/rules/nakamas-live-agents-only.mdc` + `.cursor/rules/nakamas-agents.mdc`. Organigrama: `status: live` en `organization/organigrama.yaml`.
+**Custom Agents vivos en `nakamas-agents`:** los **62** adaptadores en `.cursor/agents/` (generales 00 + OB 01 + departamentos 02–12). Lista canónica y matriz: `.cursor/rules/nakamas-live-agents-only.mdc` + `.cursor/rules/nakamas-agents.mdc`. Organigrama: `status: live` en `organization/organigrama.yaml`.
 
 | Capa | Task types (resumen) |
 |------|----------------------|
