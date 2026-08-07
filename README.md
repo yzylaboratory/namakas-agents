@@ -1,28 +1,27 @@
 # namakas-agents
 
-Repositorio de **versionado** de agentes Nakama.
+Repositorio de **versionado** de agentes Nakama (SoT para otras Mac).
 
 ## Runtime vs versionado
 
 | Qué | Dónde |
 |-----|--------|
-| Lectura / ejecución en Cursor | `~/.cursor/agents/` |
-| Versionado / historial | este repo |
+| Ejecución Cursor | `~/.cursor/agents/` + `~/.cursor/rules/oda.mdc` + User Rule Oda |
+| Versionado | este repo |
 
-Cursor **no** lee agentes desde aquí en runtime. Este repo solo guarda y versiona las definiciones.
+Instalar: `./scripts/install-nakamas.sh` — guía: [`docs/SETUP-OTRA-MAC.md`](docs/SETUP-OTRA-MAC.md).
 
 ## Grupos
 
-| Carpeta técnica | Identidad de flota | Rol |
-|-----------------|--------------------|-----|
-| `PLANNER/` | **Los Piratas de Heart** | Planificación — capitán: Trafalgar D. Water Law |
-| `IMPLEMENTER/` | *(pendiente)* | Implementación |
-| `VERIFIER/` | *(pendiente)* | Verificación |
+| Carpeta | Capitán | Model (capitán) |
+|---------|---------|-----------------|
+| `ODA/` | Oda (raíz, no subagente) | Grok 4.5 High (chat) |
+| `PLANNER/` | Law | `cursor-grok-4.5-high` |
+| `IMPLEMENTER/` | Luffy | `composer-2.5[]` |
+| `VERIFIER/` | Lucci | `claude-sonnet-5-thinking-high` |
 
-```
-PLANNER/      Los Piratas de Heart — Capitan: Trafalgar D. Water Law
-IMPLEMENTER/  Reservado — implementación
-VERIFIER/     Reservado — verificación
-```
+`runtime-agents/` = espejo plano de `~/.cursor/agents/`.
 
-Ver `PLANNER/README.md` para el árbol de **Los Piratas de Heart** y el rol del capitán.
+## Modelos (definitivos)
+
+Ver tabla completa en `docs/SETUP-OTRA-MAC.md` y `ODA/INSTRUCTIONS.md` → **Política de modelos**. Destacados: Franky/Zoro `gpt-5.6-sol-high`, Sanji `gpt-5.3-codex-high`, Chopper/Stussy `claude-opus-5-thinking-high`.

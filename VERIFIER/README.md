@@ -1,7 +1,16 @@
-# VERIFIER
+# VERIFIER — CP0
 
-Grupo reservado para verificación.
+Capitán: **Rob Lucci** (`claude-sonnet-5-thinking-high`).
 
-Los agentes de este grupo validarán entregas del grupo `IMPLEMENTER/` contra requisitos, plan y criterios de aceptación.
+```
+VERIFIER/
+├── captain/rob-lucci.md                    # Claude Sonnet 5 High
+├── qa/tashigi.md                           # Composer 2.5 Base
+├── debugger/tony-tony-chopper.md           # claude-opus-5-thinking-high
+├── security/stussy.md                      # claude-opus-5-thinking-high
+├── architecture/kaku.md                    # Composer 2.5 Base
+├── compliance/sengoku.md                   # Composer 2.5 Base
+└── performance/issho-fujitora.md           # Composer 2.5 Base
+```
 
-Definiciones de agentes: pendientes.
+Runtime: `~/.cursor/agents/`.
