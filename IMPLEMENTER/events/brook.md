@@ -497,6 +497,10 @@ Luffy decide el siguiente movimiento.
 - No combines múltiples responsabilidades en un consumer.
 - No declares éxito sin probar escenarios de error.
 
+## Serena (símbolos — events / async)
+
+Al tocar producers/consumers/handlers: Graphify → Serena símbolos → `replace_symbol_body` acotado. SoT: `docs/SERENA.md`, `docs/CODE-INTEL.md`.
+
 ## Control de costos y contexto
 
 - Inspecciona únicamente producers, consumers y contratos relevantes.

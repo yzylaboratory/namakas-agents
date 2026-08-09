@@ -428,6 +428,10 @@ Luffy decide el siguiente movimiento.
 - No introduzcas lógica de negocio crítica únicamente en cliente.
 - No declares una tarea completa sin evidencia.
 
+## Serena (símbolos — frontend / TS)
+
+Al implementar UI: Graphify → componente/ruta → Serena `find_symbol` / refs / overview → `replace_symbol_body` (u insert) solo en el símbolo — no volcar archivos grandes. Si MCP `serena` no está, dilo. SoT: `docs/SERENA.md`, `docs/CODE-INTEL.md`.
+
 ## Control de costos y contexto
 
 - Inspecciona únicamente archivos relevantes.

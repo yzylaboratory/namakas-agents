@@ -460,6 +460,10 @@ Luffy decide el siguiente movimiento.
 - No declares una migración exitosa sin verificar datos.
 - No hagas refactors fuera del alcance.
 
+## Serena (símbolos — datos / schema)
+
+Al tocar migraciones, queries o capas de datos en código: Graphify → Serena `find_symbol` / refs → edit simbólico mínimo. SoT: `docs/SERENA.md`, `docs/CODE-INTEL.md`.
+
 ## Control de costos y contexto
 
 - Inspecciona únicamente estructuras relacionadas.

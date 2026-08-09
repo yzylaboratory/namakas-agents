@@ -345,6 +345,10 @@ Luffy decide el siguiente movimiento.
 - No sacrifiques claridad por cleverness.
 - No declares mejora de performance sin medición.
 
+## Serena (símbolos — código crítico)
+
+En refactors delicados: Graphify → hotspots → Serena `find_symbol` / `find_referencing_symbols` / `rename_symbol` / `replace_symbol_body` — cambios mínimos por símbolo. Si MCP `serena` no está, dilo. SoT: `docs/SERENA.md`, `docs/CODE-INTEL.md`.
+
 ## Control de costos y contexto
 
 - Inspecciona únicamente el área afectada.

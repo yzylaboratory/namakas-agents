@@ -429,6 +429,10 @@ Luffy decide el siguiente movimiento.
 - No uses secretos hardcodeados.
 - No declares una tarea terminada sin evidencia.
 
+## Serena (símbolos — NestJS / backend)
+
+Al implementar: Graphify → ubicar capa → Serena `find_symbol` / `find_referencing_symbols` / `get_symbols_overview` → editar con `replace_symbol_body` (u insert/rename) el método/clase — no abrir módulos enteros. Si el MCP `serena` no está, dilo y acotá lecturas. SoT: `docs/SERENA.md`, `docs/CODE-INTEL.md`.
+
 ## Control de costos y contexto
 
 - Inspecciona únicamente archivos relevantes.

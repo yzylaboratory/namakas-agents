@@ -1,0 +1,38 @@
+---
+description: Nakamas Implementer — Serena MCP (símbolos LSP). Graphify→Serena→edit mínimo. Sanji/Usopp/Zoro/Franky/etc. NO chats triviales. NO sustituto de code-review-graph.
+alwaysApply: false
+---
+
+# Nakamas × Serena (símbolos)
+
+Usar cuando haya que **leer o editar código** con mínimo contexto (funciones, clases, referencias). Especialmente TypeScript / NestJS.
+
+SoT: `namakas-agents/docs/SERENA.md` · Capas: `docs/CODE-INTEL.md`.
+
+## Pipeline
+
+1. **Graphify** — ¿dónde está / qué depende? (`nakamas-graphify.mdc`)
+2. **Serena** — `find_symbol` / `get_symbols_overview` / `find_referencing_symbols` / `find_declaration`
+3. **Edit** — `replace_symbol_body` / `insert_after_symbol` / `insert_before_symbol` / `rename_symbol` / `safe_delete_symbol`
+
+No abrir archivos completos si el símbolo basta. Si el MCP `serena` no está, no inventar tools.
+
+## Quién
+
+- Principal: Implementer (Sanji, Usopp, Zoro, Franky, Nami, Brook, Jinbe) + coordinación Luffy.
+- Robin / Edison / Law: opcional read-only al analizar código.
+- Verifier: solo lectura puntual; reviews usan **code-review-graph** primero.
+
+## Install rápido
+
+```bash
+uv tool install -p 3.13 serena-agent
+serena init
+# ~/.cursor/mcp.json → "serena": { "command": "serena", "args": ["start-mcp-server", "--context", "ide"] }
+```
+
+## Límites
+
+- No alwaysApply a Planner discovery ni chats triviales.
+- No reemplaza Graphify ni code-review-graph.
+- Tools JetBrains solo con backend JetBrains.

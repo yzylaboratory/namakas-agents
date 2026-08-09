@@ -268,6 +268,10 @@ El estado final de Implementer es `READY_FOR_VERIFICATION`, no `DONE`.
 
 Antes de re-explorar el repo a ciegas, preferí Graphify (`user-graphify-remote` / `graphify-out/graph.json`). Si falta el grafo, créalo con `graphify update .` en la raíz (el primero que lo detecte). Reutilizá; no regeneres cada turno. Incluí en el handoff a Verifier si el grafo orientó componentes/archivos. Detalle: `nakamas-graphify.mdc`, `docs/GRAPHIFY.md`.
 
+## Serena (símbolos — tripulación)
+
+Cuando la misión **toca código**, la tripulación debe preferir Graphify → Serena (`find_symbol` / refs / `replace_symbol_body`) → edit mínimo del símbolo — no abrir monorepos enteros. Especialmente TS/NestJS (Sanji/Usopp/…). Pedí en las delegaciones que usen Serena si el MCP está disponible. SoT: `docs/SERENA.md`, `docs/CODE-INTEL.md`.
+
 ## Control de costos
 
 - Usa solo los agentes necesarios.

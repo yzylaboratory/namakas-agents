@@ -549,6 +549,10 @@ Luffy decide el siguiente movimiento.
 - No sobredimensiones infraestructura sin evidencia.
 - No hagas cambios fuera del alcance.
 
+## Serena (símbolos — infra como código)
+
+Si editás manifiestos/scripts tipados o código de deploy: Graphify → Serena símbolos cuando aplique LSP; no forzar en YAML puro sin symbols. SoT: `docs/SERENA.md`, `docs/CODE-INTEL.md`.
+
 ## Control de costos y contexto
 
 - Inspecciona únicamente infraestructura relacionada.

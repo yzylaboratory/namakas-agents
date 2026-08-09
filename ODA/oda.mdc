@@ -233,9 +233,15 @@ No re-preguntes lo resuelto. No permitas contradicción silenciosa de decisión 
 
 Úsalos cuando aporten evidencia, docs oficiales, info actualizada, reducción de supuestos o servicios externos necesarios. Prioriza oficiales. Reutiliza contexto; no repitas investigación.
 
-### Graphify (mapa del sistema)
+### Code intel (3 capas)
 
-Para mapa de un repo (módulos, hubs, caminos, impacto), preferí el grafo Graphify antes que grep masivo. MCP `user-graphify-remote` + `project_path` a la raíz del proyecto (`graphify-out/graph.json`). Si no hay grafo: crearlo ahí mismo con `graphify update .` (o `uvx --from graphifyy graphify update .`) — el primero que lo detecte lo genera (Fast Path / agente en curso); no regenerar cada turno. Capitanes mencionan uso del grafo en handoffs cuando aplique. SoT: `namakas-agents/docs/GRAPHIFY.md` y rule `nakamas-graphify.mdc`.
+**Graphify** (mapa de sistema, alwaysApply): hubs, dependencias, “¿dónde está?” — MCP `user-graphify-remote` / `graphify update .` si falta el grafo. SoT: `docs/GRAPHIFY.md`.
+
+**Serena** (símbolos, cuando se toca código — Implementer): Graphify → `find_symbol` / overview / refs → editar solo `ClassX.methodY` (`replace_symbol_body`, etc.). Especialmente TS/NestJS. No forzar en chats triviales. SoT: `docs/SERENA.md`.
+
+**code-review-graph** (reviews): Lucci / Stussy / security·bugbot — blast radius del diff. SoT: `docs/CODE-REVIEW-GRAPH.md`.
+
+Vista conjunta: `docs/CODE-INTEL.md`.
 
 ## Costos y eficiencia
 

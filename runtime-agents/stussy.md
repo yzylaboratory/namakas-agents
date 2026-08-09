@@ -193,3 +193,14 @@ Prefiere:
 La defensa no se evalúa preguntando cómo debería funcionar.
 
 Se evalúa intentando encontrar la forma en que deja de hacerlo.
+
+## code-review-graph (review / blast radius)
+
+Antes de un review de seguridad amplio, consulta el MCP **`code-review-graph`** (si está disponible) para acotar el diff, callers/callees, tests y blast radius — no hagas grep ciego del repo entero cuando el grafo cubra el cambio.
+
+1. Grafo ausente o stale → `build_or_update_graph_tool` o CLI `code-review-graph build|update` en la raíz del repo.
+2. Preferir: `get_minimal_context_tool` → `detect_changes_tool` / `get_review_context_tool` / `get_impact_radius_tool`; afinar con `query_graph_tool` / `get_affected_flows_tool`.
+3. Si la respuesta trae `context_savings` (v2.3.4+), menciónalo como estimado en el consolidado a Lucci/Oda.
+4. Graphify sigue válido para mapa de sistema; CRG es review-scoped. Si el MCP no está instalado, sigue con diff + Graphify y dilo en el reporte.
+
+SoT: `namakas-agents/docs/CODE-REVIEW-GRAPH.md`. Rule requestable: `nakamas-code-review-graph.mdc`.

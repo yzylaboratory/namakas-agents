@@ -1,0 +1,31 @@
+---
+description: Nakamas Verifier/reviews — code-review-graph MCP (blast radius, diff context). Stussy, Lucci, security-review, bugbot. NOT Planner/Implementer. NOT a Graphify replacement.
+alwaysApply: false
+---
+
+# Nakamas × code-review-graph (review-scoped)
+
+Usar en **reviews de código / seguridad** (Stussy, Lucci, skills `/review-security`·`/review-bugbot`, Task `security-review`·`bugbot`). **No** aplicar a Planner ni Implementer completo.
+
+SoT: `namakas-agents/docs/CODE-REVIEW-GRAPH.md`.
+
+## vs Graphify
+
+Graphify (`nakamas-graphify.mdc`, alwaysApply) = mapa de sistema para toda la flota.  
+code-review-graph = grafo Tree-sitter local (`.code-review-graph/`) para **diff + callers/deps/tests + blast radius** vía MCP. No reemplaza Graphify.
+
+## Flujo
+
+1. Si el MCP `code-review-graph` está disponible: `build_or_update_graph_tool` si el grafo falta/stale; luego preferir `get_minimal_context_tool` → `detect_changes_tool` / `get_review_context_tool` / `get_impact_radius_tool`; afinar con `query_graph_tool` / `get_affected_flows_tool`.
+2. CLI equivalente en la raíz del repo: `code-review-graph build|update`, `detect-changes --brief`.
+3. Leer solo lo que el grafo señale. No grep ciego del repo entero si el grafo cubre el diff.
+4. Si hay `context_savings` en la respuesta MCP (v2.3.4+), reportarlo como **estimado**.
+5. Si el MCP no está instalado: continuar con diff + Graphify; no inventar tools.
+
+## Install rápido
+
+```bash
+uv tool install code-review-graph   # o pipx / pip
+code-review-graph install --platform cursor --no-instructions --no-skills --no-hooks
+code-review-graph build             # en la raíz del repo
+```

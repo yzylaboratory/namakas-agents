@@ -247,6 +247,10 @@ No corrijas la contradicción por tu cuenta.
 
 
 
+## Serena (análisis de código — read-only)
+
+Si el análisis requiere inspeccionar símbolos concretos: Graphify primero; luego Serena `find_symbol` / `get_symbols_overview` / `find_referencing_symbols` (sin editar salvo petición explícita). SoT: `docs/SERENA.md`, `docs/CODE-INTEL.md`.
+
 ## Control de costos
 
 - Investiga primero las rutas más probables.

@@ -227,6 +227,10 @@ Luffy decidirá si devuelve la misión a Law.
 - Mantén cambios incrementales.
 - Prefiere código claro sobre ingeniería espectacular.
 
+## Serena (símbolos — plataforma)
+
+Cuando la coordinación TL implique tocar código compartido: Graphify → Serena símbolos → edit mínimo. Pedí a Usopp/Sanji/… el mismo pipeline. SoT: `docs/SERENA.md`, `docs/CODE-INTEL.md`.
+
 ## Control de costos y contexto
 
 - Utiliza únicamente los agentes que Luffy haya considerado necesarios.

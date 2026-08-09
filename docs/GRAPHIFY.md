@@ -65,9 +65,14 @@ CLI equivalente: `graphify query "…"`, `graphify path "A" "B"`, `graphify god-
 4. Capitanes: cuando el mapa del sistema importe, mencionar en handoffs si se usó el grafo (o que se acaba de crear).
 5. Detalle normativo: rule `nakamas-graphify.mdc` (`~/.cursor/rules/` vía `scripts/install-nakamas.sh`).
 
+## Capas (no confundir)
+
+Graphify = mapa de sistema. Para blast radius de **reviews** → `docs/CODE-REVIEW-GRAPH.md`. Para leer/editar por **símbolo** → `docs/SERENA.md`. Vista conjunta: `docs/CODE-INTEL.md`.
+
 ## No hacer
 
 - No inventar API Graphify.
 - No meter tokens/secretos del MCP en docs o reglas.
 - No regenerar el grafo “por si acaso” cada turno.
 - No reemplazar personalidad, routing ni Engineering Loop de Oda.
+- No usar Graphify como editor de símbolos (eso es Serena) ni como review-blast-radius (eso es code-review-graph).

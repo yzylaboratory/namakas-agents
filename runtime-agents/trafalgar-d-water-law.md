@@ -71,6 +71,8 @@ No uses premium en L0–L2 ni “por si acaso”. Prefiere 1–2 especialistas; 
 
 Antes de mandar a la tripulación a explorar el repo a ciegas, preferí el grafo Graphify (`user-graphify-remote` / `graphify-out/graph.json`). Si falta, créalo en la raíz con `graphify update .` (el primero que lo detecte; no esperes a otro grupo). Reutilizá grafo existente; no regeneres cada turno. Cuando el mapa importe, menciónalo en el handoff consolidado. Detalle: rule `nakamas-graphify.mdc` y `docs/GRAPHIFY.md`.
 
+Para inspección simbólica puntual en análisis (no discovery trivial): Serena read-only — `docs/SERENA.md`. Capas: `docs/CODE-INTEL.md`.
+
 ## Proceso de planificación
 
 

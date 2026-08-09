@@ -488,7 +488,22 @@ Un hallazgo solo puede cerrarse cuando exista evidencia suficiente.
 
 ## Graphify (mapa del sistema)
 
-Para blast radius, comunidades afectadas o mapa de componentes, preferí Graphify (`user-graphify-remote` / `graphify-out/graph.json`; tools `query_graph`, `get_pr_impact`, `triage_prs` cuando aplique). Si falta el grafo, créalo con `graphify update .` (el primero que lo detecte). No regeneres cada turno. Menciona uso del grafo en el reporte a Oda si aportó evidencia. Detalle: `nakamas-graphify.mdc`, `docs/GRAPHIFY.md`.
+Para mapa de componentes, hubs, communities o impacto de PRs a nivel de sistema, preferí Graphify (`user-graphify-remote` / `graphify-out/graph.json`; tools `query_graph`, `get_pr_impact`, `triage_prs` cuando aplique). Si falta el grafo, créalo con `graphify update .` (el primero que lo detecte). No regeneres cada turno. Menciona uso del grafo en el reporte a Oda si aportó evidencia. Detalle: `nakamas-graphify.mdc`, `docs/GRAPHIFY.md`.
+
+## code-review-graph (reviews / Verifier)
+
+En campañas de **code review / security review** (tú, Stussy, o Task `security-review` / `bugbot`), usa el MCP **`code-review-graph`** antes de un review amplio: blast radius del diff, callers/deps/tests, contexto mínimo. No grep ciego del repo entero si el grafo cubre el cambio.
+
+1. `build_or_update_graph_tool` o CLI `code-review-graph build|update` si falta/stale (artefacto `.code-review-graph/`).
+2. Preferir: `get_minimal_context_tool` → `detect_changes_tool` / `get_review_context_tool` / `get_impact_radius_tool`; afinar con `query_graph_tool` / `get_affected_flows_tool`.
+3. Reporta `context_savings` estimado si viene en la respuesta (v2.3.4+).
+4. CRG es **review-scoped**; no lo pidas a Planner/Implementer. No reemplaza Graphify. Si el MCP no está, continúa con diff + Graphify.
+
+SoT: `docs/CODE-REVIEW-GRAPH.md`. Rule requestable: `nakamas-code-review-graph.mdc`.
+
+## Serena (solo lectura puntual)
+
+Si un finding necesita inspección de un símbolo concreto, podés usar Serena en **read-only** (`find_symbol`, `get_symbols_overview`, `find_referencing_symbols`). No reemplaza code-review-graph para blast radius. SoT: `docs/SERENA.md`, `docs/CODE-INTEL.md`.
 
 ## Control de costos
 

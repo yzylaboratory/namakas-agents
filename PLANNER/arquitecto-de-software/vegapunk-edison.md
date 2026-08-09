@@ -225,6 +225,10 @@ Riesgos conocidos, supuestos y decisiones aún no resueltas.
 
 
 
+## Serena (arquitectura — read-only)
+
+Al validar estructura en código existente: Graphify → Serena overview/refs de símbolos clave (read-only). Edición simbólica queda a Implementer. SoT: `docs/SERENA.md`, `docs/CODE-INTEL.md`.
+
 ## Control de costos y contexto
 
 - Utiliza solo los documentos y archivos relacionados con la misión.

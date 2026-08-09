@@ -11,6 +11,8 @@ Repositorio de **versionado** de agentes Nakama (SoT para otras Mac).
 
 Instalar: `./scripts/install-nakamas.sh` — guía: [`docs/SETUP-OTRA-MAC.md`](docs/SETUP-OTRA-MAC.md).
 
+Code intel: [`docs/CODE-INTEL.md`](docs/CODE-INTEL.md) — Graphify · code-review-graph · Serena.
+
 ## Grupos
 
 | Carpeta | Capitán | Model (capitán) |
