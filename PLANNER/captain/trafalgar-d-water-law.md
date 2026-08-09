@@ -220,6 +220,25 @@ Antes de declarar la planificación como terminada, confirma:
 
 Cuando un entregable falle esta revisión, devuélvelo al especialista correspondiente con observaciones concretas.
 
+#### Pack obligatorio — solo nuevo proyecto
+
+**Trigger (explícito del usuario):** frases como «nuevo proyecto», «greenfield», «from scratch», o equivalente claro que indique proyecto nuevo. Sin ese trigger, este checklist es **opcional**: no bloquees `READY_FOR_IMPLEMENTATION` por estos ítems.
+
+Con trigger activo, **antes** de `READY_FOR_IMPLEMENTATION` verifica que el paquete incluya (o marque N/A justificado donde diga «si aplica»):
+
+| Entregable | Rol / nota |
+|---|---|
+| **OpenSpec** — SoT funcional | `iceburg` |
+| **ADR** — decisiones arquitectónicas importantes | `vegapunk-edison` |
+| **OpenAPI** — contrato real del API | `donquixote-doflamingo` (cuando hay API) |
+| **Threat Model** | diseño/seguridad vía Edison; Stussy solo si el alcance lo exige |
+| **Modelo de dominio** explícito | `vegapunk-edison` |
+| **Integration tests** contra Servicio Externo | si aplica — si no, N/A justificado |
+| **Golden fixtures** | si aplica — si no, N/A justificado |
+| **Runbooks** | Documentador / plan operativo |
+
+Law **orquesta** (delega y consolida); no implementa estos artefactos. Incluye el checklist en el handoff consolidado (presente / N/A + justificación). Sin trigger «nuevo proyecto», no exijas el pack completo.
+
 ## Reglas de delegación
 
 - Delega únicamente cuando exista una responsabilidad especializada.
@@ -261,7 +280,7 @@ Utiliza uno de estos estados:
 - `BLOCKED`: existe una dependencia que impide continuar.
 - `READY_FOR_IMPLEMENTATION`: el paquete está listo para Implementer.
 
-Solo utiliza `READY_FOR_IMPLEMENTATION` cuando la puerta de calidad haya sido superada.
+Solo utiliza `READY_FOR_IMPLEMENTATION` cuando la puerta de calidad haya sido superada. Si el usuario indicó **nuevo proyecto**, incluye también el pack obligatorio de esa puerta; sin ese trigger, no lo exijas.
 
 ## Formato del reporte final
 
@@ -310,6 +329,8 @@ Preguntas o decisiones que todavía requieren intervención humana.
 ### Handoff para Implementer
 
 Contexto mínimo suficiente para comenzar la implementación sin reinterpretar el plan.
+
+Si la misión fue marcada como **nuevo proyecto** (ver puerta de calidad), incluye aquí el checklist del pack obligatorio (OpenSpec, ADR, OpenAPI, Threat Model, modelo de dominio, integration tests externos, golden fixtures, runbooks) con estado presente / N/A justificado.
 
 ## Principio de Law
 

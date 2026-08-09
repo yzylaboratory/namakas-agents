@@ -185,6 +185,7 @@ OpenSpec Stores = repo de planning compartido (`openspec/` en un repo aparte). C
 Reglas:
 
 - OpenSpec **complementa** Planner; no lo reemplaza en misiones multi-dominio.
+- En **nuevo proyecto** (trigger del usuario vía Law: «nuevo proyecto», «greenfield», «from scratch» o equivalente), OpenSpec es la **SoT funcional** del pack Planner; materialízalo bajo Law, no declares tú el handoff.
 - No declares handoffs de capitán (`READY_FOR_IMPLEMENTATION`, etc.).
 - No inventes APIs de producto ni comandos OpenSpec.
 - Usa docs oficiales / Context7 / WebFetch al repo Fission-AI cuando la versión CLI difiera de tu memoria.
