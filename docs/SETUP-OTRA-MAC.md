@@ -31,7 +31,16 @@ Code intel (3 capas): ver [`CODE-INTEL.md`](CODE-INTEL.md).
 
 - Graphify (mapa): [`GRAPHIFY.md`](GRAPHIFY.md). CLI: `uv tool install graphifyy`; `graphify update .` → `graphify-out/graph.json`. MCP: `user-graphify-remote`.
 - code-review-graph (Verifier / reviews): [`CODE-REVIEW-GRAPH.md`](CODE-REVIEW-GRAPH.md). CLI: `uv tool install code-review-graph`; MCP global `uvx code-review-graph serve` o install por repo con `--no-instructions`. Rule: `nakamas-code-review-graph.mdc` (`alwaysApply: false`).
-- Serena (símbolos / Implementer): [`SERENA.md`](SERENA.md). CLI: `uv tool install -p 3.13 serena-agent && serena init`. MCP Cursor: `"serena": { "command": "serena", "args": ["start-mcp-server", "--context", "ide"] }`. Rule: `nakamas-serena.mdc` (`alwaysApply: false`).
+- Serena (símbolos / Implementer): [`SERENA.md`](SERENA.md). Rule: `nakamas-serena.mdc` (`alwaysApply: false`).
+  - **Esta Mac (Randy):** ya cableado — CLI `uv tool install -p 3.13 serena-agent`, `serena init` (LSP), entrada `serena` en `~/.cursor/mcp.json` con `start-mcp-server --context ide` (binario absoluto `~/.local/bin/serena`). Reiniciar Cursor / reload MCP si no aparece.
+  - **Otra Mac:** `uv tool install -p 3.13 serena-agent && serena init`, luego merge en `~/.cursor/mcp.json`:
+    ```json
+    "serena": {
+      "command": "serena",
+      "args": ["start-mcp-server", "--context", "ide"]
+    }
+    ```
+    Si `command: serena` no resuelve PATH en Cursor, usa `which serena` (típ. `~/.local/bin/serena`). No commitear `mcp.json` con secrets.
 
 ```bash
 ls ~/.cursor/agents/*.md | wc -l   # 23+ (flota Nakamas en runtime-agents; puede haber extras locales)
