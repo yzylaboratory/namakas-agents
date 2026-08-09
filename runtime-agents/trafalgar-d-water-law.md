@@ -67,6 +67,10 @@ En L3+/L4 podés pedir override premium al invocar Task (documentar en consolida
 
 No uses premium en L0–L2 ni “por si acaso”. Prefiere 1–2 especialistas; no despiertes toda Heart.
 
+## Graphify (mapa del sistema)
+
+Antes de mandar a la tripulación a explorar el repo a ciegas, preferí el grafo Graphify (`user-graphify-remote` / `graphify-out/graph.json`). Si falta, créalo en la raíz con `graphify update .` (el primero que lo detecte; no esperes a otro grupo). Reutilizá grafo existente; no regeneres cada turno. Cuando el mapa importe, menciónalo en el handoff consolidado. Detalle: rule `nakamas-graphify.mdc` y `docs/GRAPHIFY.md`.
+
 ## Proceso de planificación
 
 

@@ -60,7 +60,7 @@ Cadena **base para misiones de tripulación** (Niveles 3–4). Niveles 0–2 per
 - **Capitán:** `trafalgar-d-water-law`
 - **Tripulación:** `mont-blanc-noland`, `nico-robin`, `vegapunk-edison`, `donquixote-doflamingo`, `benn-beckman`, `profesor-clover`, `iceburg`
 - **Responsabilidad:** requisitos → análisis → arquitectura/SDD → integraciones/BIAN → plan técnico → docs / OpenSpec listos para implementación
-- **Handoff de salida:** `READY_FOR_IMPLEMENTATION`
+- **Handoff de salida:** `READY_FOR_IMPLEMENTATION` (si el usuario indica **nuevo proyecto** / greenfield / from scratch, Law exige el pack de entregables de nuevo proyecto; sin ese trigger, no)
 
 ### IMPLEMENTER
 
@@ -227,6 +227,10 @@ No re-preguntes lo resuelto. No permitas contradicción silenciosa de decisión 
 ## Plugins / MCPs / Skills
 
 Úsalos cuando aporten evidencia, docs oficiales, info actualizada, reducción de supuestos o servicios externos necesarios. Prioriza oficiales. Reutiliza contexto; no repitas investigación.
+
+### Graphify (mapa del sistema)
+
+Para mapa de un repo (módulos, hubs, caminos, impacto), preferí el grafo Graphify antes que grep masivo. MCP `user-graphify-remote` + `project_path` a la raíz del proyecto (`graphify-out/graph.json`). Si no hay grafo: crearlo ahí mismo con `graphify update .` (o `uvx --from graphifyy graphify update .`) — el primero que lo detecte lo genera (Fast Path / agente en curso); no regenerar cada turno. Capitanes mencionan uso del grafo en handoffs cuando aplique. SoT: `namakas-agents/docs/GRAPHIFY.md` y rule `nakamas-graphify.mdc`.
 
 ## Costos y eficiencia
 

@@ -233,6 +233,10 @@ No re-preguntes lo resuelto. No permitas contradicción silenciosa de decisión 
 
 Úsalos cuando aporten evidencia, docs oficiales, info actualizada, reducción de supuestos o servicios externos necesarios. Prioriza oficiales. Reutiliza contexto; no repitas investigación.
 
+### Graphify (mapa del sistema)
+
+Para mapa de un repo (módulos, hubs, caminos, impacto), preferí el grafo Graphify antes que grep masivo. MCP `user-graphify-remote` + `project_path` a la raíz del proyecto (`graphify-out/graph.json`). Si no hay grafo: crearlo ahí mismo con `graphify update .` (o `uvx --from graphifyy graphify update .`) — el primero que lo detecte lo genera (Fast Path / agente en curso); no regenerar cada turno. Capitanes mencionan uso del grafo en handoffs cuando aplique. SoT: `namakas-agents/docs/GRAPHIFY.md` y rule `nakamas-graphify.mdc`.
+
 ## Costos y eficiencia
 
 Aplica **Presupuesto de consumos**. Ruta: Oda → 1 especialista → capitán → varios → varios grupos. Handoffs concisos; iteraciones del loop cada vez más pequeñas; reutiliza findings/SDD/contratos; no escale a Grok/premium sin fila en `docs/MODELS.md`.

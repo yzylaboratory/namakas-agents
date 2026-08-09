@@ -8,6 +8,7 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 AGENTS_SRC="$REPO_ROOT/runtime-agents"
 ODA_SRC="$REPO_ROOT/ODA/oda.mdc"
+GRAPHIFY_RULE_SRC="$REPO_ROOT/rules/nakamas-graphify.mdc"
 CURSOR_AGENTS="${HOME}/.cursor/agents"
 CURSOR_RULES="${HOME}/.cursor/rules"
 MODE="copy"
@@ -43,6 +44,13 @@ else
   echo "WARN: falta $ODA_SRC" >&2
 fi
 
+if [[ -f "$GRAPHIFY_RULE_SRC" ]]; then
+  echo "==> Instalando rule Graphify en $CURSOR_RULES/nakamas-graphify.mdc"
+  cp "$GRAPHIFY_RULE_SRC" "$CURSOR_RULES/nakamas-graphify.mdc"
+else
+  echo "WARN: falta $GRAPHIFY_RULE_SRC" >&2
+fi
+
 echo
 echo "Listo."
 echo "Siguiente:"
@@ -50,6 +58,7 @@ echo "  1. Cursor Settings → Rules → User Rule «Oda — runtime raíz Nakam
 echo "     debe reflejar ODA/INSTRUCTIONS.md (o pedirle al agente que sincronice vía MCP)."
 echo "  2. En el chat raíz, selecciona Grok 4.5 para Oda."
 echo "  2b. Modelos: default barato + escalación — ver docs/MODELS.md"
+echo "  2c. Graphify: docs/GRAPHIFY.md + rule nakamas-graphify.mdc (CLI: uv tool install graphifyy)"
 echo "  3. Lanza un Task de prueba y confirma en el dashboard que Composer no corre como Fast"
 echo "     (frontmatter usa composer-2.5[])."
 echo "Detalle: docs/SETUP-OTRA-MAC.md"

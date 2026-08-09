@@ -23,9 +23,11 @@ chmod +x scripts/install-nakamas.sh
 # ./scripts/install-nakamas.sh --symlink   # opcional
 ```
 
-El script instala todos los `.md` de `runtime-agents/` en `~/.cursor/agents/` y `ODA/oda.mdc` en `~/.cursor/rules/oda.mdc`.
+El script instala todos los `.md` de `runtime-agents/` en `~/.cursor/agents/`, `ODA/oda.mdc` en `~/.cursor/rules/oda.mdc`, y `rules/nakamas-graphify.mdc` en `~/.cursor/rules/nakamas-graphify.mdc`.
 
 **No** crees `~/.cursor/agents/oda.md`. Oda no es subagente.
+
+Graphify (mapa de repos): ver [`GRAPHIFY.md`](GRAPHIFY.md). CLI: `uv tool install graphifyy`; en un proyecto sin grafo: `graphify update .` → `graphify-out/graph.json`. MCP Cursor: `user-graphify-remote`.
 
 ```bash
 ls ~/.cursor/agents/*.md | wc -l   # 23+ (flota Nakamas en runtime-agents; puede haber extras locales)

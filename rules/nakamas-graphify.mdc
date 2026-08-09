@@ -1,0 +1,44 @@
+---
+description: Nakamas — consultar Graphify antes de explorar código; crear grafo si falta.
+alwaysApply: true
+---
+
+# Nakamas × Graphify
+
+Antes de explorar un codebase a ciegas (grep masivo, listados recursivos, “buscar en todo el repo”), **consulta el knowledge graph Graphify** del proyecto.
+
+SoT: `namakas-agents/docs/GRAPHIFY.md`.
+
+## Flujo (miss → create → query)
+
+1. Comprobar si existe `<project>/graphify-out/graph.json`.
+2. Si **no** existe: crearlo en la raíz del proyecto (el primero que lo detecte; no esperar a otro grupo):
+
+   ```bash
+   graphify update .
+   # o: uvx --from graphifyy graphify update .
+   ```
+
+   CLI: paquete `graphifyy` (`uv tool install graphifyy`). Artefacto: `graphify-out/graph.json` (+ `GRAPH_REPORT.md`, `graph.html`).
+
+3. Si existe: **reutilizar**. No regenerar cada turno salvo grafo stale (commit del reporte ≠ `HEAD`), pedido explícito del usuario, o corrupción/ausencia parcial.
+4. Consultar vía MCP `user-graphify-remote` con `project_path` = raíz absoluta del proyecto:
+   - `query_graph` — pregunta NL (bfs/dfs)
+   - `god_nodes` / `graph_stats` — mapa y hubs
+   - `get_node` / `get_neighbors` / `get_community` / `shortest_path` — detalle
+   - `list_prs` / `get_pr_impact` / `triage_prs` — impacto de PRs
+5. Luego leer archivos concretos que el grafo señale. Grep fino OK; exploración ciega no.
+
+## Quién crea
+
+Fast Path: Oda (Nivel 0/1), el agente en curso, o especialista de plataforma (Franky/Jinbe) si ya está despierto. **El primero que detecte ausencia lo genera.** No bloquear la misión esperando a Planner/Implementer/Verifier “dueño” del grafo.
+
+## Capitanes (handoffs)
+
+Cuando el mapa del sistema importe, Law / Luffy / Lucci incluyen en el consolidado si se usó Graphify (o que se creó en esta sesión). No sustituye requisitos, SDD ni evidencia de pruebas.
+
+## Límites
+
+- No inventar tools ni parámetros Graphify.
+- No poner secretos MCP en prompts ni commits.
+- No reescribe personalidad, routing 0–4 ni Nakamas Engineering Loop.

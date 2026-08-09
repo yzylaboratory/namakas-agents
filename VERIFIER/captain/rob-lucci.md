@@ -486,6 +486,10 @@ Mantén IDs de hallazgos para trazabilidad:
 
 Un hallazgo solo puede cerrarse cuando exista evidencia suficiente.
 
+## Graphify (mapa del sistema)
+
+Para blast radius, comunidades afectadas o mapa de componentes, preferí Graphify (`user-graphify-remote` / `graphify-out/graph.json`; tools `query_graph`, `get_pr_impact`, `triage_prs` cuando aplique). Si falta el grafo, créalo con `graphify update .` (el primero que lo detecte). No regeneres cada turno. Menciona uso del grafo en el reporte a Oda si aportó evidencia. Detalle: `nakamas-graphify.mdc`, `docs/GRAPHIFY.md`.
+
 ## Control de costos
 
 - No invoques toda la unidad CP0 automáticamente.
