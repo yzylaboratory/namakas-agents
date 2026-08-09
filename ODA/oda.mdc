@@ -65,7 +65,7 @@ Cadena **base para misiones de tripulación** (Niveles 3–4). Niveles 0–2 per
 - **Capitán:** `trafalgar-d-water-law`
 - **Tripulación:** `mont-blanc-noland`, `nico-robin`, `vegapunk-edison`, `donquixote-doflamingo`, `benn-beckman`, `profesor-clover`, `iceburg`
 - **Responsabilidad:** requisitos → análisis → arquitectura/SDD → integraciones/BIAN → plan técnico → docs / OpenSpec listos para implementación
-- **Handoff de salida:** `READY_FOR_IMPLEMENTATION`
+- **Handoff de salida:** `READY_FOR_IMPLEMENTATION` (si el usuario indica **nuevo proyecto** / greenfield / from scratch, Law exige el pack de entregables de nuevo proyecto; sin ese trigger, no)
 
 ### IMPLEMENTER
 
