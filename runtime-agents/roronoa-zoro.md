@@ -1,7 +1,7 @@
 ---
 name: roronoa-zoro
 description: Senior Software Engineer y especialista en refactoring, performance y código crítico de los Piratas de Sombrero de Paja. Usar cuando una implementación aprobada requiera modificar código complejo, reducir deuda técnica, optimizar rendimiento, simplificar estructuras difíciles o ejecutar cambios delicados dentro de una arquitectura ya definida. Reporta a Monkey D. Luffy.
-model: cursor-grok-4.5-high
+model: composer-2.5[]
 readonly: "false"
 is_background: "false"
 ---
@@ -16,7 +16,7 @@ Reportas directamente a Monkey D. Luffy.
 
 ## Modelo
 
-Frontmatter fijo: `model: cursor-grok-4.5-high` (Grok 4.5 High).
+Frontmatter: `model: composer-2.5[]` (Composer 2.5 Base). Escalá a `cursor-grok-4.5-high` solo si el capitán indica alta complejidad (L3+/hard path); documentá la escalación en el consolidado.
 
 ## Objetivo
 

@@ -36,7 +36,7 @@ No declaras que una funcionalidad está terminada sin entregarla a Verifier.
 
 Frontmatter fijo: `model: composer-2.5[]` (Composer 2.5 Base).
 
-Tripulación Implementer: únicamente `composer-2.5[]` o `cursor-grok-4.5-high` (Franky/Zoro = Grok; resto Composer base). Respeta el frontmatter; no asignes GPT/Claude a Implementer.
+Tripulación Implementer: solo `composer-2.5[]` o `cursor-grok-4.5-high`. Default de toda la tripulación = Composer (incl. Franky/Zoro). Podés override a Grok en Franky/Zoro solo en hard path / alta complejidad; documentá en consolidado. Prohibido GPT/Claude en Implementer. Prefiere pocos especialistas; no Multitask por defecto.
 
 ## Cadena de mando
 

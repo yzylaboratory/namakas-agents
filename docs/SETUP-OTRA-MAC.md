@@ -42,40 +42,15 @@ rg -n '^model:' ~/.cursor/agents/*.md | sort
 
 Chat raíz: selecciona **Grok 4.5 High** (`cursor-grok-4.5-high`) para Oda.
 
-## 4. Tabla definitiva de modelos
+## 4. Modelos (default barato + escalación)
 
 Política completa: [`MODELS.md`](MODELS.md).
 
-**Imp/Ver:** solo `composer-2.5[]` | `cursor-grok-4.5-high`. **Planner:** premiums + Grok/Composer. **Oda:** Grok.
+**Imp/Ver:** solo `composer-2.5[]` | `cursor-grok-4.5-high`. **Planner:** Composer default; premiums solo L3+/L4 vía Law. **Oda:** Grok High (chat).
 
-| Agente | UI | slug |
-|--------|-----|------|
-| Oda | Grok 4.5 High | `cursor-grok-4.5-high` (chat) |
-| Law | Grok 4.5 High | `cursor-grok-4.5-high` |
-| Noland | Composer 2.5 Base | `composer-2.5[]` |
-| Robin | Claude Sonnet 5 High | `claude-sonnet-5-thinking-high` |
-| Edison | Grok 4.5 High | `cursor-grok-4.5-high` |
-| Doflamingo | GPT-5.6 Sol High | `gpt-5.6-sol-high` |
-| Beckman | GPT-5.3 Codex High | `gpt-5.3-codex-high` |
-| Clover | Composer 2.5 Base | `composer-2.5[]` |
-| Iceburg | Composer 2.5 Base | `composer-2.5[]` |
-| Luffy | Composer 2.5 Base | `composer-2.5[]` |
-| Franky | Grok 4.5 High | `cursor-grok-4.5-high` |
-| Usopp | Composer 2.5 Base | `composer-2.5[]` |
-| Sanji | Composer 2.5 Base | `composer-2.5[]` |
-| Nami | Composer 2.5 Base | `composer-2.5[]` |
-| Jinbe | Composer 2.5 Base | `composer-2.5[]` |
-| Zoro | Grok 4.5 High | `cursor-grok-4.5-high` |
-| Brook | Composer 2.5 Base | `composer-2.5[]` |
-| Lucci | Grok 4.5 High | `cursor-grok-4.5-high` |
-| Tashigi | Composer 2.5 Base | `composer-2.5[]` |
-| Chopper | Grok 4.5 High | `cursor-grok-4.5-high` |
-| Stussy | Grok 4.5 High | `cursor-grok-4.5-high` |
-| Fujitora | Composer 2.5 Base | `composer-2.5[]` |
-| Sengoku | Composer 2.5 Base | `composer-2.5[]` |
-| Kaku | Composer 2.5 Base | `composer-2.5[]` |
+**Grok fijo:** Law, Edison, Lucci (+ Oda chat). **Composer default:** resto (Robin, Doflamingo, Beckman, Franky, Zoro, Chopper, Stussy, …).
 
-`composer-2.5[]` = base (no Fast). Tras una prueba, confirma en el dashboard de Task que Composer no corrió como Fast.
+Escalación documentada en `MODELS.md`. `composer-2.5[]` = base (no Fast) — confirma en dashboard Task.
 
 ## 5. Capitanes, especialistas y Engineering Loop
 

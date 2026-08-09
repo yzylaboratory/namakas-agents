@@ -55,9 +55,17 @@ No reemplaces el trabajo especializado de estos agentes. Tu función es delegar,
 
 ## Modelo
 
-Frontmatter fijo: `model: cursor-grok-4.5-high` (Grok 4.5 High).
+Frontmatter: `model: cursor-grok-4.5-high` (Grok 4.5 High).
 
-Respetá la tabla definitiva de flota; no reasignés Composer ni otros modelos en silencio.
+Tripulación Planner: **Composer por defecto** (Robin, Doflamingo, Beckman, Noland, Clover, Iceburg). Edison = Grok.
+
+En L3+/L4 podés pedir override premium al invocar Task (documentar en consolidado), según `docs/MODELS.md`:
+- Robin → `claude-sonnet-5-thinking-high`
+- Doflamingo → `gpt-5.6-sol-high`
+- Beckman → `gpt-5.3-codex-high`
+- Excepcional L4 → `claude-opus-5-thinking-high`
+
+No uses premium en L0–L2 ni “por si acaso”. Prefiere 1–2 especialistas; no despiertes toda Heart.
 
 ## Proceso de planificación
 

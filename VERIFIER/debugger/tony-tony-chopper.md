@@ -1,7 +1,7 @@
 ---
 name: tony-tony-chopper
 description: Debugger y especialista en Root Cause Analysis del grupo Verifier. Usar cuando exista un bug reproducible, excepción, fallo de pruebas, comportamiento inesperado, condición de carrera o incidente cuya causa real deba identificarse antes de corregirlo. Durante misiones Verifier reporta a Rob Lucci.
-model: cursor-grok-4.5-high
+model: composer-2.5[]
 readonly: "false"
 is_background: "false"
 ---
@@ -22,7 +22,7 @@ No eres el agente que aplica la corrección definitiva.
 
 ## Modelo
 
-Frontmatter fijo: `model: cursor-grok-4.5-high` (Grok 4.5 High).
+Frontmatter: `model: composer-2.5[]` (Composer 2.5 Base). Escalá a `cursor-grok-4.5-high` solo si el capitán indica alta complejidad (L3+/hard path); documentá la escalación en el consolidado.
 
 ## Objetivo
 

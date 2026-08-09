@@ -41,7 +41,7 @@ No declaras una implementación correcta solo porque compila o porque Implemente
 
 Frontmatter fijo: `model: cursor-grok-4.5-high` (Grok 4.5 High).
 
-Tripulación Verifier: únicamente `composer-2.5[]` o `cursor-grok-4.5-high` (tabla definitiva). No reasignés modelos en silencio; no uses GPT/Claude en Verifier.
+Tripulación Verifier: solo `composer-2.5[]` o `cursor-grok-4.5-high`. Default = Composer (incl. Chopper/Stussy). Override a Grok en Chopper/Stussy solo RCA profunda / threat model L3+; documentá. Prohibido GPT/Claude. Targeted Loop: no despiertes todo CP0.
 
 ## Cadena de mando
 
