@@ -141,30 +141,37 @@ Infraestructura de paralelismo ≠ estrategia de routing.
 
 ## Política de modelos
 
-Tabla **definitiva** de flota (frontmatter `model:`). No uses la asignación genérica anterior Grok-para-pensar / Composer-para-ejecutar como regla de reasignación: respeta esta tabla.
+Tabla **definitiva** de flota (frontmatter `model:`). Respetar esta tabla; no reasignar en silencio.
+
+**Regla de grupos:**
+- **Implementer y Verifier:** únicamente `composer-2.5[]` o `cursor-grok-4.5-high`. Prohibido GPT, Claude Sonnet/Opus, Codex u otros en esos grupos.
+- **Planner:** puede/debe usar los modelos premium (GPT-5.6 Sol High, GPT-5.3 Codex High, Claude Sonnet 5 High, Claude Opus 5 High) además de Grok/Composer según rol.
+- **Oda:** `cursor-grok-4.5-high` (selector del chat raíz).
+
+Detalle y racional: `docs/MODELS.md`.
 
 | Agente | UI | slug |
 |--------|-----|------|
 | Oda (chat raíz; no es subagente) | Grok 4.5 High | `cursor-grok-4.5-high` en el selector del chat |
 | `trafalgar-d-water-law` | Grok 4.5 High | `cursor-grok-4.5-high` |
 | `mont-blanc-noland` | Composer 2.5 Base | `composer-2.5[]` |
-| `nico-robin` | Composer 2.5 Base | `composer-2.5[]` |
+| `nico-robin` | Claude Sonnet 5 High | `claude-sonnet-5-thinking-high` |
 | `vegapunk-edison` | Grok 4.5 High | `cursor-grok-4.5-high` |
-| `donquixote-doflamingo` | Composer 2.5 Base | `composer-2.5[]` |
-| `benn-beckman` | Composer 2.5 Base | `composer-2.5[]` |
+| `donquixote-doflamingo` | GPT-5.6 Sol High | `gpt-5.6-sol-high` |
+| `benn-beckman` | GPT-5.3 Codex High | `gpt-5.3-codex-high` |
 | `profesor-clover` | Composer 2.5 Base | `composer-2.5[]` |
 | `monkey-d-luffy` | Composer 2.5 Base | `composer-2.5[]` |
-| `franky` | GPT-5.6 Sol High | `gpt-5.6-sol-high` |
+| `franky` | Grok 4.5 High | `cursor-grok-4.5-high` |
 | `usopp` | Composer 2.5 Base | `composer-2.5[]` |
-| `sanji` | GPT-5.3 Codex High | `gpt-5.3-codex-high` |
+| `sanji` | Composer 2.5 Base | `composer-2.5[]` |
 | `nami` | Composer 2.5 Base | `composer-2.5[]` |
 | `jinbe` | Composer 2.5 Base | `composer-2.5[]` |
-| `roronoa-zoro` | GPT-5.6 Sol High | `gpt-5.6-sol-high` |
+| `roronoa-zoro` | Grok 4.5 High | `cursor-grok-4.5-high` |
 | `brook` | Composer 2.5 Base | `composer-2.5[]` |
-| `rob-lucci` | Claude Sonnet 5 High | `claude-sonnet-5-thinking-high` |
+| `rob-lucci` | Grok 4.5 High | `cursor-grok-4.5-high` |
 | `tashigi` | Composer 2.5 Base | `composer-2.5[]` |
-| `tony-tony-chopper` | Claude Opus 5 High | `claude-opus-5-thinking-high` |
-| `stussy` | Claude Opus 5 High | `claude-opus-5-thinking-high` |
+| `tony-tony-chopper` | Grok 4.5 High | `cursor-grok-4.5-high` |
+| `stussy` | Grok 4.5 High | `cursor-grok-4.5-high` |
 | `issho-fujitora` | Composer 2.5 Base | `composer-2.5[]` |
 | `sengoku` | Composer 2.5 Base | `composer-2.5[]` |
 | `kaku` | Composer 2.5 Base | `composer-2.5[]` |
@@ -172,6 +179,7 @@ Tabla **definitiva** de flota (frontmatter `model:`). No uses la asignación gen
 Sintaxis Cursor: `composer-2.5[]` fuerza variante **base** (evita Fast). También válido: `composer-2.5[fast=false]`. Ha habido bugs donde subagentes corrían como Fast sin querer — tras una prueba real, revisar el dashboard/UI de Task y confirmar que no es Fast.
 
 Al invocar Task: respeta el `model:` del frontmatter. No pases otro `model` en la llamada salvo override explícito del usuario.
+
 
 ### Clasificación de misión L0–L4 (complejidad)
 

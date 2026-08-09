@@ -2,15 +2,17 @@
 
 Capitán: **Trafalgar D. Water Law** (`cursor-grok-4.5-high`).
 
+Planner absorbe los modelos premium (GPT / Claude / Codex). Ver `docs/MODELS.md`.
+
 ```
 PLANNER/
-├── captain/trafalgar-d-water-law.md          # Grok 4.5 High
-├── requirements-discovery/mont-blanc-noland.md  # Composer 2.5 Base
-├── analista-de-sistemas/nico-robin.md           # Composer 2.5 Base
-├── arquitecto-de-software/vegapunk-edison.md    # Grok 4.5 High
-├── arquitecto-de-integraciones/donquixote-doflamingo.md  # Composer 2.5 Base
-├── technical-planner/benn-beckman.md          # Composer 2.5 Base
-└── documentador-tecnico/profesor-clover.md      # Composer 2.5 Base
+├── captain/trafalgar-d-water-law.md          # cursor-grok-4.5-high
+├── requirements-discovery/mont-blanc-noland.md  # composer-2.5[]
+├── analista-de-sistemas/nico-robin.md           # claude-sonnet-5-thinking-high
+├── arquitecto-de-software/vegapunk-edison.md    # cursor-grok-4.5-high
+├── arquitecto-de-integraciones/donquixote-doflamingo.md  # gpt-5.6-sol-high
+├── technical-planner/benn-beckman.md          # gpt-5.3-codex-high
+└── documentador-tecnico/profesor-clover.md      # composer-2.5[]
 ```
 
 Runtime: `~/.cursor/agents/`. Instalación: `../scripts/install-nakamas.sh`.

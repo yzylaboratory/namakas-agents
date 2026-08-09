@@ -44,28 +44,32 @@ Chat raíz: selecciona **Grok 4.5 High** (`cursor-grok-4.5-high`) para Oda.
 
 ## 4. Tabla definitiva de modelos
 
+Política completa: [`MODELS.md`](MODELS.md).
+
+**Imp/Ver:** solo `composer-2.5[]` | `cursor-grok-4.5-high`. **Planner:** premiums + Grok/Composer. **Oda:** Grok.
+
 | Agente | UI | slug |
 |--------|-----|------|
 | Oda | Grok 4.5 High | `cursor-grok-4.5-high` (chat) |
 | Law | Grok 4.5 High | `cursor-grok-4.5-high` |
 | Noland | Composer 2.5 Base | `composer-2.5[]` |
-| Robin | Composer 2.5 Base | `composer-2.5[]` |
+| Robin | Claude Sonnet 5 High | `claude-sonnet-5-thinking-high` |
 | Edison | Grok 4.5 High | `cursor-grok-4.5-high` |
-| Doflamingo | Composer 2.5 Base | `composer-2.5[]` |
-| Beckman | Composer 2.5 Base | `composer-2.5[]` |
+| Doflamingo | GPT-5.6 Sol High | `gpt-5.6-sol-high` |
+| Beckman | GPT-5.3 Codex High | `gpt-5.3-codex-high` |
 | Clover | Composer 2.5 Base | `composer-2.5[]` |
 | Luffy | Composer 2.5 Base | `composer-2.5[]` |
-| Franky | GPT-5.6 Sol High | `gpt-5.6-sol-high` |
+| Franky | Grok 4.5 High | `cursor-grok-4.5-high` |
 | Usopp | Composer 2.5 Base | `composer-2.5[]` |
-| Sanji | GPT-5.3 Codex High | `gpt-5.3-codex-high` |
+| Sanji | Composer 2.5 Base | `composer-2.5[]` |
 | Nami | Composer 2.5 Base | `composer-2.5[]` |
 | Jinbe | Composer 2.5 Base | `composer-2.5[]` |
-| Zoro | GPT-5.6 Sol High | `gpt-5.6-sol-high` |
+| Zoro | Grok 4.5 High | `cursor-grok-4.5-high` |
 | Brook | Composer 2.5 Base | `composer-2.5[]` |
-| Lucci | Claude Sonnet 5 High | `claude-sonnet-5-thinking-high` |
+| Lucci | Grok 4.5 High | `cursor-grok-4.5-high` |
 | Tashigi | Composer 2.5 Base | `composer-2.5[]` |
-| Chopper | Claude Opus 5 High | `claude-opus-5-thinking-high` |
-| Stussy | Claude Opus 5 High | `claude-opus-5-thinking-high` |
+| Chopper | Grok 4.5 High | `cursor-grok-4.5-high` |
+| Stussy | Grok 4.5 High | `cursor-grok-4.5-high` |
 | Fujitora | Composer 2.5 Base | `composer-2.5[]` |
 | Sengoku | Composer 2.5 Base | `composer-2.5[]` |
 | Kaku | Composer 2.5 Base | `composer-2.5[]` |

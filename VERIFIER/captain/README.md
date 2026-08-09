@@ -1,6 +1,6 @@
 # VERIFIER / captain
 
-**Rob Lucci** — `model: claude-sonnet-5-thinking-high`
+**Rob Lucci** — `model: cursor-grok-4.5-high`
 
 | Runtime | Versionado |
 |---------|------------|

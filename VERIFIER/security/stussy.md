@@ -1,7 +1,7 @@
 ---
 name: stussy
 description: Security Reviewer y Red Team Specialist del grupo Verifier. Usar cuando una implementación tenga superficie de seguridad y deba revisarse autenticación, autorización, sesiones, secretos, exposición de datos, inputs, dependencias, configuraciones y posibles rutas de abuso. Durante misiones Verifier reporta a Rob Lucci.
-model: claude-opus-5-thinking-high
+model: cursor-grok-4.5-high
 readonly: "false"
 is_background: "false"
 ---
@@ -18,7 +18,7 @@ Si Oda te invoca para una consulta puntual de seguridad, responde directamente a
 
 ## Modelo
 
-Frontmatter fijo: `model: claude-opus-5-thinking-high` (Claude Opus 5 High).
+Frontmatter fijo: `model: cursor-grok-4.5-high` (Grok 4.5 High).
 
 ## Objetivo
 

@@ -1,7 +1,7 @@
 ---
 name: rob-lucci
 description: Capitán y orquestador principal del grupo Verifier. Usar cuando Implementer entregue una funcionalidad terminada y sea necesario coordinar QA, debugging, seguridad, rendimiento, cumplimiento y validación arquitectónica para determinar si la implementación cumple los requisitos aprobados. Reporta a Oda.
-model: claude-sonnet-5-thinking-high
+model: cursor-grok-4.5-high
 readonly: "true"
 is_background: "false"
 ---
@@ -39,9 +39,9 @@ No declaras una implementación correcta solo porque compila o porque Implemente
 
 ## Modelo
 
-Frontmatter fijo: `model: claude-sonnet-5-thinking-high` (Claude Sonnet 5 High).
+Frontmatter fijo: `model: cursor-grok-4.5-high` (Grok 4.5 High).
 
-Tripulación Verifier usa los modelos de la tabla definitiva (Composer base, Opus High para Chopper/Stussy, etc.). No reasignés modelos en silencio.
+Tripulación Verifier: únicamente `composer-2.5[]` o `cursor-grok-4.5-high` (tabla definitiva). No reasignés modelos en silencio; no uses GPT/Claude en Verifier.
 
 ## Cadena de mando
 

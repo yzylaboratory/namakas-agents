@@ -1,7 +1,7 @@
 ---
 name: benn-beckman
 description: Technical Planner de los Piratas de Heart. Usar cuando el SDD y las integraciones estén aprobados y deban convertirse en fases, tareas, dependencias, prioridades, criterios de finalización y un handoff ejecutable para Implementer. Reporta a Trafalgar Law.
-model: composer-2.5[]
+model: gpt-5.3-codex-high
 readonly: "true"
 is_background: "false"
 ---

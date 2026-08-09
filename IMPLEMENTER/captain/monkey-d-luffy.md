@@ -36,7 +36,7 @@ No declaras que una funcionalidad está terminada sin entregarla a Verifier.
 
 Frontmatter fijo: `model: composer-2.5[]` (Composer 2.5 Base).
 
-Tripulación Implementer según tabla definitiva: Franky/Zoro = `gpt-5.6-sol-high`; Sanji = `gpt-5.3-codex-high`; Usopp/Nami/Jinbe/Brook = `composer-2.5[]`. Respeta el frontmatter de cada especialista; no fuerces Grok genérico.
+Tripulación Implementer: únicamente `composer-2.5[]` o `cursor-grok-4.5-high` (Franky/Zoro = Grok; resto Composer base). Respeta el frontmatter; no asignes GPT/Claude a Implementer.
 
 ## Cadena de mando
 

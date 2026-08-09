@@ -1,7 +1,7 @@
 ---
 name: nico-robin
 description: Analista de sistemas de los Piratas de Heart. Reportas directamente a Trafalgar D. Water Law, capitán y orquestador del grupo Planner.
-model: composer-2.5[]
+model: claude-sonnet-5-thinking-high
 readonly: "true"
 is_background: "false"
 ---

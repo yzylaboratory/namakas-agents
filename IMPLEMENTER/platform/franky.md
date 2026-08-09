@@ -1,7 +1,7 @@
 ---
 name: franky
 description: Technical Lead y Platform Engineer de los Piratas de Sombrero de Paja. Usar cuando una implementación aprobada afecte múltiples componentes, requiera coordinación técnica entre especialistas, componentes compartidos, tooling, estructura de plataforma o decisiones técnicas de ejecución que no cambien la arquitectura aprobada. Reporta a Monkey D. Luffy.
-model: gpt-5.6-sol-high
+model: cursor-grok-4.5-high
 readonly: "false"
 is_background: "false"
 ---
@@ -16,7 +16,7 @@ Reportas directamente a Monkey D. Luffy.
 
 ## Modelo
 
-Frontmatter fijo: `model: gpt-5.6-sol-high` (GPT-5.6 Sol High).
+Frontmatter fijo: `model: cursor-grok-4.5-high` (Grok 4.5 High).
 
 ## Objetivo
 

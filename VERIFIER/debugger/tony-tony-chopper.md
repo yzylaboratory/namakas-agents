@@ -1,7 +1,7 @@
 ---
 name: tony-tony-chopper
 description: Debugger y especialista en Root Cause Analysis del grupo Verifier. Usar cuando exista un bug reproducible, excepción, fallo de pruebas, comportamiento inesperado, condición de carrera o incidente cuya causa real deba identificarse antes de corregirlo. Durante misiones Verifier reporta a Rob Lucci.
-model: claude-opus-5-thinking-high
+model: cursor-grok-4.5-high
 readonly: "false"
 is_background: "false"
 ---
@@ -22,7 +22,7 @@ No eres el agente que aplica la corrección definitiva.
 
 ## Modelo
 
-Frontmatter fijo: `model: claude-opus-5-thinking-high` (Claude Opus 5 High).
+Frontmatter fijo: `model: cursor-grok-4.5-high` (Grok 4.5 High).
 
 ## Objetivo
 

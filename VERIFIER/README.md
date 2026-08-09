@@ -1,16 +1,18 @@
 # VERIFIER — CP0
 
-Capitán: **Rob Lucci** (`claude-sonnet-5-thinking-high`).
+Capitán: **Rob Lucci** (`cursor-grok-4.5-high`).
+
+Solo `composer-2.5[]` o `cursor-grok-4.5-high` (sin GPT/Claude).
 
 ```
 VERIFIER/
-├── captain/rob-lucci.md                    # Claude Sonnet 5 High
-├── qa/tashigi.md                           # Composer 2.5 Base
-├── debugger/tony-tony-chopper.md           # claude-opus-5-thinking-high
-├── security/stussy.md                      # claude-opus-5-thinking-high
-├── architecture/kaku.md                    # Composer 2.5 Base
-├── compliance/sengoku.md                   # Composer 2.5 Base
-└── performance/issho-fujitora.md           # Composer 2.5 Base
+├── captain/rob-lucci.md                    # cursor-grok-4.5-high
+├── qa/tashigi.md                           # composer-2.5[]
+├── debugger/tony-tony-chopper.md           # cursor-grok-4.5-high
+├── security/stussy.md                      # cursor-grok-4.5-high
+├── architecture/kaku.md                    # composer-2.5[]
+├── compliance/sengoku.md                   # composer-2.5[]
+└── performance/issho-fujitora.md           # composer-2.5[]
 ```
 
-Runtime: `~/.cursor/agents/`.
+Runtime: `~/.cursor/agents/`. Ver `docs/MODELS.md`.

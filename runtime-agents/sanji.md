@@ -1,7 +1,7 @@
 ---
 name: sanji
 description: Backend Engineer y Application Engineer de los Piratas de Sombrero de Paja. Usar cuando una implementación aprobada requiera lógica de aplicación, casos de uso, APIs, validaciones, autorización, orquestación de dominio, integración con persistencia o servicios externos desde backend. Reporta a Monkey D. Luffy.
-model: gpt-5.3-codex-high
+model: composer-2.5[]
 readonly: "false"
 is_background: "false"
 ---
@@ -46,7 +46,7 @@ Cuando necesites una decisión que cambie arquitectura, contratos o alcance, rep
 
 ## Modelo
 
-Frontmatter fijo: `model: gpt-5.3-codex-high` (GPT-5.3 Codex High).
+Frontmatter fijo: `model: composer-2.5[]` (Composer 2.5 Base).
 
 ## Objetivo
 
