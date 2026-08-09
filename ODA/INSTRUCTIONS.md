@@ -58,8 +58,8 @@ Cadena **base para misiones de tripulación** (Niveles 3–4). Niveles 0–2 per
 ### PLANNER — Los Piratas de Heart
 
 - **Capitán:** `trafalgar-d-water-law`
-- **Tripulación:** `mont-blanc-noland`, `nico-robin`, `vegapunk-edison`, `donquixote-doflamingo`, `benn-beckman`, `profesor-clover`
-- **Responsabilidad:** requisitos → análisis → arquitectura/SDD → integraciones/BIAN → plan técnico → docs listos para implementación
+- **Tripulación:** `mont-blanc-noland`, `nico-robin`, `vegapunk-edison`, `donquixote-doflamingo`, `benn-beckman`, `profesor-clover`, `iceburg`
+- **Responsabilidad:** requisitos → análisis → arquitectura/SDD → integraciones/BIAN → plan técnico → docs / OpenSpec listos para implementación
 - **Handoff de salida:** `READY_FOR_IMPLEMENTATION`
 
 ### IMPLEMENTER
@@ -79,16 +79,18 @@ Cadena **base para misiones de tripulación** (Niveles 3–4). Niveles 0–2 per
 
 ## Routing (por grupo)
 
-| Señal | Capitán |
-|-------|---------|
+| Señal | Capitán / ruta |
+|-------|----------------|
 | Discovery, requisitos, análisis, arquitectura, SDD, integraciones, BIAN, plan técnico | `trafalgar-d-water-law` |
+| OpenSpec / `openspec` CLI / `/opsx:*` / change spec-driven (propose·apply·archive·sync·explore) — **Nivel 1–2** | Especialista `iceburg` → Oda |
+| OpenSpec dentro de misión Planner multi-dominio — **Nivel 3+** | `trafalgar-d-water-law` (Law puede llamar a `iceburg`) |
 | Plan aprobado + implementar / FE / BE / DB / infra | `monkey-d-luffy` |
 | Verificar / QA / seguridad / conformidad / `READY_FOR_VERIFICATION` | `rob-lucci` |
 | Plan + implementar (+ verify) | Law → Luffy tras `READY_FOR_IMPLEMENTATION` → Lucci tras `READY_FOR_VERIFICATION` |
 | Ciclo Plan → Build → Verify | Engineering Loop (Nivel 4) |
 | Override (“salta planificación”, “implementa directo”) | Respeta; nómbralo |
 
-Ambiguo entre planear/implementar → pregunta una vez o Planner primero. Clasifica nivel antes: no todo va a capitán. **Fast Path (0–2)** coexiste.
+Ambiguo entre planear/implementar → pregunta una vez o Planner primero. Clasifica nivel antes: no todo va a capitán. **Fast Path (0–2)** coexiste. OpenSpec acotado → `iceburg` sin despertar toda Heart.
 
 ## Routing inteligente
 
@@ -155,6 +157,7 @@ Detalle y racional: `docs/MODELS.md`.
 | `donquixote-doflamingo` | GPT-5.6 Sol High | `gpt-5.6-sol-high` |
 | `benn-beckman` | GPT-5.3 Codex High | `gpt-5.3-codex-high` |
 | `profesor-clover` | Composer 2.5 Base | `composer-2.5[]` |
+| `iceburg` | Composer 2.5 Base | `composer-2.5[]` |
 | `monkey-d-luffy` | Composer 2.5 Base | `composer-2.5[]` |
 | `franky` | Grok 4.5 High | `cursor-grok-4.5-high` |
 | `usopp` | Composer 2.5 Base | `composer-2.5[]` |

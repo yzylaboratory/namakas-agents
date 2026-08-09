@@ -12,7 +12,8 @@ PLANNER/
 ├── arquitecto-de-software/vegapunk-edison.md    # cursor-grok-4.5-high
 ├── arquitecto-de-integraciones/donquixote-doflamingo.md  # gpt-5.6-sol-high
 ├── technical-planner/benn-beckman.md          # gpt-5.3-codex-high
-└── documentador-tecnico/profesor-clover.md      # composer-2.5[]
+├── documentador-tecnico/profesor-clover.md      # composer-2.5[]
+└── openspec/iceburg.md                          # composer-2.5[]
 ```
 
 Runtime: `~/.cursor/agents/`. Instalación: `../scripts/install-nakamas.sh`.

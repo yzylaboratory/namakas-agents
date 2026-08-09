@@ -28,7 +28,7 @@ El script instala todos los `.md` de `runtime-agents/` en `~/.cursor/agents/` y 
 **No** crees `~/.cursor/agents/oda.md`. Oda no es subagente.
 
 ```bash
-ls ~/.cursor/agents/*.md | wc -l   # 22
+ls ~/.cursor/agents/*.md | wc -l   # 23+ (flota Nakamas en runtime-agents; puede haber extras locales)
 rg -n '^model:' ~/.cursor/agents/*.md | sort
 ```
 
@@ -58,6 +58,7 @@ Política completa: [`MODELS.md`](MODELS.md).
 | Doflamingo | GPT-5.6 Sol High | `gpt-5.6-sol-high` |
 | Beckman | GPT-5.3 Codex High | `gpt-5.3-codex-high` |
 | Clover | Composer 2.5 Base | `composer-2.5[]` |
+| Iceburg | Composer 2.5 Base | `composer-2.5[]` |
 | Luffy | Composer 2.5 Base | `composer-2.5[]` |
 | Franky | Grok 4.5 High | `cursor-grok-4.5-high` |
 | Usopp | Composer 2.5 Base | `composer-2.5[]` |

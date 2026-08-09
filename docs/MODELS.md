@@ -32,6 +32,7 @@ Prohibido asignar GPT / Claude Sonnet / Claude Opus / Codex a Implementer o Veri
 | Doflamingo | `gpt-5.6-sol-high` | Integraciones / BIAN complejas |
 | Beckman | `gpt-5.3-codex-high` | Plan técnico ejecutable (Codex liberado de Imp) |
 | Clover | `composer-2.5[]` | Docs |
+| Iceburg | `composer-2.5[]` | OpenSpec CLI/workflow (artefactos, validate, sync/archive) |
 
 **Premium absorbido desde Imp/Ver:** Sol → Doflamingo; Codex → Beckman; Sonnet → Robin. `claude-opus-5-thinking-high` queda como premium Planner disponible (p. ej. análisis L3+ / override Robin si Law lo pide); no va a Imp/Ver.
 
