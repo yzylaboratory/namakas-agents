@@ -1,6 +1,8 @@
 # Setup Nakamas Agents en otra Mac
 
-Guía reproducible para instalar el runtime Cursor desde este repo (`namakas-agents` = SoT versionada).
+Guía reproducible para instalar el runtime **Cursor** desde este repo (`namakas-agents` = SoT versionada).
+
+Para **Codex / Claude Code / Antigravity** (misma flota, formatos nativos): [`SETUP-MULTI-IA.md`](SETUP-MULTI-IA.md) — `./scripts/install-nakamas.sh --target=all`.
 
 ## 1. Clonar o actualizar el repo
 

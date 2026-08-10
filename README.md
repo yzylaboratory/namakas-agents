@@ -9,7 +9,15 @@ Repositorio de **versionado** de agentes Nakama (SoT para otras Mac).
 | Ejecución Cursor | `~/.cursor/agents/` + `~/.cursor/rules/oda.mdc` + User Rule Oda |
 | Versionado | este repo |
 
-Instalar: `./scripts/install-nakamas.sh` — guía: [`docs/SETUP-OTRA-MAC.md`](docs/SETUP-OTRA-MAC.md).
+Instalar:
+
+```bash
+./scripts/install-nakamas.sh --target=all   # cursor + codex + claude + antigravity
+./scripts/install-nakamas.sh               # solo Cursor (compat)
+```
+
+- Multi-IA: [`docs/SETUP-MULTI-IA.md`](docs/SETUP-MULTI-IA.md)
+- Solo Cursor / otra Mac: [`docs/SETUP-OTRA-MAC.md`](docs/SETUP-OTRA-MAC.md)
 
 Code intel: [`docs/CODE-INTEL.md`](docs/CODE-INTEL.md) — Graphify · code-review-graph · Serena.
 
