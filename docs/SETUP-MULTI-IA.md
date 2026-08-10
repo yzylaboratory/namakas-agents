@@ -134,6 +134,20 @@ Referencia tools: skill `using-superpowers` → `references/antigravity-tools.md
 
 ---
 
+## MCP compartidos (multi-IA)
+
+**Meta Developer Tools** — endpoint `https://mcp.facebook.com/devtools` (doc: [Meta DevTools MCP](https://developers.facebook.com/documentation/mcp/devtools-mcp)). OAuth **por cliente** (Cursor / Codex / Claude no comparten sesión).
+
+| Cliente | Config | Snippet |
+|---------|--------|---------|
+| Cursor | `~/.cursor/mcp.json` | `"Meta Developer Tools": { "url": "https://mcp.facebook.com/devtools", "type": "http" }` |
+| Codex | `~/.codex/config.toml` | `[mcp_servers.meta_developer_tools]` + `url = "https://mcp.facebook.com/devtools"` — o `codex mcp add meta_developer_tools --url https://mcp.facebook.com/devtools` → `codex mcp login meta_developer_tools` |
+| Claude Code | `~/.claude.json` → `mcpServers` | `claude mcp add --transport http --scope user meta-developer-tools https://mcp.facebook.com/devtools` → `claude mcp login meta-developer-tools` (o `/mcp` en la TUI) |
+
+El installer Nakamas **no** sobrescribe estos MCP.
+
+---
+
 ## Checklist (esta Mac)
 
 - [ ] `./scripts/install-nakamas.sh --target=all`
@@ -141,6 +155,7 @@ Referencia tools: skill `using-superpowers` → `references/antigravity-tools.md
 - [ ] Codex: `ls ~/.codex/agents/*.toml | wc -l` ≈ 23; bloque NAKAMAS en `AGENTS.md`
 - [ ] Claude: `ls ~/.claude/agents/*.md | wc -l` ≈ 23; `~/.claude/rules/oda.md`
 - [ ] Antigravity: `~/.antigravity/.agent/agents/` + `rules/oda.md`
+- [ ] Meta DevTools MCP: Cursor + Codex + Claude (`claude mcp login meta-developer-tools` si Needs authentication)
 - [ ] Prueba mínima: pedir a Oda un Task/Agent a Law con una pregunta trivial de routing
 
 ## Re-sync
