@@ -174,16 +174,18 @@ install_claude() {
     fi
   done
 
-  echo "==> [claude] Rule Oda → $CLAUDE_RULES/oda.md"
+  echo "==> [claude] Rule Oda (refuerzo) → $CLAUDE_RULES/oda.md"
   {
     echo "# Oda — runtime raíz Nakamas (Claude Code)"
     echo
-    echo "No eres un subagente. Capitanes/tripulación: \`~/.claude/agents/*.md\` (invoca con Agent por \`name\`)."
-    echo "En Claude, \`Agent\` sustituye al Task tool de Cursor. No crees \`~/.claude/agents/oda.md\`."
+    echo "**SoT invocable:** agent file \`~/.claude/agents/oda.md\` (\`claude --agent oda\` o @-mention)."
+    echo "Esta rule es **refuerzo** del mismo prompt; el agent file manda para invocación explícita."
+    echo "Capitanes/tripulación: \`~/.claude/agents/*.md\` (invoca con Agent por \`name\`)."
+    echo "En Claude, \`Agent\` sustituye al Task tool de Cursor."
     echo "Modelos Claude: \`namakas-agents/docs/MODELS-CLAUDE.md\` (opus/sonnet/haiku — no Composer/Grok)."
-    echo "Recomendación chat raíz (equivalente Grok): sesión **Opus** o Sonnet con effort alto."
+    echo "Oda agent: \`model: opus\` + \`effort: high\` (equivalente Grok decisión)."
     echo
-    echo "Coexiste con rules legacy (p. ej. \`tripulacion.md\` / brd-*): para Engineering Loop Nakamas, esta rule manda."
+    echo "Coexiste con rules legacy (p. ej. \`tripulacion.md\` / brd-*): para Engineering Loop Nakamas, Oda (agent + esta rule) manda."
     echo
     cat "$ODA_INSTRUCTIONS"
   } > "$CLAUDE_RULES/oda.md"
@@ -206,12 +208,12 @@ install_claude() {
   cat > "$tmp" <<'EOF'
 ## Nakamas Agents (Claude)
 
-- Raíz: rule `~/.claude/rules/oda.md` (Oda — no es subagente; preferí sesión Opus).
-- Flota: `~/.claude/agents/*.md` (SoT: `namakas-agents/runtime/claude/agents/` — frontmatter nativo).
-- Cursor SoT separado: `namakas-agents/runtime/cursor/agents/`.
-- Invocar: Agent con `name` del frontmatter (ej. `trafalgar-d-water-law`, `monkey-d-luffy`, `rob-lucci`).
+- Raíz: agent `~/.claude/agents/oda.md` (SoT invocable: `claude --agent oda` / @oda) + rule `~/.claude/rules/oda.md` (refuerzo).
+- Flota: `~/.claude/agents/*.md` (SoT: `namakas-agents/runtime/claude/agents/` — frontmatter nativo; incluye `oda.md`).
+- Cursor SoT separado: `namakas-agents/runtime/cursor/agents/` (Oda **no** va ahí como subagente Cursor).
+- Invocar: Agent con `name` del frontmatter (ej. `oda`, `trafalgar-d-water-law`, `monkey-d-luffy`, `rob-lucci`).
 - Modelos: `docs/MODELS-CLAUDE.md` — no `composer-2.5[]` / `cursor-grok-*`.
-- Sync: `./scripts/install-nakamas.sh --target=claude` (opcional `--regenerate`).
+- Sync: `./scripts/install-nakamas.sh --target=claude` (opcional `--regenerate`; no pisa `oda.md`).
 - Docs: `namakas-agents/docs/SETUP-MULTI-IA.md`
 EOF
   python3 "$UPSERT" "$CLAUDE_MD" \

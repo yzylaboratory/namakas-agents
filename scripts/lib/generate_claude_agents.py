@@ -248,10 +248,18 @@ def render_claude(meta: dict[str, str], body: str) -> str:
     return "\n".join(lines) + clean_body(body, name)
 
 
+# Claude-only hand-maintained agents (not generated from Cursor SoT).
+# Never overwrite or delete these on --regenerate.
+CLAUDE_ONLY_KEEP = frozenset({"oda.md"})
+
+
 def generate(src_dir: Path, dest_dir: Path) -> list[str]:
     dest_dir.mkdir(parents=True, exist_ok=True)
     written: list[str] = []
     for src in sorted(src_dir.glob("*.md")):
+        if src.name in CLAUDE_ONLY_KEEP:
+            print(f"SKIP (Claude-only): {src.name}", file=sys.stderr)
+            continue
         meta, body = parse_frontmatter(src.read_text(encoding="utf-8"))
         if not meta.get("name"):
             print(f"WARN: sin name en {src.name}", file=sys.stderr)
@@ -260,6 +268,13 @@ def generate(src_dir: Path, dest_dir: Path) -> list[str]:
         dest = dest_dir / src.name
         dest.write_text(out, encoding="utf-8")
         written.append(meta["name"])
+    # Preserve Claude-only files already in dest (e.g. oda.md)
+    for keep in sorted(CLAUDE_ONLY_KEEP):
+        kept = dest_dir / keep
+        if kept.is_file():
+            print(f"KEEP Claude-only: {keep}")
+        else:
+            print(f"WARN: falta Claude-only {keep} en {dest_dir}", file=sys.stderr)
     return written
 
 

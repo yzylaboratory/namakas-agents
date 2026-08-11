@@ -7,7 +7,7 @@ SoT versionada: este repo (`namakas-agents`). Runtime Cursor ya documentado en [
 - **Una flota, dos (o más) árboles instalables:**
   - Cursor: `runtime/cursor/agents/` (symlink compat: `runtime-agents/`)
   - Claude: `runtime/claude/agents/` (frontmatter nativo Claude Code)
-- **Oda no es subagente** en ninguna plataforma.
+- **Oda:** en Cursor = rule / User Rule (no subagente Cursor). En Claude = **agent file** `oda.md` (SoT invocable) + rule de refuerzo.
 - **Formato nativo** por herramienta (no copia ciega del frontmatter Cursor → Claude).
 - **No se borran** configs ajenas (rules legacy, AGENTS.md previos, etc.).
 - Modelos Cursor (`composer-2.5[]`, `cursor-grok-4.5-high`) **solo** en árbol Cursor. Claude: [`MODELS-CLAUDE.md`](MODELS-CLAUDE.md).
@@ -84,8 +84,8 @@ Custom / sub-agents Codex por el campo `name` del TOML (misma cadena Oda → cap
 
 | Artefacto | Path |
 |-----------|------|
-| Subagentes | `~/.claude/agents/*.md` ← **copia** de `runtime/claude/agents/` |
-| Oda | `~/.claude/rules/oda.md` (no `agents/oda.md`) |
+| Subagentes + Oda | `~/.claude/agents/*.md` ← **copia** de `runtime/claude/agents/` (incluye `oda.md`) |
+| Oda rule (refuerzo) | `~/.claude/rules/oda.md` — agent file es la SoT invocable |
 | Graphify / CRG / Serena | `~/.claude/rules/nakamas-*.md` |
 | Puntero en user CLAUDE.md | sección `<!-- NAKAMAS:BEGIN/END -->` |
 
@@ -97,11 +97,12 @@ Markdown + YAML frontmatter — [Create custom subagents](https://code.claude.co
 **Optional:** `tools`, `disallowedTools`, `model` (`sonnet`\|`opus`\|`haiku`\|`fable`\|full ID\|`inherit`), `permissionMode`, `maxTurns`, `skills`, `mcpServers`, `hooks`, `memory`, `background`, `effort`, `isolation`, `color`, `initialPrompt`  
 **Body** = system prompt
 
-- Capitanes decisión (Law, Edison, Lucci): `model: opus` + `effort: high`
+- Oda + capitanes decisión (Law, Edison, Lucci): `model: opus` + `effort: high`
 - Especialistas: `model: sonnet`
-- Capitanes: `tools: Agent(<tripulación>), Read, Grep, …`
+- Capitanes / Oda: `tools: Agent(<allowlist>), Read, Grep, …`
 - Verifiers read-heavy: sin `Edit`/`Write` (Chopper sí puede editar)
 - **Prohibido:** `composer-2.5[]`, `cursor-grok-*` en árbol Claude
+- `oda.md` es **Claude-only** (no viene de Cursor); `--regenerate` no lo pisa
 
 Regenerar SoT Claude desde Cursor:
 
@@ -112,12 +113,13 @@ python3 scripts/lib/generate_claude_agents.py --validate-only
 
 ### Cómo invocar
 
-`Agent` con el `name` del frontmatter (ej. `trafalgar-d-water-law`). Ver flota: listar `~/.claude/agents/` o reiniciar Claude Code tras el primer create del directorio.
+- **Oda:** `claude --agent oda` o @-mention `oda` (también Agent por `name` si otro contexto lo despacha).
+- **Flota:** `Agent` con el `name` del frontmatter (ej. `trafalgar-d-water-law`). Listar `~/.claude/agents/` o reiniciar Claude Code tras el primer create del directorio.
 
 ### Limitaciones
 
-- Coexiste con rules legacy (`tripulacion.md` / brd-*). Para **Engineering Loop Nakamas**, manda `oda.md`.
-- Chat raíz Oda: preferí sesión **Opus** (equivalente Grok). Ver [`MODELS-CLAUDE.md`](MODELS-CLAUDE.md).
+- Coexiste con rules legacy (`tripulacion.md` / brd-*). Para **Engineering Loop Nakamas**, manda el agent `oda` (+ rule de refuerzo).
+- Ver [`MODELS-CLAUDE.md`](MODELS-CLAUDE.md).
 
 ---
 
@@ -163,7 +165,8 @@ El installer Nakamas **no** sobrescribe estos MCP.
 - [ ] `./scripts/install-nakamas.sh --target=all`
 - [ ] Cursor: User Rule Oda + chat Grok High
 - [ ] Codex: `ls ~/.codex/agents/*.toml \| wc -l` ≈ 23
-- [ ] Claude: `ls ~/.claude/agents/*.md \| wc -l` ≈ 23; `rg 'composer-2.5\|cursor-grok' ~/.claude/agents` → vacío
+- [ ] Claude: `ls ~/.claude/agents/*.md \| wc -l` ≈ 24 (23 flota + `oda.md`); `rg 'composer-2.5\|cursor-grok' ~/.claude/agents` → vacío
+- [ ] Claude: `test -f ~/.claude/agents/oda.md` && `head ~/.claude/agents/oda.md` → `model: opus` / `effort: high`
 - [ ] Claude: `head ~/.claude/agents/trafalgar-d-water-law.md` → `model: opus` / `effort: high`
 - [ ] Antigravity: `~/.antigravity/.agent/agents/` + `rules/oda.md`
 - [ ] Prueba mínima: pedir a Oda un Agent a Law

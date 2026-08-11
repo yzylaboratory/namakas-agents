@@ -7,7 +7,7 @@ Cursor (Composer / Grok): ver [`MODELS.md`](MODELS.md). **No mezclar** slugs ent
 ## Principio: default barato + escalación
 
 1. **Sonnet** es el default de ejecución (equivalente Composer en Cursor).
-2. **Opus + `effort: high`** solo en puntos de decisión / arbitraje (capitanes Law/Lucci, arquitecto Edison; Oda chat vía rule).
+2. **Opus + `effort: high`** solo en puntos de decisión / arbitraje (Oda, capitanes Law/Lucci, arquitecto Edison).
 3. **Haiku** solo para exploración barata si se define un agente explore-only (no es el default de la flota Engineering).
 4. **`inherit`** está permitido cuando el agente deba seguir el modelo de la sesión; la flota Nakamas fija `opus`/`sonnet` explícitos.
 
@@ -15,7 +15,7 @@ Cursor (Composer / Grok): ver [`MODELS.md`](MODELS.md). **No mezclar** slugs ent
 
 | Rol Cursor | Slug Cursor | Claude `model` / `effort` |
 |------------|-------------|---------------------------|
-| Oda (chat raíz, no subagente) | `cursor-grok-4.5-high` | Sesión Claude en **Opus** (o Sonnet + effort alto). Rule: `~/.claude/rules/oda.md` — no `~/.claude/agents/oda.md` |
+| Oda (raíz) | `cursor-grok-4.5-high` (chat / User Rule) | Agent `oda`: `opus` + `effort: high`. SoT: `~/.claude/agents/oda.md`. Rule refuerzo: `~/.claude/rules/oda.md`. Invocar: `claude --agent oda` / @oda |
 | Law, Edison, Lucci | `cursor-grok-4.5-high` | `opus` + `effort: high` |
 | Resto de la flota | `composer-2.5[]` | `sonnet` |
 | Explore-only (si aplica) | — | `haiku` |
@@ -23,13 +23,15 @@ Cursor (Composer / Grok): ver [`MODELS.md`](MODELS.md). **No mezclar** slugs ent
 
 **Prohibido** en `runtime/claude/` y `~/.claude/agents/`: `composer-2.5[]`, `cursor-grok-*`, u otros slugs Cursor.
 
+**Nota Cursor:** Oda **no** se instala como subagente en `runtime/cursor/agents/` ni `~/.cursor/agents/`.
+
 ## Tabla completa (defaults de frontmatter Claude)
 
 ### Oda
 
-| Agente | Claude | Nota |
-|--------|--------|------|
-| Oda | sesión Opus (recomendado) | Rule `oda.md`, no subagente |
+| Agente | model | effort | Nota |
+|--------|-------|--------|------|
+| Oda | `opus` | `high` | Agent file Claude-only; rule `oda.md` es refuerzo |
 
 ### Planner
 
