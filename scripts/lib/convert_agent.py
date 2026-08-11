@@ -35,27 +35,13 @@ def toml_escape_multiline(value: str) -> str:
 
 
 def to_claude(meta: dict[str, str], body: str) -> str:
-    name = meta.get("name") or "unnamed"
-    description = meta.get("description") or name
-    lines = [
-        "---",
-        f"name: {name}",
-        f"description: {description}",
-        "model: inherit",
-        "---",
-        "",
-    ]
-    notes = [
-        "> **Runtime Claude Code:** invocado como subagente (`Agent` / Task) por `name`. "
-        "Slugs Cursor (`composer-2.5[]`, `cursor-grok-4.5-high`) no aplican aquí — "
-        "`model: inherit` (modelo de la sesión). Política SoT: `namakas-agents/docs/MODELS.md`.",
-    ]
-    if truthy(meta.get("readonly")):
-        notes.append(
-            "> Cursor `readonly: true` — en Claude se hereda tools; prioriza trabajo de lectura/análisis "
-            "salvo que el mandato del agente requiera editar."
-        )
-    return "\n".join(lines) + "\n".join(notes) + "\n\n" + body.rstrip() + "\n"
+    """Ad-hoc Claude convert (prefer SoT runtime/claude/agents/)."""
+    lib_dir = Path(__file__).resolve().parent
+    if str(lib_dir) not in sys.path:
+        sys.path.insert(0, str(lib_dir))
+    from generate_claude_agents import render_claude  # noqa: WPS433
+
+    return render_claude(meta, body)
 
 
 def to_codex_toml(meta: dict[str, str], body: str) -> str:

@@ -25,7 +25,7 @@ chmod +x scripts/install-nakamas.sh
 # ./scripts/install-nakamas.sh --symlink   # opcional
 ```
 
-El script instala todos los `.md` de `runtime-agents/` en `~/.cursor/agents/`, `ODA/oda.mdc` en `~/.cursor/rules/oda.mdc`, y `rules/nakamas-graphify.mdc` en `~/.cursor/rules/nakamas-graphify.mdc`.
+El script instala todos los `.md` de `runtime/cursor/agents/` (symlink compat: `runtime-agents/`) en `~/.cursor/agents/`, `ODA/oda.mdc` en `~/.cursor/rules/oda.mdc`, y `rules/nakamas-graphify.mdc` en `~/.cursor/rules/nakamas-graphify.mdc`. Claude Code usa un árbol separado (`runtime/claude/agents/` → `~/.claude/agents/`); ver [`SETUP-MULTI-IA.md`](SETUP-MULTI-IA.md).
 
 **No** crees `~/.cursor/agents/oda.md`. Oda no es subagente.
 
@@ -45,7 +45,7 @@ Code intel (3 capas): ver [`CODE-INTEL.md`](CODE-INTEL.md).
     Si `command: serena` no resuelve PATH en Cursor, usa `which serena` (típ. `~/.local/bin/serena`). No commitear `mcp.json` con secrets.
 
 ```bash
-ls ~/.cursor/agents/*.md | wc -l   # 23+ (flota Nakamas en runtime-agents; puede haber extras locales)
+ls ~/.cursor/agents/*.md | wc -l   # 23+ (flota Nakamas en runtime/cursor/agents; puede haber extras locales)
 rg -n '^model:' ~/.cursor/agents/*.md | sort
 ```
 

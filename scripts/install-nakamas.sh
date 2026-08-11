@@ -9,22 +9,28 @@
 #   ./scripts/install-nakamas.sh --target=antigravity
 #   ./scripts/install-nakamas.sh --target=all
 #   ./scripts/install-nakamas.sh --target=cursor --symlink
+#   ./scripts/install-nakamas.sh --target=claude --regenerate
 #
 # No borra configs no-Nakamas. Solo escribe agentes/rules Nakamas y secciones marcadas.
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-AGENTS_SRC="$REPO_ROOT/runtime-agents"
+CURSOR_AGENTS_SRC="$REPO_ROOT/runtime/cursor/agents"
+CLAUDE_AGENTS_SRC="$REPO_ROOT/runtime/claude/agents"
+# Compat: symlink runtime-agents → runtime/cursor/agents
+AGENTS_SRC="$CURSOR_AGENTS_SRC"
 ODA_MDC="$REPO_ROOT/ODA/oda.mdc"
 ODA_INSTRUCTIONS="$REPO_ROOT/ODA/INSTRUCTIONS.md"
 GRAPHIFY_RULE_SRC="$REPO_ROOT/rules/nakamas-graphify.mdc"
 CRG_RULE_SRC="$REPO_ROOT/rules/nakamas-code-review-graph.mdc"
 SERENA_RULE_SRC="$REPO_ROOT/rules/nakamas-serena.mdc"
 CONVERT="$REPO_ROOT/scripts/lib/convert_agent.py"
+GENERATE_CLAUDE="$REPO_ROOT/scripts/lib/generate_claude_agents.py"
 UPSERT="$REPO_ROOT/scripts/lib/upsert_marked_section.py"
 
 TARGET="cursor"
 MODE="copy"
+REGENERATE=0
 
 usage() {
   sed -n '2,16p' "$0" | sed 's/^# \{0,1\}//'
@@ -35,6 +41,7 @@ for arg in "$@"; do
   case "$arg" in
     -h|--help) usage 0 ;;
     --symlink) MODE="symlink" ;;
+    --regenerate) REGENERATE=1 ;;
     --target=*) TARGET="${arg#--target=}" ;;
     --target)
       echo "ERROR: usa --target=cursor|codex|claude|antigravity|all" >&2
@@ -47,8 +54,8 @@ for arg in "$@"; do
   esac
 done
 
-if [[ ! -d "$AGENTS_SRC" ]]; then
-  echo "ERROR: no existe $AGENTS_SRC" >&2
+if [[ ! -d "$CURSOR_AGENTS_SRC" ]]; then
+  echo "ERROR: no existe $CURSOR_AGENTS_SRC" >&2
   exit 1
 fi
 
@@ -70,9 +77,10 @@ install_file() {
 }
 
 count_agents() {
+  local dir="$1"
   local n=0
   local f
-  for f in "$AGENTS_SRC"/*.md; do
+  for f in "$dir"/*.md; do
     n=$((n + 1))
   done
   echo "$n"
@@ -83,9 +91,9 @@ install_cursor() {
   local CURSOR_RULES="${HOME}/.cursor/rules"
   mkdir -p "$CURSOR_AGENTS" "$CURSOR_RULES"
 
-  echo "==> [cursor] Subagentes → $CURSOR_AGENTS ($MODE)"
+  echo "==> [cursor] Subagentes → $CURSOR_AGENTS ($MODE) desde runtime/cursor/agents"
   local src name
-  for src in "$AGENTS_SRC"/*.md; do
+  for src in "$CURSOR_AGENTS_SRC"/*.md; do
     name="$(basename "$src")"
     install_file "$src" "$CURSOR_AGENTS/$name"
     echo "  $name"
@@ -116,27 +124,64 @@ install_cursor() {
   echo "[cursor] Listo. User Rule Oda → reflejar ODA/INSTRUCTIONS.md (Settings → Rules)."
 }
 
+ensure_claude_sot() {
+  if [[ "$REGENERATE" -eq 1 ]] || [[ ! -d "$CLAUDE_AGENTS_SRC" ]] || [[ -z "$(echo "$CLAUDE_AGENTS_SRC"/*.md)" ]]; then
+    echo "==> [claude] Regenerando SoT runtime/claude/agents/ desde Cursor"
+    python3 "$GENERATE_CLAUDE"
+  else
+    python3 "$GENERATE_CLAUDE" --validate-only
+  fi
+}
+
 install_claude() {
+  ensure_claude_sot
+
   local CLAUDE_AGENTS="${HOME}/.claude/agents"
   local CLAUDE_RULES="${HOME}/.claude/rules"
   local CLAUDE_MD="${HOME}/.claude/CLAUDE.md"
   mkdir -p "$CLAUDE_AGENTS" "$CLAUDE_RULES"
 
-  echo "==> [claude] Subagentes → $CLAUDE_AGENTS"
-  local src name dest
-  for src in "$AGENTS_SRC"/*.md; do
+  echo "==> [claude] Subagentes → $CLAUDE_AGENTS ($MODE) desde runtime/claude/agents (frontmatter nativo)"
+  local src name
+  for src in "$CLAUDE_AGENTS_SRC"/*.md; do
     name="$(basename "$src")"
-    dest="$CLAUDE_AGENTS/$name"
-    python3 "$CONVERT" "$src" --format claude -o "$dest"
+    install_file "$src" "$CLAUDE_AGENTS/$name"
     echo "  $name"
+  done
+
+  # Guardrail: solo flota SoT Claude (no extras locales / Editor Cursor-only)
+  local bad=0
+  for src in "$CLAUDE_AGENTS_SRC"/*.md; do
+    name="$(basename "$src")"
+    if rg -n 'composer-2\.5|cursor-grok' "$CLAUDE_AGENTS/$name" >/dev/null 2>&1; then
+      echo "ERROR: slug Cursor en flota instalada: $name" >&2
+      bad=1
+    fi
+  done
+  if [[ "$bad" -ne 0 ]]; then
+    exit 1
+  fi
+
+  # Limpiar leftovers Editor/Cursor mal copiados (no están en SoT Claude)
+  local orphan
+  for orphan in "$CLAUDE_AGENTS"/*.md; do
+    name="$(basename "$orphan")"
+    if [[ ! -f "$CLAUDE_AGENTS_SRC/$name" ]]; then
+      if rg -q 'composer-2\.5|cursor-grok|^model: composer|^model: cursor-' "$orphan" 2>/dev/null; then
+        echo "==> [claude] Quitando leftover Cursor-only: $name"
+        rm -f "$orphan"
+      fi
+    fi
   done
 
   echo "==> [claude] Rule Oda → $CLAUDE_RULES/oda.md"
   {
     echo "# Oda — runtime raíz Nakamas (Claude Code)"
     echo
-    echo "No eres un subagente. Capitanes/tripulación: \`~/.claude/agents/*.md\` (invoca con Agent/Task por \`name\`)."
-    echo "En Claude, \`Task\`/\`Agent\` sustituye al Task tool de Cursor. No crees \`~/.claude/agents/oda.md\`."
+    echo "No eres un subagente. Capitanes/tripulación: \`~/.claude/agents/*.md\` (invoca con Agent por \`name\`)."
+    echo "En Claude, \`Agent\` sustituye al Task tool de Cursor. No crees \`~/.claude/agents/oda.md\`."
+    echo "Modelos Claude: \`namakas-agents/docs/MODELS-CLAUDE.md\` (opus/sonnet/haiku — no Composer/Grok)."
+    echo "Recomendación chat raíz (equivalente Grok): sesión **Opus** o Sonnet con effort alto."
     echo
     echo "Coexiste con rules legacy (p. ej. \`tripulacion.md\` / brd-*): para Engineering Loop Nakamas, esta rule manda."
     echo
@@ -161,10 +206,12 @@ install_claude() {
   cat > "$tmp" <<'EOF'
 ## Nakamas Agents (Claude)
 
-- Raíz: rule `~/.claude/rules/oda.md` (Oda — no es subagente).
-- Flota: `~/.claude/agents/*.md` (SoT: `namakas-agents/runtime-agents/`).
-- Invocar: Agent/Task con `name` del frontmatter (ej. `trafalgar-d-water-law`, `monkey-d-luffy`, `rob-lucci`).
-- Sync: `./scripts/install-nakamas.sh --target=claude` desde el repo.
+- Raíz: rule `~/.claude/rules/oda.md` (Oda — no es subagente; preferí sesión Opus).
+- Flota: `~/.claude/agents/*.md` (SoT: `namakas-agents/runtime/claude/agents/` — frontmatter nativo).
+- Cursor SoT separado: `namakas-agents/runtime/cursor/agents/`.
+- Invocar: Agent con `name` del frontmatter (ej. `trafalgar-d-water-law`, `monkey-d-luffy`, `rob-lucci`).
+- Modelos: `docs/MODELS-CLAUDE.md` — no `composer-2.5[]` / `cursor-grok-*`.
+- Sync: `./scripts/install-nakamas.sh --target=claude` (opcional `--regenerate`).
 - Docs: `namakas-agents/docs/SETUP-MULTI-IA.md`
 EOF
   python3 "$UPSERT" "$CLAUDE_MD" \
@@ -181,9 +228,9 @@ install_codex() {
   local CODEX_AGENTS_MD="${HOME}/.codex/AGENTS.md"
   mkdir -p "$CODEX_AGENTS"
 
-  echo "==> [codex] Custom agents → $CODEX_AGENTS (*.toml)"
+  echo "==> [codex] Custom agents → $CODEX_AGENTS (*.toml) desde runtime/cursor/agents"
   local src stem dest
-  for src in "$AGENTS_SRC"/*.md; do
+  for src in "$CURSOR_AGENTS_SRC"/*.md; do
     stem="$(basename "$src" .md)"
     dest="$CODEX_AGENTS/${stem}.toml"
     python3 "$CONVERT" "$src" --format codex -o "$dest"
@@ -239,15 +286,14 @@ EOF
 }
 
 install_antigravity() {
-  # Paths reales en esta Mac: ~/.antigravity/.agent/rules + GEMINI.md global
   local AGY_RULES="${HOME}/.antigravity/.agent/rules"
   local AGY_AGENTS="${HOME}/.antigravity/.agent/agents"
   local GEMINI_MD="${HOME}/.gemini/GEMINI.md"
   mkdir -p "$AGY_RULES" "$AGY_AGENTS"
 
-  echo "==> [antigravity] Personas → $AGY_AGENTS"
+  echo "==> [antigravity] Personas → $AGY_AGENTS desde runtime/cursor/agents"
   local src name dest
-  for src in "$AGENTS_SRC"/*.md; do
+  for src in "$CURSOR_AGENTS_SRC"/*.md; do
     name="$(basename "$src")"
     dest="$AGY_AGENTS/$name"
     python3 "$CONVERT" "$src" --format antigravity -o "$dest"
@@ -279,7 +325,6 @@ install_antigravity() {
     fi
   done
 
-  # Índice de flota (siempre útil para el modelo raíz)
   {
     echo "# Nakamas fleet index (Antigravity)"
     echo
@@ -287,7 +332,7 @@ install_antigravity() {
     echo "Raíz: rule \`oda.md\`. Sync: \`./scripts/install-nakamas.sh --target=antigravity\`."
     echo
     echo "## Agentes"
-    for src in "$AGENTS_SRC"/*.md; do
+    for src in "$CURSOR_AGENTS_SRC"/*.md; do
       echo "- \`$(basename "$src" .md)\`"
     done
   } > "$AGY_RULES/nakamas-fleet.md"
@@ -317,12 +362,14 @@ EOF
 }
 
 print_footer() {
-  local n
-  n="$(count_agents)"
+  local nc ncl
+  nc="$(count_agents "$CURSOR_AGENTS_SRC")"
+  ncl="$(count_agents "$CLAUDE_AGENTS_SRC")"
   echo
-  echo "Flota SoT: $n agentes en runtime-agents/ (no incluye Editor Cursor-only: buggy/alvida/…)."
-  echo "Detalle multi-IA: docs/SETUP-MULTI-IA.md"
-  echo "Cursor-only: docs/SETUP-OTRA-MAC.md | Modelos: docs/MODELS.md"
+  echo "SoT Cursor: $nc agentes en runtime/cursor/agents/ (symlink: runtime-agents/)."
+  echo "SoT Claude: $ncl agentes en runtime/claude/agents/ (frontmatter nativo)."
+  echo "Detalle multi-IA: docs/SETUP-MULTI-IA.md | Modelos Claude: docs/MODELS-CLAUDE.md"
+  echo "Cursor-only: docs/SETUP-OTRA-MAC.md | Modelos Cursor: docs/MODELS.md"
 }
 
 case "$TARGET" in

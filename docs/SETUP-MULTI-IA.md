@@ -4,11 +4,13 @@ SoT versionada: este repo (`namakas-agents`). Runtime Cursor ya documentado en [
 
 ## Principio
 
-- **Una flota:** solo los `.md` de `runtime-agents/` (hoy 23). No se inventan agentes.
+- **Una flota, dos (o más) árboles instalables:**
+  - Cursor: `runtime/cursor/agents/` (symlink compat: `runtime-agents/`)
+  - Claude: `runtime/claude/agents/` (frontmatter nativo Claude Code)
 - **Oda no es subagente** en ninguna plataforma.
-- **Formato nativo** por herramienta (no copia ciega del frontmatter Cursor).
+- **Formato nativo** por herramienta (no copia ciega del frontmatter Cursor → Claude).
 - **No se borran** configs ajenas (rules legacy, AGENTS.md previos, etc.).
-- Modelos Cursor (`composer-2.5[]`, `cursor-grok-4.5-high`) **solo aplican en Cursor**. En el resto: `inherit` / sesión + hints. SoT política: [`MODELS.md`](MODELS.md).
+- Modelos Cursor (`composer-2.5[]`, `cursor-grok-4.5-high`) **solo** en árbol Cursor. Claude: [`MODELS-CLAUDE.md`](MODELS-CLAUDE.md).
 
 ## Installer
 
@@ -18,9 +20,15 @@ chmod +x scripts/install-nakamas.sh
 ./scripts/install-nakamas.sh --target=all
 # o uno: --target=cursor|codex|claude|antigravity
 # Cursor opcional: --symlink
+# Claude: regenerar SoT desde Cursor antes de copiar:
+./scripts/install-nakamas.sh --target=claude --regenerate
 ```
 
-Helpers: `scripts/lib/convert_agent.py`, `scripts/lib/upsert_marked_section.py`.
+Helpers:
+
+- `scripts/lib/generate_claude_agents.py` — Cursor SoT → Claude SoT (validación incluida)
+- `scripts/lib/convert_agent.py` — Codex / Antigravity / rules (no es el camino preferido Claude)
+- `scripts/lib/upsert_marked_section.py`
 
 Re-sync tras `git pull`: mismo comando.
 
@@ -30,7 +38,7 @@ Re-sync tras `git pull`: mismo comando.
 
 | Artefacto | Path |
 |-----------|------|
-| Subagentes | `~/.cursor/agents/*.md` |
+| Subagentes | `~/.cursor/agents/*.md` ← `runtime/cursor/agents/` |
 | Oda rule | `~/.cursor/rules/oda.mdc` |
 | Graphify / CRG / Serena | `~/.cursor/rules/nakamas-*.mdc` |
 | User Rule Oda | Settings → Rules ← `ODA/INSTRUCTIONS.md` |
@@ -39,7 +47,7 @@ Invocación: Task tool / Custom Agents por `name`.
 
 Detalle: [`SETUP-OTRA-MAC.md`](SETUP-OTRA-MAC.md).
 
-**Nota:** en `~/.cursor/agents/` pueden existir extras locales (Editor: buggy, alvida, …) fuera de `runtime-agents/`. El installer **no** los toca ni los propaga a otras IAs.
+**Nota:** en `~/.cursor/agents/` pueden existir extras locales (Editor: buggy, alvida, …) fuera de `runtime/cursor/agents/`. El installer **no** los toca ni los propaga a otras IAs.
 
 ---
 
@@ -47,7 +55,7 @@ Detalle: [`SETUP-OTRA-MAC.md`](SETUP-OTRA-MAC.md).
 
 | Artefacto | Path |
 |-----------|------|
-| Custom agents | `~/.codex/agents/<name>.toml` |
+| Custom agents | `~/.codex/agents/<name>.toml` ← convertidos desde `runtime/cursor/agents/` |
 | Oda + code-intel (markdown) | `~/.codex/nakamas-rules/*.md` |
 | Instrucciones raíz (sección marcada) | `~/.codex/AGENTS.md` → bloques `<!-- NAKAMAS:BEGIN/END -->` |
 
@@ -65,12 +73,9 @@ Cursor YAML frontmatter → TOML Codex:
 
 Custom / sub-agents Codex por el campo `name` del TOML (misma cadena Oda → capitán → tripulación). Ver [Codex subagents](https://developers.openai.com/codex/subagents).
 
-Si la UI no lista un agent: comprobar que el TOML parsea (`name`, `description`, `developer_instructions` obligatorios).
-
 ### Limitaciones
 
 - No hay equivalencia 1:1 de Task `model:` Cursor.
-- Skills preload / tools allowlist de Claude no aplican; el migrador oficial Claude→Codex documenta diferencias en `~/.codex/skills/migrate-to-codex/references/differences.md`.
 - El installer **no** sobrescribe MCP, hooks ni el resto de `AGENTS.md`.
 
 ---
@@ -79,28 +84,40 @@ Si la UI no lista un agent: comprobar que el TOML parsea (`name`, `description`,
 
 | Artefacto | Path |
 |-----------|------|
-| Subagentes | `~/.claude/agents/*.md` |
-| Oda | `~/.claude/rules/oda.md` |
+| Subagentes | `~/.claude/agents/*.md` ← **copia** de `runtime/claude/agents/` |
+| Oda | `~/.claude/rules/oda.md` (no `agents/oda.md`) |
 | Graphify / CRG / Serena | `~/.claude/rules/nakamas-*.md` |
 | Puntero en user CLAUDE.md | sección `<!-- NAKAMAS:BEGIN/END -->` |
 
-### Formato
+### Formato (oficial)
 
-- Frontmatter Claude: `name`, `description`, `model: inherit`
-- Cuerpo = persona + nota de runtime
-- Se eliminan campos solo-Cursor (`is_background`, slugs `composer-*` / `cursor-*`)
+Markdown + YAML frontmatter — [Create custom subagents](https://code.claude.com/docs/en/sub-agents):
+
+**Required:** `name`, `description`  
+**Optional:** `tools`, `disallowedTools`, `model` (`sonnet`\|`opus`\|`haiku`\|`fable`\|full ID\|`inherit`), `permissionMode`, `maxTurns`, `skills`, `mcpServers`, `hooks`, `memory`, `background`, `effort`, `isolation`, `color`, `initialPrompt`  
+**Body** = system prompt
+
+- Capitanes decisión (Law, Edison, Lucci): `model: opus` + `effort: high`
+- Especialistas: `model: sonnet`
+- Capitanes: `tools: Agent(<tripulación>), Read, Grep, …`
+- Verifiers read-heavy: sin `Edit`/`Write` (Chopper sí puede editar)
+- **Prohibido:** `composer-2.5[]`, `cursor-grok-*` en árbol Claude
+
+Regenerar SoT Claude desde Cursor:
+
+```bash
+python3 scripts/lib/generate_claude_agents.py
+python3 scripts/lib/generate_claude_agents.py --validate-only
+```
 
 ### Cómo invocar
 
-Agent / Task subagents con el `name` del frontmatter (ej. `trafalgar-d-water-law`). Docs: [Claude Code subagents](https://code.claude.com/docs/en/subagents).
-
-Ver flota: `/agents` o listar `~/.claude/agents/`.
+`Agent` con el `name` del frontmatter (ej. `trafalgar-d-water-law`). Ver flota: listar `~/.claude/agents/` o reiniciar Claude Code tras el primer create del directorio.
 
 ### Limitaciones
 
 - Coexiste con rules legacy (`tripulacion.md` / brd-*). Para **Engineering Loop Nakamas**, manda `oda.md`.
-- Sin Grok/Composer: el modelo es el de la sesión Claude (`inherit`).
-- Experimental Agent Teams (`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS`) es ortogonal; no sustituye la flota Nakamas.
+- Chat raíz Oda: preferí sesión **Opus** (equivalente Grok). Ver [`MODELS-CLAUDE.md`](MODELS-CLAUDE.md).
 
 ---
 
@@ -111,38 +128,31 @@ Paths reales en esta Mac:
 | Artefacto | Path |
 |-----------|------|
 | Rules (Oda, fleet, code-intel) | `~/.antigravity/.agent/rules/` |
-| Personas (no registry nativo) | `~/.antigravity/.agent/agents/*.md` |
+| Personas (no registry nativo) | `~/.antigravity/.agent/agents/*.md` ← convertidos desde Cursor |
 | Puntero global | `~/.gemini/GEMINI.md` → `<!-- NAKAMAS:BEGIN/END -->` |
-
-App: `Antigravity.app` / `Antigravity IDE.app`. Datos: `~/Library/Application Support/Antigravity*`, CLI/state bajo `~/.gemini/antigravity*`.
 
 ### Cómo invocar (equivalente)
 
-Antigravity **no** tiene custom agent types Nakamas como Cursor. Equivalente nativo:
-
 1. Rule `oda.md` = agente raíz.
 2. Leer `~/.antigravity/.agent/agents/<name>.md`.
-3. Despachar con `invoke_subagent` tipos built-in (`self` / `research`) **incluyendo** el prompt de persona, o adoptar el rol en nivel 0–2.
-
-Referencia tools: skill `using-superpowers` → `references/antigravity-tools.md`.
+3. Despachar con `invoke_subagent` tipos built-in (`self` / `research`) **incluyendo** el prompt de persona.
 
 ### Limitaciones
 
-- Sin spawn por `name` tipado (no hay `trafalgar-d-water-law` como TypeName).
-- Graphify/Serena/CRG dependen de MCP/CLI disponibles en esa sesión.
+- Sin spawn por `name` tipado Nakamas.
 - No se modifican extensions ni `mcp_config.json` existentes.
 
 ---
 
 ## MCP compartidos (multi-IA)
 
-**Meta Developer Tools** — endpoint `https://mcp.facebook.com/devtools` (doc: [Meta DevTools MCP](https://developers.facebook.com/documentation/mcp/devtools-mcp)). OAuth **por cliente** (Cursor / Codex / Claude no comparten sesión).
+**Meta Developer Tools** — endpoint `https://mcp.facebook.com/devtools` (doc: [Meta DevTools MCP](https://developers.facebook.com/documentation/mcp/devtools-mcp)). OAuth **por cliente**.
 
-| Cliente | Config | Snippet |
-|---------|--------|---------|
-| Cursor | `~/.cursor/mcp.json` | `"Meta Developer Tools": { "url": "https://mcp.facebook.com/devtools", "type": "http" }` |
-| Codex | `~/.codex/config.toml` | `[mcp_servers.meta_developer_tools]` + `url = "https://mcp.facebook.com/devtools"` — o `codex mcp add meta_developer_tools --url https://mcp.facebook.com/devtools` → `codex mcp login meta_developer_tools` |
-| Claude Code | `~/.claude.json` → `mcpServers` | `claude mcp add --transport http --scope user meta-developer-tools https://mcp.facebook.com/devtools` → `claude mcp login meta-developer-tools` (o `/mcp` en la TUI) |
+| Cliente | Config |
+|---------|--------|
+| Cursor | `~/.cursor/mcp.json` |
+| Codex | `~/.codex/config.toml` / `codex mcp add …` |
+| Claude Code | `claude mcp add --transport http --scope user meta-developer-tools https://mcp.facebook.com/devtools` |
 
 El installer Nakamas **no** sobrescribe estos MCP.
 
@@ -152,11 +162,11 @@ El installer Nakamas **no** sobrescribe estos MCP.
 
 - [ ] `./scripts/install-nakamas.sh --target=all`
 - [ ] Cursor: User Rule Oda + chat Grok High
-- [ ] Codex: `ls ~/.codex/agents/*.toml | wc -l` ≈ 23; bloque NAKAMAS en `AGENTS.md`
-- [ ] Claude: `ls ~/.claude/agents/*.md | wc -l` ≈ 23; `~/.claude/rules/oda.md`
+- [ ] Codex: `ls ~/.codex/agents/*.toml \| wc -l` ≈ 23
+- [ ] Claude: `ls ~/.claude/agents/*.md \| wc -l` ≈ 23; `rg 'composer-2.5\|cursor-grok' ~/.claude/agents` → vacío
+- [ ] Claude: `head ~/.claude/agents/trafalgar-d-water-law.md` → `model: opus` / `effort: high`
 - [ ] Antigravity: `~/.antigravity/.agent/agents/` + `rules/oda.md`
-- [ ] Meta DevTools MCP: Cursor + Codex + Claude (`claude mcp login meta-developer-tools` si Needs authentication)
-- [ ] Prueba mínima: pedir a Oda un Task/Agent a Law con una pregunta trivial de routing
+- [ ] Prueba mínima: pedir a Oda un Agent a Law
 
 ## Re-sync
 
@@ -164,4 +174,6 @@ El installer Nakamas **no** sobrescribe estos MCP.
 cd /Users/randydominguez/Developer/namakas-agents
 git pull origin main
 ./scripts/install-nakamas.sh --target=all
+# Solo Claude tras cambios de prompt Cursor:
+./scripts/install-nakamas.sh --target=claude --regenerate
 ```

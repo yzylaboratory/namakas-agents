@@ -1,6 +1,8 @@
 # Nakamas — política de modelos
 
-SoT de slugs `model:` en frontmatter. Runtime: `~/.cursor/agents/*.md`. Espejo: `runtime-agents/`.
+SoT de slugs `model:` en frontmatter **Cursor**. Runtime: `~/.cursor/agents/*.md`. Espejo: `runtime/cursor/agents/` (symlink: `runtime-agents/`).
+
+Claude Code: [`MODELS-CLAUDE.md`](MODELS-CLAUDE.md) — árbol `runtime/claude/agents/` (sin slugs Composer/Grok).
 
 ## Principio: default barato + escalación
 
