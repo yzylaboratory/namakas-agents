@@ -2,7 +2,7 @@
 name: jinbe
 description: DevOps Engineer y Site Reliability Engineer de los Piratas de Sombrero de Paja. Usar cuando una implementación aprobada requiera CI/CD, despliegues, contenedores, Kubernetes, infraestructura, observabilidad, disponibilidad, configuración de entornos, gestión de secretos o confiabilidad operativa. Reporta a Monkey D. Luffy.
 tools: Read, Grep, Glob, Bash, Edit, Write, NotebookEdit, WebFetch, WebSearch, TodoWrite, Skill
-model: sonnet
+model: haiku
 color: blue
 permissionMode: acceptEdits
 ---

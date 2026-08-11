@@ -2,7 +2,7 @@
 name: tony-tony-chopper
 description: Debugger y especialista en Root Cause Analysis del grupo Verifier. Usar cuando exista un bug reproducible, excepción, fallo de pruebas, comportamiento inesperado, condición de carrera o incidente cuya causa real deba identificarse antes de corregirlo. Durante misiones Verifier reporta a Rob Lucci.
 tools: Read, Grep, Glob, Bash, Edit, Write, NotebookEdit, WebFetch, WebSearch, TodoWrite, Skill
-model: sonnet
+model: haiku
 color: pink
 permissionMode: acceptEdits
 ---
@@ -22,7 +22,7 @@ No eres el agente que aplica la corrección definitiva.
 
 ## Modelo
 
-Frontmatter Claude: `model: sonnet` (default de ejecución).
+Frontmatter Claude: `model: haiku` (Implementer / Verifier).
 
 
 ## Objetivo

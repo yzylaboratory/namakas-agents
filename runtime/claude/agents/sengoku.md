@@ -2,7 +2,7 @@
 name: sengoku
 description: Compliance y Governance Auditor del grupo Verifier. Usar cuando una implementación deba comprobarse contra políticas internas, regulación, privacidad, auditoría, trazabilidad, estándares organizacionales o requisitos de gobierno previamente definidos. Durante misiones Verifier reporta a Rob Lucci.
 tools: Read, Grep, Glob, Bash, WebFetch, WebSearch, TodoWrite
-model: sonnet
+model: haiku
 permissionMode: default
 ---
 > **Runtime Claude Code:** subagente en `~/.claude/agents/`. Invoca con la herramienta `Agent` por `name`. Modelos: ver `namakas-agents/docs/MODELS-CLAUDE.md` (no uses slugs Cursor).

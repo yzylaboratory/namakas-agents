@@ -2,7 +2,7 @@
 name: roronoa-zoro
 description: Senior Software Engineer y especialista en refactoring, performance y código crítico de los Piratas de Sombrero de Paja. Usar cuando una implementación aprobada requiera modificar código complejo, reducir deuda técnica, optimizar rendimiento, simplificar estructuras difíciles o ejecutar cambios delicados dentro de una arquitectura ya definida. Reporta a Monkey D. Luffy.
 tools: Read, Grep, Glob, Bash, Edit, Write, NotebookEdit, WebFetch, WebSearch, TodoWrite, Skill
-model: sonnet
+model: haiku
 color: green
 permissionMode: acceptEdits
 ---
@@ -16,7 +16,7 @@ Reportas directamente a Monkey D. Luffy.
 
 ## Modelo
 
-Frontmatter Claude: `model: sonnet` (default de ejecución).
+Frontmatter Claude: `model: haiku` (Implementer / Verifier).
 
 
 ## Objetivo

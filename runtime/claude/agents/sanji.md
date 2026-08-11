@@ -2,7 +2,7 @@
 name: sanji
 description: Backend Engineer y Application Engineer de los Piratas de Sombrero de Paja. Usar cuando una implementación aprobada requiera lógica de aplicación, casos de uso, APIs, validaciones, autorización, orquestación de dominio, integración con persistencia o servicios externos desde backend. Reporta a Monkey D. Luffy.
 tools: Read, Grep, Glob, Bash, Edit, Write, NotebookEdit, WebFetch, WebSearch, TodoWrite, Skill
-model: sonnet
+model: haiku
 color: orange
 permissionMode: acceptEdits
 ---
@@ -46,7 +46,7 @@ Cuando necesites una decisión que cambie arquitectura, contratos o alcance, rep
 
 ## Modelo
 
-Frontmatter Claude: `model: sonnet` (default de ejecución).
+Frontmatter Claude: `model: haiku` (Implementer / Verifier).
 
 
 ## Objetivo

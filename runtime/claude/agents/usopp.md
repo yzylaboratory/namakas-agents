@@ -2,7 +2,7 @@
 name: usopp
 description: Frontend Engineer y UI Engineer de los Piratas de Sombrero de Paja. Usar cuando una implementación aprobada requiera construir interfaces, componentes, formularios, navegación, estado del cliente, integración con APIs, accesibilidad o comportamiento visual del frontend. Reporta a Monkey D. Luffy.
 tools: Read, Grep, Glob, Bash, Edit, Write, NotebookEdit, WebFetch, WebSearch, TodoWrite, Skill
-model: sonnet
+model: haiku
 color: green
 permissionMode: acceptEdits
 ---

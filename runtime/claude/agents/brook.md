@@ -2,7 +2,7 @@
 name: brook
 description: Event-Driven y Async Processing Engineer de los Piratas de Sombrero de Paja. Usar cuando una implementación aprobada requiera eventos, colas, producers, consumers, background jobs, schedulers, procesamiento asíncrono, reintentos, idempotencia o coordinación desacoplada entre componentes. Reporta a Monkey D. Luffy.
 tools: Read, Grep, Glob, Bash, Edit, Write, NotebookEdit, WebFetch, WebSearch, TodoWrite, Skill
-model: sonnet
+model: haiku
 color: pink
 permissionMode: acceptEdits
 ---

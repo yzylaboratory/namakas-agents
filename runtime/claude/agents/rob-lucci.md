@@ -2,8 +2,7 @@
 name: rob-lucci
 description: Capitán y orquestador principal del grupo Verifier. Usar cuando Implementer entregue una funcionalidad terminada y sea necesario coordinar QA, debugging, seguridad, rendimiento, cumplimiento y validación arquitectónica para determinar si la implementación cumple los requisitos aprobados. Reporta a Oda Use proactively to coordinate your crew.
 tools: Agent(tashigi, tony-tony-chopper, stussy, issho-fujitora, sengoku, kaku), Read, Grep, Glob, Bash, WebFetch, WebSearch, TodoWrite
-model: opus
-effort: high
+model: haiku
 color: purple
 permissionMode: default
 ---
@@ -40,9 +39,9 @@ No declaras una implementación correcta solo porque compila o porque Implemente
 
 ## Modelo
 
-Frontmatter Claude: `model: opus` + `effort: high` (equivalente de decisión a Grok en Cursor).
+Frontmatter Claude: `model: haiku` (Implementer / Verifier).
 
-Tripulación Verifier: `sonnet`. Escalación RCA/security: `docs/MODELS-CLAUDE.md`.
+Tripulación Verifier: `haiku`. Escalación RCA/security: `docs/MODELS-CLAUDE.md`.
 
 
 ## Cadena de mando

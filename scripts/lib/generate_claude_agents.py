@@ -15,12 +15,32 @@ from pathlib import Path
 
 FRONTMATTER_RE = re.compile(r"\A---\n(.*?)\n---\n(.*)\Z", re.DOTALL)
 
-# Capitanes / Grok-equivalent → opus + high effort
+# Planner decision / Grok-equivalent → opus + high effort
+# Imp/Ver captains+crew → haiku (docs/MODELS-CLAUDE.md)
 OPUS_HIGH = frozenset(
     {
         "trafalgar-d-water-law",
         "vegapunk-edison",
+    }
+)
+
+HAIKU_CREW = frozenset(
+    {
+        "monkey-d-luffy",
+        "franky",
+        "usopp",
+        "sanji",
+        "nami",
+        "jinbe",
+        "roronoa-zoro",
+        "brook",
         "rob-lucci",
+        "tashigi",
+        "tony-tony-chopper",
+        "stussy",
+        "issho-fujitora",
+        "sengoku",
+        "kaku",
     }
 )
 
@@ -151,6 +171,8 @@ def tools_for(name: str, readonly: bool) -> str:
 def model_fields(name: str) -> list[str]:
     if name in OPUS_HIGH:
         return ["model: opus", "effort: high"]
+    if name in HAIKU_CREW:
+        return ["model: haiku"]
     return ["model: sonnet"]
 
 
@@ -173,6 +195,8 @@ def clean_body(body: str, name: str) -> str:
     # Inline slug replacements remaining in body
     def _slug_sub(m: re.Match[str]) -> str:
         raw = m.group(0).strip("`")
+        if name in HAIKU_CREW:
+            return "`haiku`"
         if "grok" in raw.lower() or "opus-5" in raw.lower():
             return "`opus` + `effort: high`"
         if "sonnet-5" in raw.lower():
@@ -203,6 +227,8 @@ def _modelo_section(name: str) -> str:
             "Frontmatter Claude: `model: opus` + `effort: high` "
             "(equivalente de decisión a Grok en Cursor).\n\n"
         )
+    elif name in HAIKU_CREW:
+        detail = "Frontmatter Claude: `model: haiku` (Implementer / Verifier).\n\n"
     else:
         detail = "Frontmatter Claude: `model: sonnet` (default de ejecución).\n\n"
 
@@ -213,9 +239,9 @@ def _modelo_section(name: str) -> str:
             "No uses modelos caros en L0–L2 ni “por si acaso”.\n\n"
         )
     elif name == "monkey-d-luffy":
-        detail += "Tripulación Implementer: `sonnet`. Escalación puntual: `docs/MODELS-CLAUDE.md`.\n\n"
+        detail += "Tripulación Implementer: `haiku`. Escalación puntual: `docs/MODELS-CLAUDE.md`.\n\n"
     elif name == "rob-lucci":
-        detail += "Tripulación Verifier: `sonnet`. Escalación RCA/security: `docs/MODELS-CLAUDE.md`.\n\n"
+        detail += "Tripulación Verifier: `haiku`. Escalación RCA/security: `docs/MODELS-CLAUDE.md`.\n\n"
 
     return "## Modelo\n\n" + detail
 

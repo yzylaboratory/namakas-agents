@@ -6,18 +6,21 @@ Cursor (Composer / Grok): ver [`MODELS.md`](MODELS.md). **No mezclar** slugs ent
 
 ## Principio: default barato + escalación
 
-1. **Sonnet** es el default de ejecución (equivalente Composer en Cursor).
-2. **Opus + `effort: high`** solo en puntos de decisión / arbitraje (Oda, capitanes Law/Lucci, arquitecto Edison).
-3. **Haiku** solo para exploración barata si se define un agente explore-only (no es el default de la flota Engineering).
-4. **`inherit`** está permitido cuando el agente deba seguir el modelo de la sesión; la flota Nakamas fija `opus`/`sonnet` explícitos.
+1. **Haiku** es el default de **Implementer** y **Verifier** (capitanes + tripulación).
+2. **Sonnet** es el default de ejecución en **Planner** (especialistas).
+3. **Opus + `effort: high`** solo en puntos de decisión / arbitraje Planner y raíz (Oda, Law, Edison). Lucci / Imp/Ver **no** usan opus por defecto.
+4. **`inherit`** está permitido cuando el agente deba seguir el modelo de la sesión; la flota Nakamas fija `opus`/`sonnet`/`haiku` explícitos.
+5. **`effort: high`** solo junto a `opus` (no aplica a haiku/sonnet en Imp/Ver).
 
 ## Mapeo Cursor → Claude
 
 | Rol Cursor | Slug Cursor | Claude `model` / `effort` |
 |------------|-------------|---------------------------|
 | Oda (raíz) | `cursor-grok-4.5-high` (chat / User Rule) | Agent `oda`: `opus` + `effort: high`. SoT: `~/.claude/agents/oda.md`. Rule refuerzo: `~/.claude/rules/oda.md`. Invocar: `claude --agent oda` / @oda |
-| Law, Edison, Lucci | `cursor-grok-4.5-high` | `opus` + `effort: high` |
-| Resto de la flota | `composer-2.5[]` | `sonnet` |
+| Law, Edison | `cursor-grok-4.5-high` | `opus` + `effort: high` |
+| Lucci + Verifier crew | `cursor-grok-4.5-high` (Lucci) / `composer-2.5[]` | `haiku` |
+| Implementer (Luffy + crew) | `composer-2.5[]` | `haiku` |
+| Resto Planner | `composer-2.5[]` | `sonnet` |
 | Explore-only (si aplica) | — | `haiku` |
 | Premiums Planner (escalación) | Sonnet/Sol/Codex/Opus Cursor | Ver tabla de escalación abajo |
 
@@ -50,15 +53,15 @@ Cursor (Composer / Grok): ver [`MODELS.md`](MODELS.md). **No mezclar** slugs ent
 
 | Agente | model | Razón |
 |--------|-------|-------|
-| Luffy | `sonnet` | Capitán ejecución |
-| Franky, Usopp, Sanji, Nami, Jinbe, Zoro, Brook | `sonnet` | Especialistas |
+| Luffy | `haiku` | Capitán ejecución |
+| Franky, Usopp, Sanji, Nami, Jinbe, Zoro, Brook | `haiku` | Especialistas |
 
 ### Verifier
 
-| Agente | model | effort | Razón |
-|--------|-------|--------|-------|
-| Lucci | `opus` | `high` | Capitán arbitra |
-| Tashigi, Chopper, Stussy, Fujitora, Sengoku, Kaku | `sonnet` | — | Especialistas |
+| Agente | model | Razón |
+|--------|-------|-------|
+| Lucci | `haiku` | Capitán verificación |
+| Tashigi, Chopper, Stussy, Fujitora, Sengoku, Kaku | `haiku` | Especialistas |
 
 ## Escalación (cuándo subir)
 
@@ -67,8 +70,8 @@ Cursor (Composer / Grok): ver [`MODELS.md`](MODELS.md). **No mezclar** slugs ent
 | Law | Robin | `opus` o `sonnet` + `effort: high` | Análisis L3+/L4 |
 | Law | Doflamingo / Beckman | `opus` | Integraciones / plan L3+/L4 de alto riesgo |
 | Law | (cualquier Planner) | `opus` + `effort: high` | Override excepcional L4 |
-| Luffy | Franky / Zoro | `opus` | Hard path / TL transversal |
-| Lucci | Chopper / Stussy | `opus` + `effort: high` | RCA profunda o threat model L3+ |
+| Luffy | Franky / Zoro | `sonnet` o `opus` | Hard path / TL transversal |
+| Lucci | Chopper / Stussy | `sonnet` o `opus` + `effort: high` | RCA profunda o threat model L3+ |
 
 Reglas:
 

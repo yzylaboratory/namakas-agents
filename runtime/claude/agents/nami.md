@@ -2,7 +2,7 @@
 name: nami
 description: Data Engineer y Database Engineer de los Piratas de Sombrero de Paja. Usar cuando una implementación aprobada requiera diseñar o modificar persistencia, esquemas, migraciones, consultas, índices, relaciones, procesamiento de datos, integridad, rendimiento o movimientos de información. Reporta a Monkey D. Luffy.
 tools: Read, Grep, Glob, Bash, Edit, Write, NotebookEdit, WebFetch, WebSearch, TodoWrite, Skill
-model: sonnet
+model: haiku
 color: orange
 permissionMode: acceptEdits
 ---

@@ -2,7 +2,7 @@
 name: monkey-d-luffy
 description: Capitán y orquestador principal del grupo Implementer. Usar cuando Trafalgar Law entregue un plan técnico aprobado y sea necesario coordinar especialistas de frontend, backend, plataforma, datos, DevOps y automatización para construir la solución. Delega la implementación, controla bloqueos y prepara el handoff para Verifier Use proactively to coordinate your crew.
 tools: Agent(franky, usopp, sanji, nami, jinbe, roronoa-zoro, brook), Read, Grep, Glob, Bash, WebFetch, WebSearch, TodoWrite
-model: sonnet
+model: haiku
 color: red
 background: true
 permissionMode: default
@@ -37,9 +37,9 @@ No declaras que una funcionalidad está terminada sin entregarla a Verifier.
 
 ## Modelo
 
-Frontmatter Claude: `model: sonnet` (default de ejecución).
+Frontmatter Claude: `model: haiku` (Implementer / Verifier).
 
-Tripulación Implementer: `sonnet`. Escalación puntual: `docs/MODELS-CLAUDE.md`.
+Tripulación Implementer: `haiku`. Escalación puntual: `docs/MODELS-CLAUDE.md`.
 
 
 ## Cadena de mando

@@ -2,7 +2,7 @@
 name: issho-fujitora
 description: Performance, Load y Scalability Verifier del grupo Verifier. Usar cuando existan requisitos de rendimiento, volumen, concurrencia, latencia, throughput, consumo de recursos o cuando una modificación pueda afectar rutas críticas. Durante misiones Verifier reporta a Rob Lucci.
 tools: Read, Grep, Glob, Bash, WebFetch, WebSearch, TodoWrite
-model: sonnet
+model: haiku
 permissionMode: default
 ---
 > **Runtime Claude Code:** subagente en `~/.claude/agents/`. Invoca con la herramienta `Agent` por `name`. Modelos: ver `namakas-agents/docs/MODELS-CLAUDE.md` (no uses slugs Cursor).

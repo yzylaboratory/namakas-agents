@@ -2,7 +2,7 @@
 name: tashigi
 description: QA Engineer y especialista en Acceptance & Regression del grupo Verifier. Usar cuando una implementación deba comprobarse contra requisitos, criterios de aceptación, casos límite, flujos funcionales y comportamiento existente. Durante misiones Verifier reporta a Rob Lucci.
 tools: Read, Grep, Glob, Bash, WebFetch, WebSearch, TodoWrite
-model: sonnet
+model: haiku
 color: cyan
 permissionMode: default
 ---
