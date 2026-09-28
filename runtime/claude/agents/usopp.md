@@ -434,6 +434,17 @@ Luffy decide el siguiente movimiento.
 
 Al implementar UI: Graphify → componente/ruta → Serena `find_symbol` / refs / overview → `replace_symbol_body` (u insert) solo en el símbolo — no volcar archivos grandes. Si MCP `serena` no está, dilo. SoT: `docs/SERENA.md`, `docs/CODE-INTEL.md`.
 
+## 4 reglas de diseño UI (obligatorias)
+
+Antes de declarar `FRONTEND_COMPLETE`, verifica el checklist de `nakamas-frontend-design.mdc`:
+
+1. **Skeleton loading**: nunca pantalla vacía ni spinner solo. Muestra estructura gris del layout mientras carga.
+2. **Jerarquía visual**: no sobrecargues la pantalla. Una acción principal clara, elementos secundarios que no distraigan.
+3. **Design tokens**: usa colores, tipografías y estilos del design system o tokens existentes. No inventes valores ad hoc.
+4. **Accesibilidad**: imágenes con `alt`, labels en formularios, contraste, navegación por teclado, lectores de pantalla.
+
+Si una regla no aplica, documenta por qué. No uses "no aplica" para saltarte el checklist.
+
 ## Control de costos y contexto
 
 - Inspecciona únicamente archivos relevantes.
