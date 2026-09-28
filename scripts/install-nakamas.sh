@@ -24,6 +24,7 @@ ODA_INSTRUCTIONS="$REPO_ROOT/ODA/INSTRUCTIONS.md"
 GRAPHIFY_RULE_SRC="$REPO_ROOT/rules/nakamas-graphify.mdc"
 CRG_RULE_SRC="$REPO_ROOT/rules/nakamas-code-review-graph.mdc"
 SERENA_RULE_SRC="$REPO_ROOT/rules/nakamas-serena.mdc"
+FRONTEND_DESIGN_RULE_SRC="$REPO_ROOT/rules/nakamas-frontend-design.mdc"
 CONVERT="$REPO_ROOT/scripts/lib/convert_agent.py"
 GENERATE_CLAUDE="$REPO_ROOT/scripts/lib/generate_claude_agents.py"
 UPSERT="$REPO_ROOT/scripts/lib/upsert_marked_section.py"
@@ -109,7 +110,8 @@ install_cursor() {
   for pair in \
     "$GRAPHIFY_RULE_SRC|$CURSOR_RULES/nakamas-graphify.mdc" \
     "$CRG_RULE_SRC|$CURSOR_RULES/nakamas-code-review-graph.mdc" \
-    "$SERENA_RULE_SRC|$CURSOR_RULES/nakamas-serena.mdc"
+    "$SERENA_RULE_SRC|$CURSOR_RULES/nakamas-serena.mdc" \
+    "$FRONTEND_DESIGN_RULE_SRC|$CURSOR_RULES/nakamas-frontend-design.mdc"
   do
     local s="${pair%%|*}"
     local d="${pair##*|}"
@@ -193,7 +195,8 @@ install_claude() {
   for pair in \
     "$GRAPHIFY_RULE_SRC|$CLAUDE_RULES/nakamas-graphify.md" \
     "$CRG_RULE_SRC|$CLAUDE_RULES/nakamas-code-review-graph.md" \
-    "$SERENA_RULE_SRC|$CLAUDE_RULES/nakamas-serena.md"
+    "$SERENA_RULE_SRC|$CLAUDE_RULES/nakamas-serena.md" \
+    "$FRONTEND_DESIGN_RULE_SRC|$CLAUDE_RULES/nakamas-frontend-design.md"
   do
     local s="${pair%%|*}"
     local d="${pair##*|}"
@@ -253,7 +256,8 @@ install_codex() {
   for pair in \
     "$GRAPHIFY_RULE_SRC|$rules_dir/nakamas-graphify.md" \
     "$CRG_RULE_SRC|$rules_dir/nakamas-code-review-graph.md" \
-    "$SERENA_RULE_SRC|$rules_dir/nakamas-serena.md"
+    "$SERENA_RULE_SRC|$rules_dir/nakamas-serena.md" \
+    "$FRONTEND_DESIGN_RULE_SRC|$rules_dir/nakamas-frontend-design.md"
   do
     local s="${pair%%|*}"
     local d="${pair##*|}"
@@ -317,7 +321,8 @@ install_antigravity() {
   for pair in \
     "$GRAPHIFY_RULE_SRC|$AGY_RULES/nakamas-graphify.md" \
     "$CRG_RULE_SRC|$AGY_RULES/nakamas-code-review-graph.md" \
-    "$SERENA_RULE_SRC|$AGY_RULES/nakamas-serena.md"
+    "$SERENA_RULE_SRC|$AGY_RULES/nakamas-serena.md" \
+    "$FRONTEND_DESIGN_RULE_SRC|$AGY_RULES/nakamas-frontend-design.md"
   do
     local s="${pair%%|*}"
     local d="${pair##*|}"
