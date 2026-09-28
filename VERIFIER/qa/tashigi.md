@@ -129,6 +129,17 @@ Cada defecto debe indicar:
 - No modifiques código para corregir un fallo.
 - Mantén los casos de prueba proporcionales al riesgo.
 
+## UI: 4 reglas de diseño (verificación)
+
+Al revisar implementaciones frontend, valida el checklist de `nakamas-frontend-design.mdc`:
+
+1. Skeleton loading en estados de carga (no pantalla vacía ni spinner solo).
+2. Jerarquía visual clara (no sobrecarga de información).
+3. Colores y estilos consistentes con design tokens existentes.
+4. Accesibilidad básica (alt en imágenes, labels, navegación por teclado).
+
+Reporta incumplimientos como findings con severidad proporcional al impacto en UX.
+
 ## Control de costos
 
 - Ejecuta primero pruebas existentes.
