@@ -1,0 +1,111 @@
+---
+description: Nakamas Frontend — 4 reglas obligatorias de diseño UI/UX para cualquier implementación visual. Skeleton loading, jerarquía visual, design tokens, accesibilidad.
+alwaysApply: false
+---
+
+# Nakamas × Frontend Design (4 reglas de Sebas)
+
+Checklist obligatorio para cualquier cambio de UI/frontend. Aplica antes de declarar la tarea terminada.
+
+## 1. Skeleton loading
+
+Nunca pantalla en blanco. Nunca spinner solo.
+
+Muestra un esqueleto estructural gris que anticipe el layout final mientras cargan los datos. El usuario percibe la carga más rápida cuando ve la forma del contenido que viene.
+
+Si el framework o design system tiene un componente `Skeleton` o `Placeholder`, úsalo. Si no existe, crea uno simple o aplica el patrón con CSS.
+
+Aplica a:
+
+- Listas que esperan datos.
+- Cards que cargan contenido.
+- Tablas.
+- Perfiles.
+- Dashboards.
+- Cualquier área que dependa de una respuesta asíncrona.
+
+Un loading state que muestra estructura > un loading state que muestra vacío + spinner.
+
+## 2. Jerarquía visual
+
+No sobrecargues la pantalla. No agregues párrafos ni información extra solo porque cabe.
+
+El usuario se pierde cuando todo compite por atención. Cada pantalla debe tener una acción principal clara y elementos secundarios que no distraigan.
+
+Aplica:
+
+- Tamaños de texto diferenciados para títulos, subtítulos, cuerpo.
+- Espaciado consistente que agrupe lo relacionado y separe lo diferente.
+- Colores de énfasis solo donde corresponda.
+- Acciones primarias visualmente distinguibles de las secundarias.
+- Ocultar o colapsar información no esencial.
+
+Si todo parece igual de importante, nada lo es.
+
+## 3. Design tokens
+
+No inventes colores, tipografías ni estilos ad hoc.
+
+Usa el design system del proyecto o los tokens existentes. Si no hay un sistema formal, mantén consistencia con lo que ya existe en el código.
+
+Verifica antes de crear:
+
+- Paleta de colores definida.
+- Escalas tipográficas.
+- Espaciados.
+- Radios de borde.
+- Sombras.
+- Breakpoints.
+
+Cuando necesites un valor nuevo, sigue las convenciones existentes. Si el proyecto usa variables CSS, Tailwind config, o un theme, extiende eso en lugar de hardcodear valores.
+
+Un color inventado hoy es un bug de consistencia mañana.
+
+## 4. Accesibilidad
+
+La app debe ser usable por todos. No es opcional.
+
+Mínimo obligatorio:
+
+- Imágenes con `alt` descriptivo (o `alt=""` si puramente decorativas).
+- Formularios con `label` asociado a cada input.
+- Contraste suficiente entre texto y fondo.
+- Navegación por teclado funcional (focus visible, orden lógico).
+- Roles y estados para lectores de pantalla cuando el HTML semántico no basta.
+- Feedback de acciones accesible (no solo visual).
+
+Prueba con teclado. Si no puedes completar el flujo sin mouse, hay un problema.
+
+## Integración en el proceso
+
+### Implementación (Usopp y frontend)
+
+Antes de reportar `FRONTEND_COMPLETE`:
+
+- [ ] Loading states usan skeleton, no pantalla vacía.
+- [ ] Jerarquía visual clara, sin sobrecarga de información.
+- [ ] Colores y estilos vienen de tokens o son consistentes con el proyecto.
+- [ ] Accesibilidad básica cubierta.
+
+### Verificación (QA / Tashigi)
+
+Al revisar UI:
+
+- Reportar como `FINDING` si falta skeleton en loading.
+- Reportar si la jerarquía visual no es clara o la pantalla está sobrecargada.
+- Reportar inconsistencias de tokens/estilos.
+- Reportar problemas de accesibilidad como defectos.
+
+### Code Review (Lucci / Stussy)
+
+Incluir en checklist de review frontend:
+
+- Skeleton loading presente donde aplique.
+- Sin colores o estilos hardcodeados fuera del sistema.
+- HTML semántico y atributos de accesibilidad.
+
+## Excepciones
+
+Si una regla no aplica a un caso específico, documenta por qué en el reporte.
+
+No uses "no aplica" para saltarte el checklist por comodidad.
